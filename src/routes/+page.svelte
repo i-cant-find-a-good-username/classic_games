@@ -1,5 +1,8 @@
 <script>
 
+    import mine_sweeper from '$lib/images/mine_sweeper_icon.svg';
+    import doubles from '$lib/images/doubles_icon.svg';
+
 </script>
 
 
@@ -9,7 +12,10 @@
         <p>enjoy</p>
     </div>
 
+    <img src={doubles} alt="Welcome" />
+    <img src={mine_sweeper} alt="Welcome" />
     <div id='grid'>
+
         <div></div>
         <div></div>
         <div></div>

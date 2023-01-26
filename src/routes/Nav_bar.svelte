@@ -15,7 +15,7 @@
 
 <style>
     .navbar{
-        padding: 10px;
+        padding: 20px;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -31,6 +31,7 @@
         border-radius: 10px;
         font-size: 16px;
         font-weight: 600;
+        cursor: pointer;
     }
     .active_button{
         color: aqua;

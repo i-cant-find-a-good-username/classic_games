@@ -24,7 +24,7 @@
 		overflow-y: scroll;
     }
     #back_img{
-		transform: rotate(10deg);
+		/*transform: rotate(10deg);*/
 		z-index: -100;
         position: absolute;
         top: 0;
