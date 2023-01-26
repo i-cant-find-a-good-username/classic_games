@@ -20,9 +20,12 @@
 <style>
     .app{
         background-color: transparent;
+		height: 100vh;
+		overflow-y: scroll;
     }
     #back_img{
-        z-index: -100;
+		transform: rotate(10deg);
+		z-index: -100;
         position: absolute;
         top: 0;
         left: 0;
