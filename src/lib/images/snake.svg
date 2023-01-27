@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="200mm"
+   height="200mm"
+   viewBox="0 0 200 200"
+   version="1.1"
+   id="svg2766"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="snake.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview2768"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.47571549"
+     inkscape:cx="380.47952"
+     inkscape:cy="367.86694"
+     inkscape:window-width="1366"
+     inkscape:window-height="719"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2763" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#1f242d;fill-opacity:1;stroke:#a6adba;stroke-width:2.03074;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:stroke fill markers"
+       id="rect2849"
+       width="197.96925"
+       height="197.96925"
+       x="1.0153724"
+       y="1.0153724" />
+    <rect
+       style="fill:#a6adba;fill-opacity:1;stroke:none;stroke-width:0.903675;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:stroke fill markers"
+       id="rect3806"
+       width="60"
+       height="5"
+       x="55"
+       y="50" />
+    <rect
+       style="fill:#a6adba;fill-opacity:1;stroke:none;stroke-width:0.653477;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:stroke fill markers"
+       id="rect3806-6"
+       width="31.375277"
+       height="5"
+       x="110"
+       y="135" />
+    <rect
+       style="fill:#a6adba;fill-opacity:1;stroke:none;stroke-width:0.260868;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:stroke fill markers"
+       id="rect3806-6-1"
+       width="5"
+       height="5"
+       x="165.77997"
+       y="135" />
+    <rect
+       style="fill:#a6adba;fill-opacity:1;stroke:none;stroke-width:1.04347;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:stroke fill markers"
+       id="rect3806-2"
+       width="80"
+       height="5"
+       x="55"
+       y="65" />
+    <rect
+       style="fill:#a6adba;fill-opacity:1;stroke:none;stroke-width:1.16663;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:stroke fill markers"
+       id="rect3806-2-8"
+       width="100"
+       height="5"
+       x="35"
+       y="85" />
+    <rect
+       style="fill:#a6adba;fill-opacity:1;stroke:none;stroke-width:1.04347;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:stroke fill markers"
+       id="rect3806-2-8-7"
+       width="80"
+       height="5"
+       x="35"
+       y="110" />
+    <rect
+       style="fill:#a6adba;fill-opacity:1;stroke:none;stroke-width:0.521737;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:stroke fill markers"
+       id="rect3806-9"
+       width="20"
+       height="5"
+       x="-70"
+       y="55"
+       transform="rotate(-90)" />
+    <rect
+       style="fill:#a6adba;fill-opacity:1;stroke:none;stroke-width:0.542966;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:stroke fill markers"
+       id="rect3806-9-2"
+       width="21.660666"
+       height="5"
+       x="-86.660667"
+       y="130"
+       transform="rotate(-90)" />
+    <rect
+       style="fill:#a6adba;fill-opacity:1;stroke:none;stroke-width:0.638995;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:stroke fill markers"
+       id="rect3806-9-2-9"
+       width="30"
+       height="5"
+       x="-115"
+       y="35"
+       transform="rotate(-90)" />
+    <rect
+       style="fill:#a6adba;fill-opacity:1;stroke:none;stroke-width:0.638995;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:stroke fill markers"
+       id="rect3806-9-2-9-3"
+       width="30"
+       height="5"
+       x="-140"
+       y="110"
+       transform="rotate(-90)" />
+  </g>
+</svg>
