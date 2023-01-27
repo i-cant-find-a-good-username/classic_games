@@ -8,6 +8,7 @@
     import snake from '$lib/images/snake.svg';
     import sudoko from '$lib/images/sudoko.svg';
     import tile_slide from '$lib/images/tile_slide.svg';
+    import tetris from '$lib/images/tetris.svg';
     let games = [
         {name: '2048',icon: doubles},
         {name: 'mine sweeper',icon: mine_sweeper},
@@ -17,6 +18,7 @@
         {name: 'snake',icon: snake},
         {name: 'sudoko',icon: sudoko},
         {name: 'tile slide',icon: tile_slide},
+        {name: 'tetris',icon: tetris},
     ]
 
     function set_styles(e){
