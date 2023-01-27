@@ -29,7 +29,7 @@
 
 <style>
     .app{
-        background-color: transparent;
+        background-color: rgba(31, 36, 45,0.8);
 		height: 100vh;
 		overflow-y: scroll;
     }
