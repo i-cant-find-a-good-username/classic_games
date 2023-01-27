@@ -13,6 +13,7 @@
 
 <style>
     #footer{
+        box-sizing: border-box;
         width: 100%;
         background-color: #1f242d;
         color: #a6adbaff;
