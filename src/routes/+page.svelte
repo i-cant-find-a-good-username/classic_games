@@ -31,7 +31,7 @@
         e.target.style.transform = `perspective(${clientWidth}px) rotateX(${rotateY}deg) rotateY(${rotateX}deg) scale3d(1, 1, 1)`;
     }
     function reset_styles(e){
-        e.taget.style.transform = `perspective(${e.target.clientWidth}px) rotateX(0deg) rotateY(0deg)`;
+        e.currentTarget.style.transform = `perspective(${e.currentTarget.clientWidth}px) rotateX(0deg) rotateY(0deg)`;
     }
 
 </script>
@@ -106,8 +106,21 @@
         transition: transform 0.1s ease;
         transform-style: preserve-3d;
         will-change: transform;
-        position: relative;
     }
+    /* 
+    .game_box_parent::before {
+        content: "";
+        background: rgba(0, 0, 0, 0.4);
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 100;
+    }
+    */
     .game_box_parent:hover .games_boxes {
         transform: translateZ(12px);
     }

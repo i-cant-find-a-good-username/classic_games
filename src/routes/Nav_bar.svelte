@@ -10,6 +10,7 @@
             pressed: e.target.innerText
         })
     }
+    
 </script>
 
 <div class="navbar">
@@ -25,11 +26,18 @@
 </div>
 
 <style>
+    .navbar > :first-child{
+        width: 90px;
+    }
     .navbar{
-        padding: 20px;
+        padding-right: 20px;
+        padding-left: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
     }
     .nav_buttons{
         padding-right: 15px;
