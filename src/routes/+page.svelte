@@ -10,15 +10,15 @@
     import tile_slide from '$lib/images/tile_slide.svg';
     import tetris from '$lib/images/tetris.svg';
     let games = [
-        {name: '2048',icon: doubles},
-        {name: 'mine sweeper',icon: mine_sweeper},
-        {name: 'solitaire',icon: solitaire},
-        {name: 'breakout',icon: breakout},
-        {name: 'tic tac toe',icon: tic_tac_toe},
-        {name: 'snake',icon: snake},
-        {name: 'sudoko',icon: sudoko},
-        {name: 'tile slide',icon: tile_slide},
-        {name: 'tetris',icon: tetris},
+        {name: 'solitaire',icon: solitaire, url: "solitaire"},
+        {name: '2048',icon: doubles, url: "2048"},
+        {name: 'mine sweeper',icon: mine_sweeper, url: "mine_sweeper"},
+        {name: 'breakout',icon: breakout, url: "breakout"},
+        {name: 'tic tac toe',icon: tic_tac_toe, url: "tic_tac_toe"},
+        {name: 'snake',icon: snake, url: "snake"},
+        {name: 'sudoko',icon: sudoko, url: "sudoko"},
+        {name: 'tile slide',icon: tile_slide, url: "tile_slide"},
+        {name: 'tetris',icon: tetris, url: "tetris"},
     ]
 
     function set_styles(e){
@@ -42,18 +42,20 @@
         <h1>Play Games</h1>
         <p>enjoy</p>
     </div>
-
+    
     <div id='grid_container'>
         <div id='grid'>
 			{#each games as game}
-                <div class='game_box_parent' on:mousemove={set_styles} on:mouseleave={reset_styles}>
-                    <div class='games_boxes'>
-                        <div>
-                            <img src={game.icon} alt="Welcome" />
+                <a class='' href={"/"+game.url}>
+                    <div class='game_box_parent' on:mousemove={set_styles} on:mouseleave={reset_styles}>
+                        <div class='games_boxes'>
+                            <div>
+                                <img src={game.icon} alt="Welcome" />
+                            </div>
+                            <div class='game_name'>{game.name}</div>
                         </div>
-                        <div>{game.name}</div>
                     </div>
-                </div>
+                </a>
             {/each}
         </div>
     </div>
@@ -79,17 +81,32 @@
     }
     #grid{
         display: grid;
-        grid-template-columns: repeat(5, minmax(0, 1fr));
-        column-gap: 50px;       
-        row-gap: 50px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        column-gap: 20px;       
+        row-gap: 20px;
     }
+    @media screen and (max-width: 1000px) {
+        #grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+    }
+    @media screen and (max-width: 800px) {
+        #grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+    @media screen and (max-width: 600px) {
+        #grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
     .game_box_parent{
         position: relative;
         transition: transform 0.1s ease;
         transform-style: preserve-3d;
         will-change: transform;
         position: relative;
-        background-color: red;
     }
     .game_box_parent:hover .games_boxes {
         transform: translateZ(12px);
@@ -110,13 +127,21 @@
         padding: 20px;
         padding-bottom: 0px;
     }
+    #grid > :first-child > :first-child > :first-child > :first-child{
+        padding: 0px;
+        background-color: red;
+    }
     .games_boxes > :nth-child(2){
         text-align: center;
         padding: 20px;
         font-size: 18px;
         font-weight: 600;
     }
-    .games_boxes:hover{
-        
+    a{
+
+        text-decoration: none;
+    }
+    .game_name{
+        color: #a6adbaff;
     }
 </style>
