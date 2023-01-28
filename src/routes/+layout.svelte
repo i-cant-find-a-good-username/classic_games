@@ -4,8 +4,11 @@
 	import './app.css';
 
 
+
+
+	
 	const change_back = (e) => {
-		console.log( e.detail.pressed )
+		alert( e.detail.pressed )
 		if(e.detail.pressed === 'play'){
 
 		}else if(e.detail.pressed === 'chill'){
@@ -15,14 +18,12 @@
 </script>
 
 <div class="app">
-	<Nav_bar on:button_changed={change_back} />
+	<Nav_bar on:button_changed={change_back}  />
 
 	<main>
 		<slot />
 	</main>
-    <div id='back_img'>
-         
-    </div>
+    <div id='back_img'></div>
 
 	<Footer />
 </div>

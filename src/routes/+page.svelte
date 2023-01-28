@@ -1,5 +1,4 @@
 <script>
-
     import mine_sweeper from '$lib/images/mine_sweeper_icon.svg';
     import doubles from '$lib/images/doubles_icon.svg';
     import solitaire from '$lib/images/solitaire.svg';
@@ -33,6 +32,9 @@
     function reset_styles(e){
         e.currentTarget.style.transform = `perspective(${e.currentTarget.clientWidth}px) rotateX(0deg) rotateY(0deg)`;
     }
+
+
+
 
 </script>
 
@@ -138,11 +140,9 @@
     }
     .games_boxes > :first-child{
         padding: 20px;
-        padding-bottom: 0px;
     }
     #grid > :first-child > :first-child > :first-child > :first-child{
         padding: 0px;
-        background-color: red;
     }
     .games_boxes > :nth-child(2){
         text-align: center;

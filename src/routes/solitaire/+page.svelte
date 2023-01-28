@@ -3,6 +3,10 @@
     import settings from '$lib/images/settings.svg';
     import arrow_right from '$lib/images/arrow_right.svg';
     import arrow_left from '$lib/images/arrow_left.svg';
+    import spade from '$lib/images/spade.svg';
+    import club from '$lib/images/club.svg';
+    import heart from '$lib/images/heart.svg';
+    import diamond from '$lib/images/diamond.svg';
 
     const cards = [
         {name: 'a', type: 'spade'},
@@ -59,6 +63,17 @@
         {name: 'k', type: 'diamond'},
     ]
 
+
+    import { createEventDispatcher } from "svelte"
+	import { onMount } from 'svelte';
+    onMount(async () => {
+        const dispatch = createEventDispatcher()
+    
+        dispatch('started_game', {
+            pressed: 'solitaire'
+        })
+	});
+
 </script>
 
 
@@ -82,7 +97,9 @@
             </div>
             <div id='upper_deck' >
                 <div>
-                    <div class='card'><div></div></div>
+                    <div class='card'>
+                        <div class='flipped'></div>
+                    </div>
                 </div>
                 <div></div>
                 <div></div>
@@ -92,7 +109,19 @@
                 <div></div>
             </div>
             <div id='lower_deck' >
-                <div></div>
+                <div>
+                    <div class='card'>
+                        <div class='card_front'>
+                            <div>
+                                <div>A</div>
+                                <img src={club} alt="Welcome" />
+                            </div>
+                            <div>
+                                <img src={club} alt="Welcome" />
+                            </div>
+                        </div>  
+                    </div>
+                </div>
                 <div></div>
                 <div></div>
                 <div></div>
@@ -132,7 +161,7 @@
         padding-bottom: 5px;
     }
     .options_buttons{
-        background-color: #1f242d;
+        background-color: #3d4451;
         border: none;
         color: white;
         padding: 10px;
@@ -168,12 +197,37 @@
         padding: 5px;
         box-sizing: border-box;
     }
-    .card > * {
+    .flipped {
         border-radius: 10px;
         background-color: #eb5757ff;
         width: 100%;
         height: 100%;
     }
-    
+    .card_front{
+        width: 100%;
+        height: 100%;
+    }
+    .card_front > :first-child{
+        padding-right: 5px;
+        padding-left: 5px;
+        background-color: red;
+        height: 33%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .card_front > :first-child > :first-child {
+        font-size: 25px;
+        font-weight: 700;
+        color: black;
+    }
+    .card_front > :nth-child(2){
+        background-color: green;
+        height: 67%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
 </style>
