@@ -20,7 +20,9 @@
         {name: 'tetris',icon: tetris, url: "tetris"},
     ]
 
+    
     function set_styles(e){
+        e.target = e.target
         const { clientX, clientY, currentTarget } = e;
         const { clientWidth, clientHeight, offsetLeft, offsetTop } = currentTarget;
         const horizontal = (clientX - offsetLeft) / clientWidth;
@@ -30,7 +32,7 @@
         e.target.style.transform = `perspective(${clientWidth}px) rotateX(${rotateY}deg) rotateY(${rotateX}deg) scale3d(1, 1, 1)`;
     }
     function reset_styles(e){
-        e.currentTarget.style.transform = `perspective(${e.currentTarget.clientWidth}px) rotateX(0deg) rotateY(0deg)`;
+        e.target.style.transform = `perspective(${e.target.clientWidth}px) rotateX(0deg) rotateY(0deg)`;
     }
 
 
@@ -39,7 +41,7 @@
 </script>
 
 
-<div>
+<div id=''>
     <div id='title_texts'>
         <h1>Play Games</h1>
         <p>enjoy</p>
