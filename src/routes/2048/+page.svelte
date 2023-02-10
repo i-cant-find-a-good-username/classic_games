@@ -35,22 +35,22 @@
 <div id='dd'>
 
     <div id='main'>
-        <div class='blocks' bind:this={block1} id='block_1' >efefef</div>
-        <div class='blocks' bind:this={block2} id='block_2' ></div>
-        <div class='blocks' bind:this={block3} id='block_3' ></div>
-        <div class='blocks' bind:this={block4} id='block_4' ></div>
-        <div class='blocks' bind:this={block5} id='block_5' ></div>
-        <div class='blocks' bind:this={block6} id='block_6' ></div>
-        <div class='blocks' bind:this={block7} id='block_7' ></div>
-        <div class='blocksQ' bind:this={block8} id='block_8' ></div>
-        <div class='blocks' bind:this={block9} id='block_9' ></div>
-        <div class='blocks' bind:this={block10} id='block_10' ></div>
-        <div class='blocks' bind:this={block11} id='block_11' ></div>
-        <div class='blocks' bind:this={block12} id='block_12' ></div>
-        <div class='blocks' bind:this={block13} id='block_13' ></div>
-        <div class='blocks' bind:this={block14} id='block_14' ></div>
-        <div class='blocks' bind:this={block15} id='block_15' ></div>
-        <div class='blocks' bind:this={block16} id='block_16' ></div>
+        <div class='blocks block_2' bind:this={block1} id='block_1' >2</div>
+        <div class='blocks block_4' bind:this={block2} id='block_2' >4</div>
+        <div class='blocks block_8' bind:this={block3} id='block_3' >8</div>
+        <div class='blocks block_16' bind:this={block4} id='block_4' >16</div>
+        <div class='blocks block_32' bind:this={block5} id='block_5' >32</div>
+        <div class='blocks block_64' bind:this={block6} id='block_6' >64</div>
+        <div class='blocks block_128' bind:this={block7} id='block_7' >128</div>
+        <div class='blocks block_256' bind:this={block8} id='block_8' >256</div>
+        <div class='blocks block_512' bind:this={block9} id='block_9' >512</div>
+        <div class='blocks block_1024' bind:this={block10} id='block_10' >1024</div>
+        <div class='blocks block_2048' bind:this={block11} id='block_11' >2048</div>
+        <div class='blocks ' bind:this={block12} id='block_12' ></div>
+        <div class='blocks ' bind:this={block13} id='block_13' ></div>
+        <div class='blocks ' bind:this={block14} id='block_14' ></div>
+        <div class='blocks ' bind:this={block15} id='block_15' ></div>
+        <div class='blocks ' bind:this={block16} id='block_16' ></div>
     </div>
 
 </div>
@@ -58,6 +58,20 @@
 
 <style>
 
+/*
+
+2
+4
+8
+16
+32
+64
+128
+256
+1024
+2048
+
+*/
     #main{
         width: 400px;
         height: 400px;
@@ -69,14 +83,54 @@
     }
     #main > *{
         background-color: #1f242dff;
-        height: 100%;
-        width: 100%;
+        height: 95px;
+        width: 95px;
         display: flex;
         align-items: center;
         justify-content: center;
+        font-size: 40px;
     }
     
-    
+.block_2{
+    background-color: white !important;
+    color: black;
+
+}    
+.block_4{
+    background-color: #fed7aaff !important;
+    color: black;
+
+}
+.block_8{
+    background-color: #fdba74ff !important;
+}
+.block_16{
+    background-color: #fb923cff !important;
+}
+.block_32{
+    background-color: #f87171ff !important;
+}
+.block_64{
+    background-color: #ef4444ff !important;
+}
+.block_128{
+    background-color: #fde047ff !important;
+}
+.block_256{
+    background-color: #fde047ff !important;
+}
+.block_512{
+    background-color: #facc15ff !important;
+}
+.block_1024{
+    background-color: #facc15ff !important;
+}
+.block_2048{
+    background-color: #facc15ff !important;
+}
+
+
+
 
 
 </style>
