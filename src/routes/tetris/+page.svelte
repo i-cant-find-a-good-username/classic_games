@@ -34,7 +34,7 @@
         flex-direction: row;
         align-items: center;
         justify-content: space-around;
-        background-color: grey;
+        /*background-color: grey;*/
         height: 72vh;
         padding: 100px;
     }
@@ -47,9 +47,10 @@
         height: 100%;
         aspect-ratio: 10/18;
     }
+
     #center > :nth-child(2){
+        aspect-ratio: 10/18;
         height: 100%;
-        background-color: green;
     }
 
 
@@ -61,7 +62,7 @@
     }
 
     #game_container > * {
-        height: 5.55%;
+        width: 100%;
         aspect-ratio: 1/1;
         background-color: yellow;
 
@@ -73,12 +74,15 @@
 
 
     #next_block{
-        background-color: red ;
-        padding: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 4px solid #a6adbaff;
+        aspect-ratio: 3/2;
     }
 
-    #score_container{
-        background-color: red;
+    #scores{
+
     }
 
 </style>
