@@ -1,36 +1,53 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-
 	export let data: PageData;
 
-	console.log(data);
+    let diffculty = 'easy'
 
+    const box_clicked = (e) => {
+        console.log(e.target.id)
+        
+    }
 
-    const easy = Array.from({length: 10}, () => Math.floor(Math.random() * 64));
-    const medium = Array.from({length: 40}, () => Math.floor(Math.random() * 256));
-    const hard = Array.from({length: 100}, () => Math.floor(Math.random() * 512));
+    const change_diff = (e) => {
+        diffculty = e.target.value
+    }
 
 </script>
 
 <div id='center'>
     
-	<div id="main">
-		{#each Array(64) as _, i}
-            <div class={easy.includes(i) ? 'mine' : ''} id={'cell_'+i}></div>
-        {/each}
-	</div>
+    {#if diffculty === 'easy'}
+	    <div id="main">
+	    	{#each Array(64) as _, i}
+                <div on:click={box_clicked} id={'cell_'+i}></div>
+            {/each}
+	    </div>
+    {/if}
+    
+    {#if diffculty === 'normal'}
+	    <div id="main2">
+	    	{#each Array(256) as _, i}
+                <div on:click={box_clicked} id={'cell_'+i}></div>
+            {/each}
+	    </div>
+    {/if}
+    
+    {#if diffculty === 'hard'}
+        <div id="main3">
+	    	{#each Array(512) as _, i}
+                <div on:click={box_clicked} id={'cell_'+i}></div>
+            {/each}
+        </div>
+    {/if}
 
-	<div id="main2">
-		{#each Array(256) as _, i}
-            <div class={medium.includes(i) ? 'mine' : ''} id={'square_'+i}></div>
-        {/each}
-	</div>
 
-    <div id="main3">
-		{#each Array(512) as _, i}
-            <div class={hard.includes(i) ? 'mine' : ''} id={'box_'+i}></div>
-        {/each}
-    </div>
+  
+    <select name="diffculty" id="" on:change={change_diff} >
+        <option value="easy">easy</option>
+        <option value="normal">normal</option>
+        <option value="hard">hard</option>
+    </select>
 
 </div>
 

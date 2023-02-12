@@ -9,7 +9,14 @@ import { error, fail } from "@sveltejs/kit";
 
 
 export const load: PageServerLoad = async ({ params }) => {
-    return {bruh: 'ok ok'}
+    const easy = Array.from({length: 10}, () => Math.floor(Math.random() * 64));
+    const medium = Array.from({length: 40}, () => Math.floor(Math.random() * 256));
+    const hard = Array.from({length: 100}, () => Math.floor(Math.random() * 512));
+    return {
+        "easy" : easy,
+        "medium" : medium,
+        "hard" : hard,
+    }
 }
 
 
@@ -17,6 +24,7 @@ export const load: PageServerLoad = async ({ params }) => {
 export const actions: Actions = {
 
     func2: async ({ request, params }) => {
+        console.log('gg')
 
     } 
 
