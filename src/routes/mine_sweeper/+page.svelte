@@ -4,13 +4,23 @@
 
     let diffculty = 'easy'
 
-    const box_clicked = (e) => {
+    const box_clicked = (e: any) => {
         console.log(e.target.id)
         
     }
 
-    const change_diff = (e) => {
+    const change_diff = async (e: any) => {
         diffculty = e.target.value
+        const response = await fetch('/api/add', {
+            method: 'POST',
+            body: JSON.stringify({ 'f':0,'ff': 10 }),
+            headers: {
+              'content-type': 'application/json'
+            }
+        });
+        
+        let al = await response.json()
+        alert(al)
     }
 
 </script>
