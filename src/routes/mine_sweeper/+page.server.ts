@@ -29,9 +29,11 @@ export const actions: Actions = {
         console.log('gg')
 
     },
+
+    
     ff: async ({ request, params }) => {
         console.log('gg')
-
+        return 'efzfzjeifozeofizjeofi'
     } 
 
 

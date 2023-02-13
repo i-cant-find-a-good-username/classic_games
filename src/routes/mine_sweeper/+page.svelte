@@ -1,36 +1,50 @@
 <script lang="ts">
+    import { enhance } from '$app/forms';
 	import type { PageData } from './$types';
 	export let data: PageData;
 
     let diffculty = 'easy'
 
-    const box_clicked = (e: any) => {
+    const box_clicked = async (e: any) => {
         console.log(e.target.id)
-        
+        //const response = await fetch('/ff', {
+        //    method: 'POST',
+        //    body: JSON.stringify({ 'f':0,'ff': 10 }),
+        //    headers: {
+        //      'content-type': 'application/json'
+        //    }
+        //});
+        //
+        //let al = await response.json()
+        //alert(al)
     }
 
     const change_diff = async (e: any) => {
         diffculty = e.target.value
-        const response = await fetch('/api/add', {
-            method: 'POST',
-            body: JSON.stringify({ 'f':0,'ff': 10 }),
+        const response = await fetch('/', {
+            method: 'GET',
+            //body: JSON.stringify({ 'f':0,'ff': 10 }),
             headers: {
               'content-type': 'application/json'
             }
         });
         
         let al = await response.json()
-        alert(al)
+        alert(JSON.stringify(al))
     }
 
 </script>
 
 <div id='center'>
     
+    
     {#if diffculty === 'easy'}
 	    <div id="main">
 	    	{#each Array(64) as _, i}
-                <div on:click={box_clicked} id={'cell_'+i}></div>
+                <form action="?/ff" method='post' use:enhance >
+                    <button on:click={box_clicked} id={'cell_'+i}></button>
+                    <input type="hidden" name="cell_id" value={i}>
+                </form>
             {/each}
 	    </div>
     {/if}
@@ -38,7 +52,10 @@
     {#if diffculty === 'normal'}
 	    <div id="main2">
 	    	{#each Array(256) as _, i}
-                <div on:click={box_clicked} id={'cell_'+i}></div>
+                <form action="?/ff" method='post' use:enhance >
+                    <button on:click={box_clicked} id={'cell_'+i}></button>
+                    <input type="hidden" name="cell_id" value={i}>
+                </form>
             {/each}
 	    </div>
     {/if}
@@ -46,7 +63,10 @@
     {#if diffculty === 'hard'}
         <div id="main3">
 	    	{#each Array(512) as _, i}
-                <div on:click={box_clicked} id={'cell_'+i}></div>
+                <form action="?/ff" method='post' use:enhance >
+                    <button on:click={box_clicked} id={'cell_'+i}></button>
+                    <input type="hidden" name="cell_id" value={i}>
+                </form>
             {/each}
         </div>
     {/if}
@@ -107,6 +127,15 @@
 
     :global(.mine){
         background-color: red !important;
+    }
+
+
+    form > button {
+        background-color: transparent;
+        width: 100%;
+        height: 100%;
+        border: none;
+        cursor: pointer;
     }
 
 

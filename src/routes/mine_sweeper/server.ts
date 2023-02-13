@@ -1,6 +1,8 @@
 import { error } from '@sveltejs/kit';
  
 export function GET({ url }) {
+    console.log(url)
+    console.log('url////////////////////////////////////////////////////////////////')
     const min = Number(url.searchParams.get('min') ?? '0');
     const max = Number(url.searchParams.get('max') ?? '1');
     
@@ -13,4 +15,10 @@ export function GET({ url }) {
     const random = min + Math.random() * d;
   
     return new Response(String(random));
+}
+
+
+export function POST({ url }) {
+    console.log('it caaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaame')
+    return 'fezfzefzefzefzfe'
 }
