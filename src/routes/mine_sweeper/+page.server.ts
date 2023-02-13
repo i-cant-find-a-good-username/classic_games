@@ -14,26 +14,37 @@ export const load: PageServerLoad = async ({ params }) => {
     const easy = Array.from({length: 10}, () => Math.floor(Math.random() * 64));
     const medium = Array.from({length: 40}, () => Math.floor(Math.random() * 256));
     const hard = Array.from({length: 100}, () => Math.floor(Math.random() * 512));
-    return {
-        "easy" : easy,
-        "medium" : medium,
-        "hard" : hard,
-    }
+    
+    let chosen_diff = easy
+
+
 }
 
 
 
 export const actions: Actions = {
 
-    func2: async ({ request, params }) => {
+    changed_diff: async ({ request, params }) => {
         console.log('gg')
-
+        console.log('gg')
+        console.log('gg')
+        console.log('gg')
+        console.log('gg')
+        console.log('gg')
+        console.log('gg')
+        console.log('gg')
+        console.log('gg')
+        console.log('gg')
+        console.log('gg')
+        console.log('gg')
+        console.log('gg')
+        return('fuck you')
     },
 
-    
-    ff: async ({ request, params }) => {
-        console.log('gg')
-        return 'efzfzjeifozeofizjeofi'
+
+    clicked_box: async ({ request, params }) => {
+        const form_data = await request.formData()
+
     } 
 
 
