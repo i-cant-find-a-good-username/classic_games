@@ -1,43 +1,46 @@
 <script lang="ts">
-    import { enhance } from '$app/forms';
 	import type { PageData } from './$types';
 	export let data: PageData;
 
     let diffculty = 'easy'
-    let submit_form;
 
     const box_clicked = async (e: any) => {
         console.log(e.target.id)
-        //const response = await fetch('/ff', {
-        //    method: 'POST',
-        //    body: JSON.stringify({ 'f':0,'ff': 10 }),
-        //    headers: {
-        //      'content-type': 'application/json'
-        //    }
-        //});
-        //
-        //let al = await response.json()
-        //alert(al)
-    }
-    const on_diff_change = ({ form, data, action, cancel }) => {
-        return async ({ result, update }) => {
-            console.log(result)
-        }
+        const response = await fetch('/ff', {
+            method: 'POST',
+            body: JSON.stringify({ 'f':0,'ff': 10 }),
+            headers: {
+              'content-type': 'application/json'
+            }
+        });
+        
+        let al = await response.json()
+        alert(al)
     }
 
- 
+    const change_diff = async (e: any) => {
+        diffculty = e.target.value
+        const response = await fetch('/', {
+            method: 'GET',
+            //body: JSON.stringify({ 'f':0,'ff': 10 }),
+            headers: {
+              'content-type': 'application/json'
+            }
+        });
+        
+        let al = await response.json()
+        alert(JSON.stringify(al))
+    }
+
 </script>
 
 <div id='center'>
     
-    
     {#if diffculty === 'easy'}
 	    <div id="main">
 	    	{#each Array(64) as _, i}
-                <form action="?/clicked_box" method='post' use:enhance >
-                    <button on:click={box_clicked} id={'cell_'+i}></button>
-                    <input type="hidden" name="cell_id" value={i}>
-                </form>
+            
+                <div on:click={box_clicked} id={'cell_'+i}></div>
             {/each}
 	    </div>
     {/if}
@@ -45,10 +48,7 @@
     {#if diffculty === 'normal'}
 	    <div id="main2">
 	    	{#each Array(256) as _, i}
-                <form action="?/clicked_box" method='post' use:enhance >
-                    <button on:click={box_clicked} id={'cell_'+i}></button>
-                    <input type="hidden" name="cell_id" value={i}>
-                </form>
+                <div on:click={box_clicked} id={'cell_'+i}></div>
             {/each}
 	    </div>
     {/if}
@@ -56,24 +56,19 @@
     {#if diffculty === 'hard'}
         <div id="main3">
 	    	{#each Array(512) as _, i}
-                <form action="?/clicked_box" method='post' use:enhance >
-                    <button on:click={box_clicked} id={'cell_'+i}></button>
-                    <input type="hidden" name="cell_id" value={i}>
-                </form>
+                <div on:click={box_clicked} id={'cell_'+i}></div>
             {/each}
         </div>
     {/if}
 
 
-    <form action="">
+  
+    <select name="diffculty" id="" on:change={change_diff} >
+        <option value="easy">easy</option>
+        <option value="normal">normal</option>
+        <option value="hard">hard</option>
+    </select>
 
-    <form action="?/changed_diff" bind:this={submit_form}  method='post' use:enhance={on_diff_change}   >
-        <select name="diffculty" id="" on:change={() => submit_form.requestSubmit()} >
-            <option value="easy">easy</option>
-            <option value="normal">normal</option>
-            <option value="hard">hard</option>
-        </select>
-    </form>
 </div>
 
 <style>
@@ -122,15 +117,6 @@
 
     :global(.mine){
         background-color: red !important;
-    }
-
-
-    form > button {
-        background-color: transparent;
-        width: 100%;
-        height: 100%;
-        border: none;
-        cursor: pointer;
     }
 
 
