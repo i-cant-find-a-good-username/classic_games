@@ -1,10 +1,28 @@
 <script>
 
+    let bar
+    let ball
 
+    const move = (e) => {
+
+        if(e.keyCode === 37){
+            console.log(bar.style.left)
+            bar.style.left = bar.style.left + 10
+        }else if(e.keyCode === 39){
+            console.log(bar.style.right)
+            bar.style.right = '10px'
+        }
+
+    }
 
 </script>
 
-<div id='main_parent'>
+
+
+
+
+<svelte:window on:keydown={move}/>
+<div id='main_parent' >
     <div id='main'>
         <div id='bricks_container'>
             <div class="bricks_row">
@@ -96,8 +114,8 @@
 
         <div id='player_area'>
             <div>
-                <div id='ball'></div>
-                <div id='player_bar'></div>
+                <div bind:this={ball} id='ball'></div>
+                <div bind:this={bar} id='player_bar'></div>
             </div>
         </div>
     </div>
@@ -119,6 +137,8 @@
         display: flex;
         flex-direction: column;
         margin-bottom: 150px;
+        
+        
     }
     #player_area{
         width: 100%;
@@ -126,6 +146,8 @@
         display: flex;
         align-items: end; 
         justify-content: center;
+        background-color: red;
+        position: relative;
     }
     #player_area > :first-child{
         display: flex;
@@ -136,11 +158,16 @@
         background-color: #a6adbaff;
         height: 10px;
         width: 10px;
+        position: absolute;
+        bottom: 0px;
     }
     #player_bar{
+        position: absolute;
         height: 10px;
         width: 150px;
         background-color: #a6adbaff;
+        right: 50%;
+        translate: 50%;
     }
 
 
@@ -149,9 +176,11 @@
         flex-direction: row;
         width: 100%;
         height: 20px;
+        gap: 2px;
+        margin-bottom: 6px;
     }
     .brick{
-        border: black 2px solid;
+        border: transparent 2px solid;
         height: 100%;
         width: 8.33%;
     }
