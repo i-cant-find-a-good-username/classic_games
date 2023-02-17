@@ -9,58 +9,58 @@
     import diamond from '$lib/images/diamond.svg';
 
     const cards = [
-        {name: 'a', type: 'spade'},
-        {name: '2', type: 'spade'},
-        {name: '3', type: 'spade'},
-        {name: '4', type: 'spade'},
-        {name: '5', type: 'spade'},
-        {name: '6', type: 'spade'},
-        {name: '7', type: 'spade'},
-        {name: '8', type: 'spade'},
-        {name: '9', type: 'spade'},
-        {name: '10', type: 'spade'},
-        {name: 'j', type: 'spade'},
-        {name: 'q', type: 'spade'},
-        {name: 'k', type: 'club'},
-        {name: 'a', type: 'club'},
-        {name: '2', type: 'club'},
-        {name: '3', type: 'club'},
-        {name: '4', type: 'club'},
-        {name: '5', type: 'club'},
-        {name: '6', type: 'club'},
-        {name: '7', type: 'club'},
-        {name: '8', type: 'club'},
-        {name: '9', type: 'club'},
-        {name: '10', type: 'club'},
-        {name: 'j', type: 'club'},
-        {name: 'q', type: 'club'},
-        {name: 'k', type: 'club'},
-        {name: 'a', type: 'heart'},
-        {name: '2', type: 'heart'},
-        {name: '3', type: 'heart'},
-        {name: '4', type: 'heart'},
-        {name: '5', type: 'heart'},
-        {name: '6', type: 'heart'},
-        {name: '7', type: 'heart'},
-        {name: '8', type: 'heart'},
-        {name: '9', type: 'heart'},
-        {name: '10', type: 'heart'},
-        {name: 'j', type: 'heart'},
-        {name: 'q', type: 'heart'},
-        {name: 'k', type: 'heart'},
-        {name: 'a', type: 'diamond'},
-        {name: '2', type: 'diamond'},
-        {name: '3', type: 'diamond'},
-        {name: '4', type: 'diamond'},
-        {name: '5', type: 'diamond'},
-        {name: '6', type: 'diamond'},
-        {name: '7', type: 'diamond'},
-        {name: '8', type: 'diamond'},
-        {name: '9', type: 'diamond'},
-        {name: '10', type: 'diamond'},
-        {name: 'j', type: 'diamond'},
-        {name: 'q', type: 'diamond'},
-        {name: 'k', type: 'diamond'},
+        {name: 'A', type: spade, color: '#333333'},
+        {name: '2', type: spade, color: '#333333'},
+        {name: '3', type: spade, color: '#333333'},
+        {name: '4', type: spade, color: '#333333'},
+        {name: '5', type: spade, color: '#333333'},
+        {name: '6', type: spade, color: '#333333'},
+        {name: '7', type: spade, color: '#333333'},
+        {name: '8', type: spade, color: '#333333'},
+        {name: '9', type: spade, color: '#333333'},
+        {name: '10', type: spade, color: '#333333'},
+        {name: 'J', type: spade, color: '#333333'},
+        {name: 'Q', type: spade, color: '#333333'},
+        {name: 'K', type: club, color: '#333333'},
+        {name: 'A', type: club, color: '#333333'},
+        {name: '2', type: club, color: '#333333'},
+        {name: '3', type: club, color: '#333333'},
+        {name: '4', type: club, color: '#333333'},
+        {name: '5', type: club, color: '#333333'},
+        {name: '6', type: club, color: '#333333'},
+        {name: '7', type: club, color: '#333333'},
+        {name: '8', type: club, color: '#333333'},
+        {name: '9', type: club, color: '#333333'},
+        {name: '10', type: club, color: '#333333'},
+        {name: 'J', type: club, color: '#333333'},
+        {name: 'Q', type: club, color: '#333333'},
+        {name: 'K', type: club, color: '#333333'},
+        {name: 'A', type: heart, color:'#eb5757ff'},
+        {name: '2', type: heart, color:'#eb5757ff'},
+        {name: '3', type: heart, color:'#eb5757ff'},
+        {name: '4', type: heart, color:'#eb5757ff'},
+        {name: '5', type: heart, color:'#eb5757ff'},
+        {name: '6', type: heart, color:'#eb5757ff'},
+        {name: '7', type: heart, color:'#eb5757ff'},
+        {name: '8', type: heart, color:'#eb5757ff'},
+        {name: '9', type: heart, color:'#eb5757ff'},
+        {name: '10', type: heart, color:'#eb5757ff'},
+        {name: 'J', type: heart, color:'#eb5757ff'},
+        {name: 'Q', type: heart, color:'#eb5757ff'},
+        {name: 'K', type: heart, color:'#eb5757ff'},
+        {name: 'A', type: diamond, color: '#eb5757ff'},
+        {name: '2', type: diamond, color: '#eb5757ff'},
+        {name: '3', type: diamond, color: '#eb5757ff'},
+        {name: '4', type: diamond, color: '#eb5757ff'},
+        {name: '5', type: diamond, color: '#eb5757ff'},
+        {name: '6', type: diamond, color: '#eb5757ff'},
+        {name: '7', type: diamond, color: '#eb5757ff'},
+        {name: '8', type: diamond, color: '#eb5757ff'},
+        {name: '9', type: diamond, color: '#eb5757ff'},
+        {name: '10', type: diamond, color: '#eb5757ff'},
+        {name: 'J', type: diamond, color: '#eb5757ff'},
+        {name: 'Q', type: diamond, color: '#eb5757ff'},
+        {name: 'K', type: diamond, color: '#eb5757ff'},
     ]
 
 
@@ -121,6 +121,21 @@
                             </div>
                         </div>  
                     </div>
+
+                    {#each cards as card, i }
+                        <div class='card' style={'top: '+i*50+'px'}>
+                            <div class='card_front'>
+                                <div>
+                                    <div style={'color:' + card.color }> {card.name} </div>
+                                    <img src={card.type} alt="Welcome" />
+                                </div>
+                                <div>
+                                    <img src={card.type} alt="Welcome"  />
+                                </div>
+                            </div>  
+                        </div>
+                    {/each}
+
                 </div>
                 <div></div>
                 <div></div>
@@ -130,6 +145,7 @@
                 <div></div>
             </div>
         </div>
+        
     </div>
 </div>
 
@@ -175,6 +191,7 @@
         padding: 10px;
         display: flex;
         flex-direction: row;
+        position: relative;
     }
     #upper_deck > *, #lower_deck > *{
         margin-right: 10px;
@@ -190,27 +207,33 @@
     }
 
     .card{
+        color:red;
+        position: absolute;
+        top: 0;
+        left: 0;
         background-color: white;
         border-radius: 10px;
         width: 100%;
         height: 100%;
         padding: 5px;
         box-sizing: border-box;
+        border: black 1px solid;
     }
+    
     .flipped {
         border-radius: 10px;
         background-color: #eb5757ff;
         width: 100%;
         height: 100%;
+
     }
     .card_front{
         width: 100%;
         height: 100%;
     }
     .card_front > :first-child{
-        padding-right: 5px;
-        padding-left: 5px;
-        background-color: red;
+        padding-right: 2px;
+        padding-left: 2px;
         height: 33%;
         display: flex;
         flex-direction: row;
@@ -218,16 +241,21 @@
         justify-content: space-between;
     }
     .card_front > :first-child > :first-child {
-        font-size: 25px;
+        font-size: 38px;
         font-weight: 700;
         color: black;
     }
+    .card_front > :first-child > :nth-child(2) {
+        height: 90%;
+    }
     .card_front > :nth-child(2){
-        background-color: green;
         height: 67%;
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+    .card_front > :nth-child(2) > :first-child{
+        height: 100%;
     }
 
 </style>
