@@ -3,7 +3,7 @@
 
     var random1, random2
     var block1 ,block2 ,block3 ,block4 ,block5 ,block6 ,block7 ,block8 ,block9 ,block10 ,block11 ,block12 ,block13 ,block14 ,block15 ,block16
-    var block
+    var block1, block2
     
     function go_side(e){
         if(e.keyCode === 37){
@@ -11,8 +11,12 @@
         }else if(e.keyCode === 38){
             //top
         }else if(e.keyCode === 39){
-            block.style.left = '25%'
-            console.log(block)
+            //block.style.left = '25%'
+            //console.log(block)
+            console.log(block1, block2)
+            ({ block1, block2 } = { block2, block1 })
+            console.log(block1, block2)
+
         }else if(e.keyCode === 40){
             //bottom
         }
@@ -24,66 +28,15 @@
 
 
 
-    import { createEventDispatcher } from "svelte"
 	import { onMount } from 'svelte';
     onMount(async () => {
         block1.classList.add('added')
 
-        switch (random1) {
-            case 0:
-                
-                break
-            case 1:
-                
-                break
-            case 2:
-                
-                break
-            case 3:
-                
-                break
-            case 4:
-                
-                break
-            case 5:
-                
-                break
-            case 6:
-                
-                break
-            case 7:
-                
-                break
-            case 8:
 
-                break
-            case 9:
 
-                break
-            case 10:
-
-                break
-            case 11:
-
-                break
-            case 12:
-
-                break
-            case 13:
-
-                break
-            case 14:
-
-                break
-            case 15:
-
-                break
-            default:
-                break
-        }
-    });
+    })
             
-            console.log(random1, random2)
+    console.log(random1, random2)
 </script>
 
 <svelte:window on:keydown={go_side} />
@@ -107,7 +60,8 @@
 		    <div class="blocks " bind:this={block15} id="block_15" ></div>
 		    <div class="blocks " bind:this={block16} id="block_16" ></div>
 
-            <div bind:this={block} class='inside_block block_2' id='block_1' >2</div>
+            <div bind:this={block1} class='inside_block block_2' id='block_1' >inside 1</div>
+            <div bind:this={block2} class='inside_block block_2' id='block_2' >inside 2</div>
 
     </div>
 </div>
