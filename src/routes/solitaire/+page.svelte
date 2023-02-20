@@ -1,5 +1,6 @@
 <script>
 
+    import Card from './Card.svelte'
     import settings from '$lib/images/settings.svg';
     import arrow_right from '$lib/images/arrow_right.svg';
     import arrow_left from '$lib/images/arrow_left.svg';
@@ -63,6 +64,14 @@
         {name: 'K', type: diamond, color: '#eb5757ff'},
     ]
 
+    let lower_deck_1 = cards
+    let lower_deck_2 = []
+    let lower_deck_3 = []
+    let lower_deck_4 = []
+    let lower_deck_5 = cards
+    let lower_deck_6 = []
+    let lower_deck_7 = []
+
 
     import { createEventDispatcher } from "svelte"
 	import { onMount } from 'svelte';
@@ -110,39 +119,40 @@
             </div>
             <div id='lower_deck' >
                 <div>
-                    <div class='card'>
-                        <div class='card_front'>
-                            <div>
-                                <div>A</div>
-                                <img src={club} alt="Welcome" />
-                            </div>
-                            <div>
-                                <img src={club} alt="Welcome" />
-                            </div>
-                        </div>  
-                    </div>
-
-                    {#each cards as card, i }
-                        <div class='card' style={'top: '+i*50+'px'}>
-                            <div class='card_front'>
-                                <div>
-                                    <div style={'color:' + card.color }> {card.name} </div>
-                                    <img src={card.type} alt="Welcome" />
-                                </div>
-                                <div>
-                                    <img src={card.type} alt="Welcome"  />
-                                </div>
-                            </div>  
-                        </div>
+                    {#each lower_deck_1 as card, i }
+                        <Card index={i} card={card} />
                     {/each}
-
                 </div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+                <div>
+                    {#each lower_deck_2 as card, i }
+                        <Card index={i} card={card} />
+                    {/each}
+                </div>
+                <div>
+                    {#each lower_deck_3 as card, i }
+                        <Card index={i} card={card} />
+                    {/each}
+                </div>
+                <div>
+                    {#each lower_deck_4 as card, i }
+                        <Card index={i} card={card} />
+                    {/each}
+                </div>
+                <div>
+                    {#each lower_deck_5 as card, i }
+                        <Card index={i} card={card} />
+                    {/each}
+                </div>
+                <div>
+                    {#each lower_deck_6 as card, i }
+                        <Card index={i} card={card} />
+                    {/each}
+                </div>
+                <div>
+                    {#each lower_deck_7 as card, i }
+                        <Card index={i} card={card} />
+                    {/each}
+                </div>
             </div>
         </div>
         
@@ -218,6 +228,7 @@
         padding: 5px;
         box-sizing: border-box;
         border: black 1px solid;
+        cursor: pointer;
     }
     
     .flipped {
