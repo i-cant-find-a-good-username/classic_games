@@ -20,7 +20,7 @@
 
     const change_diff = async (e: any) => {
         diffculty = e.target.value
-        const response = await fetch('?/changed_diff', {
+        const response = await fetch('/api/changed_diff', {
             method: 'GET',
             //body: JSON.stringify({ 'f':0,'ff': 10 }),
             headers: {
