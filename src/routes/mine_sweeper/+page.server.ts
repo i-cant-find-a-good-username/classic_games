@@ -43,28 +43,17 @@ export const actions: Actions = {
 
 
     clicked_box: async ({ request, params }) => {
+        console.log('ggggggggggggg')
+        console.log('ggggggggggggg')
+        console.log('ggggggggggggg')
+        console.log('ggggggggggggg')
+        console.log('ggggggggggggg')
+        console.log('ggggggggggggg')
+        console.log('ggggggggggggg')
+        console.log(params)
         const form_data = await request.formData()
-
     } 
 
 
-    //updateArticle: async ({ request, params }) => {
-    //    const { title, content } = Object.fromEntries(await request.formData()) as { title: string, content: string}
-    //    try{
-    //        await prisma.article.update({
-    //            where: {
-    //                id: Number(params.articleId)
-    //            },
-    //            data: {
-    //                title, content
-    //            }
-    //        })
-    //    }catch(err){
-    //        console.log(err)
-    //        return fail(500, {message: 'couldnt update'})
-    //    }
-    //    return{
-    //        status: 200
-    //    }
-    //}
+
 };

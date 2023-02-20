@@ -6,7 +6,7 @@
 
     const box_clicked = async (e: any) => {
         console.log(e.target.id)
-        const response = await fetch('/ff', {
+        const response = await fetch('?/clicked_box', {
             method: 'POST',
             body: JSON.stringify({ 'f':0,'ff': 10 }),
             headers: {
@@ -15,12 +15,12 @@
         });
         
         let al = await response.json()
-        alert(al)
+        alert(JSON.stringify(al))
     }
 
     const change_diff = async (e: any) => {
         diffculty = e.target.value
-        const response = await fetch('/', {
+        const response = await fetch('?/changed_diff', {
             method: 'GET',
             //body: JSON.stringify({ 'f':0,'ff': 10 }),
             headers: {
