@@ -64,13 +64,7 @@
         {name: 'K', type: diamond, color: '#eb5757ff'},
     ]
 
-    let lower_deck_1 = cards
-    let lower_deck_2 = []
-    let lower_deck_3 = []
-    let lower_deck_4 = []
-    let lower_deck_5 = cards
-    let lower_deck_6 = []
-    let lower_deck_7 = []
+    let lower_deck_cells = [[], [], cards, [], [], [], cards]
 
 
     import { createEventDispatcher } from "svelte"
@@ -118,41 +112,16 @@
                 <div></div>
             </div>
             <div id='lower_deck' >
-                <div>
-                    {#each lower_deck_1 as card, i }
-                        <Card index={i} card={card} />
+
+             
+                    {#each lower_deck_cells as deck }
+                        <div>
+                            {#each deck as card, i }
+                                <Card index={i} card={card} />
+                            {/each}
+                        </div>
                     {/each}
-                </div>
-                <div>
-                    {#each lower_deck_2 as card, i }
-                        <Card index={i} card={card} />
-                    {/each}
-                </div>
-                <div>
-                    {#each lower_deck_3 as card, i }
-                        <Card index={i} card={card} />
-                    {/each}
-                </div>
-                <div>
-                    {#each lower_deck_4 as card, i }
-                        <Card index={i} card={card} />
-                    {/each}
-                </div>
-                <div>
-                    {#each lower_deck_5 as card, i }
-                        <Card index={i} card={card} />
-                    {/each}
-                </div>
-                <div>
-                    {#each lower_deck_6 as card, i }
-                        <Card index={i} card={card} />
-                    {/each}
-                </div>
-                <div>
-                    {#each lower_deck_7 as card, i }
-                        <Card index={i} card={card} />
-                    {/each}
-                </div>
+                    
             </div>
         </div>
         
