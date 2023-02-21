@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="100mm"
+   height="100mm"
+   viewBox="0 0 100 100"
+   version="1.1"
+   id="svg326"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="circle.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview328"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.45878928"
+     inkscape:cx="396.69628"
+     inkscape:cy="314.95941"
+     inkscape:window-width="1346"
+     inkscape:window-height="690"
+     inkscape:window-x="10"
+     inkscape:window-y="40"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs323">
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect36473"
+       is_visible="true"
+       lpeversion="1"
+       satellites_param="F,1,0,1,0,1,0,1 @ F,1,0,1,0,1,0,1 @ F,1,0,1,0,1,0,1 @ F,1,0,1,0,1,0,1"
+       unit="px"
+       method="auto"
+       mode="F"
+       radius="100"
+       chamfer_steps="1"
+       flexible="true"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false"
+       nodesatellites_param="F,1,0,1,0,1,0,1 @ F,1,0,1,0,1,0,1 @ F,1,0,1,0,1,0,1 @ F,1,0,1,0,1,0,1" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="path36539"
+       style="fill:#70d6ff;fill-opacity:1;stroke:none;stroke-width:3.78751;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke fill markers"
+       d="M 50,0 A 49.9996,49.999612 0 0 0 0,50.000008 49.9996,49.999612 0 0 0 50,100 49.9996,49.999612 0 0 0 100,50.000008 49.9996,49.999612 0 0 0 50,0 Z m 0,25.000867 A 24.9998,24.999806 0 0 1 74.999133,50.000008 24.9998,24.999806 0 0 1 50,74.999148 24.9998,24.999806 0 0 1 25.000867,50.000008 24.9998,24.999806 0 0 1 50,25.000867 Z" />
+  </g>
+</svg>
+
+
+<!--
+
+<svg version="1.1" id="circle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            viewBox="0 0 100 100" xml:space="preserve">
+              <circle fill="none" stroke="#000" stroke-width="4" cx="50" cy="50" r="48" stroke-dasharray="360" stroke-linecap="round" transform="rotate(-90 ) translate(-100 0)" >
+                  <animate attributeName="stroke-dashoffset" values="360;0" dur="2s" repeatCount="indefinite"></animate>
+              </circle>
+          </svg>
+-->
