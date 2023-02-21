@@ -62,6 +62,8 @@
        id="path36539"
        style="fill:#70d6ff;fill-opacity:1;stroke:none;stroke-width:3.78751;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke fill markers"
        d="M 50,0 A 49.9996,49.999612 0 0 0 0,50.000008 49.9996,49.999612 0 0 0 50,100 49.9996,49.999612 0 0 0 100,50.000008 49.9996,49.999612 0 0 0 50,0 Z m 0,25.000867 A 24.9998,24.999806 0 0 1 74.999133,50.000008 24.9998,24.999806 0 0 1 50,74.999148 24.9998,24.999806 0 0 1 25.000867,50.000008 24.9998,24.999806 0 0 1 50,25.000867 Z" />
+                  <animate attributeName="stroke-dashoffset" values="360;0" dur="2s" repeatCount="none"></animate>
+  
   </g>
 </svg>
 

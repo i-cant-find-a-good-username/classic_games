@@ -4,8 +4,8 @@
 
 
 
-    let cell_1 = false
-    let cell_2 = false
+    let cell_1 = true
+    let cell_2 = true
     let cell_3 = false
     let cell_4 = false
     let cell_5 = false
@@ -22,7 +22,7 @@
             <svg version="1.1" id="circle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
             viewBox="0 0 100 100" xml:space="preserve">
               <circle fill="none" stroke="#70d6ff" stroke-width="10" cx="50" cy="50" r="48" stroke-dasharray="360" stroke-linecap="round" transform="rotate(-90 ) translate(-100 0)" >
-                  <animate attributeName="stroke-dashoffset" values="360;0" dur="2s" repeatCount="nonet"></animate>
+                  <animate attributeName="stroke-dashoffset" values="360;0" dur="2s" repeatCount="none"></animate>
               </circle>
           </svg>
             
