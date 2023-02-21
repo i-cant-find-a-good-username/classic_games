@@ -1,9 +1,74 @@
 <script lang="ts">
+    import { onMount } from 'svelte';
+
+
 	//import type { PageData } from './$types'
 
 	//export let data: PageData
 
 	//console.log(data)
+
+    //setInterval(() => {
+    //    console.log('fff')
+    //}, 1000)
+
+    const pieces = [ 'right_leg', 'left_leg', 'square', 'triangle', 'right_z', 'left_z', 'tall' ]
+    /**
+     * right_leg 
+     * lleft_leg
+     * square
+     * fork
+     * right_z
+     * left_z
+     * tall
+     */
+
+     const spawn = () => {
+        //pieces[Math.floor(Math.random()*pieces.length)]
+        switch ('right_leg') {
+            case 'right_leg':
+                document.getElementById('box_14').style.backgroundColor = 'red'
+                document.getElementById('box_15').style.backgroundColor = 'red'
+                document.getElementById('box_16').style.backgroundColor = 'red'
+                document.getElementById('box_5').style.backgroundColor = 'red'
+                break;
+            case 'lleft_leg':
+                
+                break;
+            case 'square':
+                
+                break;
+            case 'fork':
+                
+                break;
+            case 'right_z':
+                
+                break;
+            case 'left_z':
+                
+                break;
+            case 'tall':
+                
+                break;
+        
+            default:
+                break;
+        }
+
+   
+        
+        /**
+         * get randm piece
+         * spawn piece
+         * set interval to move piece
+         * on piece stop calculate if lose or if break a line
+         * on piece stop redo
+        */
+    }
+    onMount(async () => {
+
+            spawn()
+    	});
 
 </script>
 
@@ -11,7 +76,7 @@
     
 	<div id='game_container'>
         {#each Array(180) as _, i}
-            <div id={'box_'+i}></div>
+            <div id={'box_'+(i+1)}></div>
         {/each}
     </div>
 
