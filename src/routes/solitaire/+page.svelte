@@ -114,13 +114,13 @@
             <div id='lower_deck' >
 
              
-                    {#each lower_deck_cells as deck }
-                        <div>
-                            {#each deck as card, i }
-                                <Card index={i} card={card} />
-                            {/each}
-                        </div>
-                    {/each}
+                {#each lower_deck_cells as deck, j }
+                    <div id={'lower_deck_'+(j+1)}>
+                        {#each deck as card, i }
+                            <Card index={i} card={card} drag={deck.length === i+1 ? true : false} />
+                        {/each}
+                    </div>
+                {/each}
                     
             </div>
         </div>

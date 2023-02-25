@@ -2,12 +2,13 @@
 
     export let index;
     export let  card;
+    export let  drag: boolean;
 
 </script>
 
 
 
-<div class='card' style={'top: '+index*50+'px'} draggable="true" >
+<div class='card' style={'top: '+index*50+'px'} draggable={drag} >
     <div class='card_front'>
         <div>
             <div style={'color:' + card.color }> {card.name} </div>
