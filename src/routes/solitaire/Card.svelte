@@ -1,6 +1,6 @@
 <script lang='ts'>
 
-    export let index;
+    export let index: BigInteger;
     export let  card;
     export let  drag: boolean;
 
@@ -8,7 +8,7 @@
 
 
 
-<div class='card' style={'top: '+index*50+'px'} draggable={drag} >
+<div class='card' style={'top: '+index*50+'px'} draggable={drag} on:drop={() => { alert('hello') }} >
     <div class='card_front'>
         <div>
             <div style={'color:' + card.color }> {card.name} </div>

@@ -64,7 +64,7 @@
         {name: 'K', type: diamond, color: '#eb5757ff'},
     ]
 
-    let lower_deck_cells = [[], [], cards, [], [], [], cards]
+    let lower_deck_cells = [[], [], [cards[0]], [], [], [], cards]
 
 
     import { createEventDispatcher } from "svelte"
@@ -112,19 +112,15 @@
                 <div></div>
             </div>
             <div id='lower_deck' >
-
-             
                 {#each lower_deck_cells as deck, j }
-                    <div id={'lower_deck_'+(j+1)}>
+                    <div id={'lower_deck_'+(j+1)} on:dragenter={() => { console.log('hello') }} >
                         {#each deck as card, i }
                             <Card index={i} card={card} drag={deck.length === i+1 ? true : false} />
                         {/each}
                     </div>
                 {/each}
-                    
             </div>
         </div>
-        
     </div>
 </div>
 
@@ -133,6 +129,7 @@
         
     }
     #game_board{
+        height: 100vh;
         background-color: #219653ff;
         padding: 50px;
     }
