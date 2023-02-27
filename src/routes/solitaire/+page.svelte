@@ -77,6 +77,11 @@
         })
 	});
 
+
+
+    const dropped_card = (e) => {
+        console.log(e)
+    }
 </script>
 
 
@@ -113,7 +118,7 @@
             </div>
             <div id='lower_deck' >
                 {#each lower_deck_cells as deck, j }
-                    <div id={'lower_deck_'+(j+1)} on:dragenter={() => { console.log('hello') }} >
+                    <div id={'lower_deck_'+(j+1)}  on:dragover|preventDefault on:drop|preventDefault={dropped_card} >
                         {#each deck as card, i }
                             <Card index={i} card={card} drag={deck.length === i+1 ? true : false} />
                         {/each}
