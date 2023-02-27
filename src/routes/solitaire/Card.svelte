@@ -53,6 +53,7 @@
     .card_front{
         width: 100%;
         height: 100%;
+        pointer-events: none;
     }
     .card_front > :first-child{
         padding-right: 2px;

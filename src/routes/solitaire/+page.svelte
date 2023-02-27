@@ -80,11 +80,18 @@
 
 
     const dropped_card = (e) => {
+        
         let target = e.target
-        console.log(target )
-        if(target.id.substr(0, 10) === 'lower_deck'){
 
+        
+        if(target.id.substr(0, 10) === 'lower_deck'){
+            console.log(target)
+            console.log( lower_deck_cells[target.id.substr(target.id.length -1 )] )
+            console.log( target.id.substr(target.id.length -1 ) )
         }else if(target.parentElement.id.substr(0, 10) === 'lower_deck'){
+            console.log(target)
+            console.log( lower_deck_cells[target.parentElement.id.substr(target.id.length -1 )] )
+            console.log('////////////////')
 
         }
     }
@@ -124,7 +131,7 @@
             </div>
             <div id='lower_deck' >
                 {#each lower_deck_cells as deck, j }
-                    <div id={'lower_deck_'+(j+1)}  on:dragover|preventDefault on:drop|preventDefault={dropped_card} >
+                    <div id={'lower_deck_'+(j)}  on:dragover|preventDefault on:drop|preventDefault={dropped_card} >
                         {#each deck as card, i }
                             <Card index={i} card={card} drag={deck.length === i+1 ? true : false}  />
                         {/each}
