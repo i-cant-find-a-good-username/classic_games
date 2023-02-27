@@ -80,7 +80,13 @@
 
 
     const dropped_card = (e) => {
-        console.log(e)
+        let target = e.target
+        console.log(target )
+        if(target.id.substr(0, 10) === 'lower_deck'){
+
+        }else if(target.parentElement.id.substr(0, 10) === 'lower_deck'){
+
+        }
     }
 </script>
 
@@ -120,7 +126,7 @@
                 {#each lower_deck_cells as deck, j }
                     <div id={'lower_deck_'+(j+1)}  on:dragover|preventDefault on:drop|preventDefault={dropped_card} >
                         {#each deck as card, i }
-                            <Card index={i} card={card} drag={deck.length === i+1 ? true : false} />
+                            <Card index={i} card={card} drag={deck.length === i+1 ? true : false}  />
                         {/each}
                     </div>
                 {/each}

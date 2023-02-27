@@ -8,7 +8,7 @@
 
 
 
-<div class='card' style={'top: '+index*50+'px'} draggable={drag} on:drop={() => { alert('hello') }} >
+<div class='card' style={'top: '+index*50+'px'} draggable={drag} >
     <div class='card_front'>
         <div>
             <div style={'color:' + card.color }> {card.name} </div>
