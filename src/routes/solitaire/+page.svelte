@@ -1,4 +1,4 @@
-<script>
+<script lang='ts'>
 
     import Card from './Card.svelte'
     import settings from '$lib/images/settings.svg';
@@ -67,11 +67,16 @@
     let lower_deck_cells = [[], [], [cards[0]], [], [], [], cards]
 
 
+    import { show_nav_bar } from '../store';
+    import { show_footer } from '../store';
     import { createEventDispatcher } from "svelte"
 	import { onMount } from 'svelte';
     onMount(async () => {
+
+        show_nav_bar.update(value => !value);
+
+
         const dispatch = createEventDispatcher()
-    
         dispatch('started_game', {
             pressed: 'solitaire'
         })
