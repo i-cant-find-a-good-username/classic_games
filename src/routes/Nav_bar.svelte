@@ -3,9 +3,11 @@
     import { show_footer } from './store';
     import volume from '$lib/images/volume.svg';
     import moon from '$lib/images/moon.svg';
-
+    import { page } from '$app/stores';
 	let show_nav: Boolean;
 	let show_foot: Boolean;
+
+    $: current_page = $page.url.pathname
 
 	show_nav_bar.subscribe(value => {
 		show_nav = value;
@@ -39,8 +41,7 @@
     </div>
 </div>
 
-<div id='second_nav_bar' bind:this={second_nav} style="translate: {show_nav ? '0px 0px': '0px -50px'}" >fezfze</div>
-
+<div id='second_nav_bar' bind:this={second_nav} style="translate: {current_page !== '/' ? '0px 0px': '0px -100px'}" >fezfze</div>
 
 <style>
     .navbar > :first-child{
@@ -103,9 +104,6 @@
 
     #second_nav_bar{
         width: 100%;
-        box-sizing: border-box;
-        padding-right: 20px;
-        padding-left: 20px;
         padding-top: 10px;
         padding-bottom: 10px;
         height: 50px;

@@ -1,16 +1,24 @@
-<script>
+<script lang='ts'>
 
-    let bar
+    let bar: any
     let ball
+
+
+
+	import { onMount } from 'svelte';
+    onMount(async () => {
+        bar.style.right = ((bar.parentElement.parentElement.getBoundingClientRect().width/2))+"px"
+	});
+
+
 
     const move = (e) => {
 
         if(e.keyCode === 37){
-            console.log(bar.style.left)
-            bar.style.left = bar.style.left + 10
+            //left
+            bar.style.left = (bar.getBoundingClientRect().left - 160)+'px'
         }else if(e.keyCode === 39){
-            console.log(bar.style.right)
-            bar.style.right = '10px'
+            bar.style.left = (bar.getBoundingClientRect().left - 135)+'px'
         }
 
     }
@@ -168,6 +176,8 @@
         background-color: #a6adbaff;
         right: 50%;
         translate: 50%;
+		transition: all 200ms cubic-bezier(.05,.43,.25,.95);
+    
     }
 
 
