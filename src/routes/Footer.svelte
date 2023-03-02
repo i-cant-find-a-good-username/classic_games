@@ -1,4 +1,14 @@
-<div id='footer'>
+<script lang='ts'>
+    import { show_footer } from './store';
+	let show_foot: Boolean;
+
+	show_footer.subscribe(value => {
+		show_foot = value;
+	});
+</script>
+
+
+<div id='footer'  >
 
     <div>
         <div>About us</div>

@@ -4,6 +4,13 @@
     var random1, random2
     var block1 ,block2 ,block3 ,block4 ,block5 ,block6 ,block7 ,block8 ,block9 ,block10 ,block11 ,block12 ,block13 ,block14 ,block15 ,block16
     var block1, block2
+
+	blocks_scores = [
+		[null, null, null, null],
+		[null, null, null, null],
+		[null, null, null, null],
+		[null, null, null, null],
+	]
     
     function go_side(e){
         if(e.keyCode === 37){
@@ -14,8 +21,8 @@
             //block.style.left = '25%'
             //console.log(block)
             console.log(block1, block2)
-            ({ block1, block2 } = { block2, block1 })
-            console.log(block1, block2)
+            //({ block1, block2 } = { block2, block1 })
+            //console.log(block1, block2)
 
         }else if(e.keyCode === 40){
             //bottom
@@ -60,8 +67,10 @@
 		    <div class="blocks " bind:this={block15} id="block_15" ></div>
 		    <div class="blocks " bind:this={block16} id="block_16" ></div>
 
-            <div bind:this={block1} class='inside_block block_2' id='block_1' >inside 1</div>
-            <div bind:this={block2} class='inside_block block_2' id='block_2' >inside 2</div>
+            <div bind:this={block1} class='inside_block block_2' id='block_1' >2</div>
+            <div bind:this={block2} class='inside_block block_2' id='block_2' style="top: 25%; left: 25%" >2</div>
+            <div bind:this={block2} class='inside_block block_32' id='block_2' style="top: 25%; left: 50%" >32</div>
+            <div bind:this={block2} class='inside_block block_64' id='block_2' style="top: 25%; left: 75%" >64</div>
 
     </div>
 </div>
@@ -87,9 +96,7 @@
 		margin: auto;
 		display: grid;
 		grid-template-columns: repeat(4, minmax(0, 1fr));
-		gap: 5px;
 		position: relative;
-		background-color: red;
 	}
 	.blocks {
 		background-color: #1f242dff;
@@ -101,8 +108,8 @@
 	}
     
 	.inside_block {
-        width: calc( 25% - 4px );
-        height: calc( 25% - 4px );
+        width: 25%;
+        height: 25%;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -111,6 +118,11 @@
         position: absolute;
         top: 0;
         left: 0;
+		box-sizing: border-box;
+		border: #1f242dff 2px solid;
+
+		transition: all 200ms cubic-bezier(.05,.43,.25,.95);
+
         
 	}
 

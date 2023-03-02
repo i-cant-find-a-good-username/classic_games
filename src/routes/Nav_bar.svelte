@@ -1,19 +1,14 @@
 <script lang='ts'>
     import { show_nav_bar } from './store';
-    import { show_footer } from './store';
     import volume from '$lib/images/volume.svg';
     import moon from '$lib/images/moon.svg';
     import { page } from '$app/stores';
 	let show_nav: Boolean;
-	let show_foot: Boolean;
 
     $: current_page = $page.url.pathname
 
 	show_nav_bar.subscribe(value => {
 		show_nav = value;
-	});
-	show_footer.subscribe(value => {
-		show_foot = value;
 	});
 
 
