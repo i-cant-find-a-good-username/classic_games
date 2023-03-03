@@ -174,18 +174,28 @@
         padding: 20px;
         padding-top: 5px;
         padding-bottom: 5px;
+        display: flex;
+        flex-direction: row;
     }
     .options_buttons{
         background-color: #3d4451;
         border: none;
-        color: white;
-        padding: 10px;
-        padding-top: 2px;
-        padding-bottom: 2px;
         border-radius: 10px;
         font-size: 18px;
-        
+		padding: 10px;
+		color: #a6adbaff;
+		font-size: 16px;
+		font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 10px;
+        cursor: pointer;
     }
+    .options_buttons:last-of-type{
+        margin-right: 0px; 
+    }
+
     #upper_deck, #lower_deck{
         padding: 10px;
         display: flex;

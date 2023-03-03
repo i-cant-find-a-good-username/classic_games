@@ -37,12 +37,12 @@
 </div>
 
 <div id='second_nav_bar' bind:this={second_nav} style="translate: {current_page !== '/' ? '0px 0px': '0px -100px'}" >
-    <div>icon</div>
-    <div>game</div>
-    <div>game</div>
-    <div>game</div>
-    <div>game</div>
-    <div>game</div>
+    <div>SOLITAIRE</div>
+    <div>2048</div>
+    <div>MINE SWEEPER</div>
+    <div>BREAKOUT</div>
+    <div>TIC TAC TOE</div>
+    <div>SNAKE</div>
     <div>all</div>
 </div>
 
@@ -106,6 +106,7 @@
 
 
     #second_nav_bar{
+        z-index: 100;
         background-color: #2a303c;
 
         width: 100%;
@@ -129,7 +130,7 @@
         padding-top: 10px;
         padding-bottom: 10px;
         font-weight: 700;
-        font-size: 20px;
+        font-size: 16px;
         border-radius: 10px;
         cursor: pointer;
     }

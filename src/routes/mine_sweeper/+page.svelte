@@ -1,4 +1,5 @@
 <script lang="ts">
+    import settings from '$lib/images/settings.svg';
 	import type { PageData } from './$types';
 	export let data: PageData;
 
@@ -35,50 +36,62 @@
 </script>
 
 <div id='center'>
-    
-    {#if diffculty === 'easy'}
-	    <div id="main">
-	    	{#each Array(64) as _, i}
-            
-                <div on:click={box_clicked} id={'cell_'+i}></div>
-            {/each}
-	    </div>
-    {/if}
-    
-    {#if diffculty === 'normal'}
-	    <div id="main2">
-	    	{#each Array(256) as _, i}
-                <div on:click={box_clicked} id={'cell_'+i}></div>
-            {/each}
-	    </div>
-    {/if}
-    
-    {#if diffculty === 'hard'}
-        <div id="main3">
-	    	{#each Array(512) as _, i}
-                <div on:click={box_clicked} id={'cell_'+i}></div>
-            {/each}
+    <div id='game_container'>
+
+        {#if diffculty === 'easy'}
+	        <div id="main">
+	        	{#each Array(64) as _, i}
+
+                    <div on:click={box_clicked} id={'cell_'+i}></div>
+                {/each}
+	        </div>
+        {/if}
+        
+        {#if diffculty === 'normal'}
+	        <div id="main2">
+	        	{#each Array(256) as _, i}
+                    <div on:click={box_clicked} id={'cell_'+i}></div>
+                {/each}
+	        </div>
+        {/if}
+        
+        {#if diffculty === 'hard'}
+            <div id="main3">
+	        	{#each Array(512) as _, i}
+                    <div on:click={box_clicked} id={'cell_'+i}></div>
+                {/each}
+            </div>
+        {/if}
+    </div>
+
+
+    <div id='settings'>
+        <select name="diffculty" id="diffculty" on:change={change_diff} >
+            <option value="easy">easy</option>
+            <option value="normal">normal</option>
+            <option value="hard">hard</option>
+        </select>
+
+        <div>
+            <img src={settings} alt="">
         </div>
-    {/if}
-
-
-  
-    <select name="diffculty" id="" on:change={change_diff} >
-        <option value="easy">easy</option>
-        <option value="normal">normal</option>
-        <option value="hard">hard</option>
-    </select>
+    </div>
 
 </div>
 
 <style>
     #center{
+        height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 100px;
-        gap: 10px;
+    }
+    #game_container{
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     #main, #main2 ,#main3{
         display: grid;
@@ -102,18 +115,51 @@
     }
 
     #main > *{
-        height: 50px;
-        width: 50px;
-    }
-    #main2 > *{
         height: 40px;
         width: 40px;
     }
+    #main2 > *{
+        height: 25px;
+        width: 25px;
+    }
     #main3 > *{
-        height: 30px;
-        width: 30px;
+        height: 20px;
+        width: 20px;
     }
 
+    #settings{
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #diffculty{
+        background-color: transparent;
+        border: 2px solid #a6adbaff;
+        padding: 10px;
+        border-radius: 10px;
+		color: #a6adbaff;
+		font-size: 16px;
+		font-weight: 600;
+    }
+
+    #settings > :nth-child(2){
+        margin-left: 20px;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+        border: 2px solid #a6adbaff;
+		border-radius: 10px;
+		border: none;
+		color: #a6adbaff;
+        cursor: pointer;
+    }
+    #settings > :nth-child(2):hover{
+		background-color: #1f242d;
+
+    }
 
     :global(.mine){
         background-color: red !important;
