@@ -85,9 +85,9 @@
             d
         </div>
         <div id='scores'>
-            <h1>Level</h1>
-            <h1>Score</h1>
-            <h1>Lines</h1>
+            <h1>LEVEL: 0</h1>
+            <h1>SCORE: 0</h1>
+            <h1>LINES: 0</h1>
         </div>
     </div>
 
@@ -100,8 +100,9 @@
         align-items: center;
         justify-content: space-around;
         /*background-color: grey;*/
-        height: 72vh;
-        padding: 100px;
+        height: 100%;
+        padding: 20px;
+        box-sizing: border-box;
     }
 
     #center > * {
@@ -129,7 +130,7 @@
     #game_container > * {
         width: 100%;
         aspect-ratio: 1/1;
-        background-color: yellow;
+        background-color: #1f242d;
 
     }
 

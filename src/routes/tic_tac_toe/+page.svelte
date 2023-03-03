@@ -107,7 +107,7 @@
     }
     #main{
         box-sizing: border-box;
-        width: 400px;
+        width: 300px;
         aspect-ratio: 1/1;
         margin: auto;
         border-radius: 10px;
@@ -221,6 +221,14 @@
 		color: #a6adbaff;
         cursor: pointer;
     }
+
+    #diffculty > :nth-child(2):hover{
+		background-color: #1f242d;
+    }
+
+
+
+
 
 
 </style>
