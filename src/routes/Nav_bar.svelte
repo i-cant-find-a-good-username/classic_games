@@ -1,8 +1,8 @@
 <script lang='ts'>
-    import { show_nav_bar } from './store';
     import volume from '$lib/images/volume.svg';
     import moon from '$lib/images/moon.svg';
     import { page } from '$app/stores';
+    import { show_nav_bar } from './store';
 	let show_nav: Boolean;
 
     $: current_page = $page.url.pathname
@@ -36,7 +36,15 @@
     </div>
 </div>
 
-<div id='second_nav_bar' bind:this={second_nav} style="translate: {current_page !== '/' ? '0px 0px': '0px -100px'}" >fezfze</div>
+<div id='second_nav_bar' bind:this={second_nav} style="translate: {current_page !== '/' ? '0px 0px': '0px -100px'}" >
+    <div>icon</div>
+    <div>game</div>
+    <div>game</div>
+    <div>game</div>
+    <div>game</div>
+    <div>game</div>
+    <div>all</div>
+</div>
 
 <style>
     .navbar > :first-child{
@@ -98,16 +106,35 @@
 
 
     #second_nav_bar{
+        background-color: #2a303c;
+
         width: 100%;
         padding-top: 10px;
         padding-bottom: 10px;
         height: 50px;
-        background-color: red;
         position: absolute;
         top: 0;
         left: 0;
 		transition: all 200ms cubic-bezier(.05,.43,.25,.95);
-    
+
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        
+    }
+    #second_nav_bar > *{
+        padding: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-weight: 700;
+        font-size: 20px;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+    #second_nav_bar > *:hover{
+        background-color: #3d4451;
     }
 
 </style>

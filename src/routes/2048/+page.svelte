@@ -5,13 +5,15 @@
     var block1 ,block2 ,block3 ,block4 ,block5 ,block6 ,block7 ,block8 ,block9 ,block10 ,block11 ,block12 ,block13 ,block14 ,block15 ,block16
     var block1, block2
 
-	blocks_scores = [
+	let blocks_scores = [
 		[null, null, null, null],
 		[null, null, null, null],
 		[null, null, null, null],
 		[null, null, null, null],
 	]
-    
+
+
+
     function go_side(e){
         if(e.keyCode === 37){
             //left
@@ -47,7 +49,12 @@
 </script>
 
 <svelte:window on:keydown={go_side} />
-<div id="dd">
+<div id="container">
+	<div id='score_board'>
+		<button>new game</button>
+		<div>SCORE: 0</div>
+		<div>BEST: 0</div>
+	</div>
 	<div id="main">
 
             <div class="blocks " bind:this={block1} id="block_1" >  </div>
@@ -90,10 +97,17 @@
 2048
 
 */
+
+	#container{
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
 	#main {
 		width: 400px;
 		height: 400px;
-		margin: auto;
 		display: grid;
 		grid-template-columns: repeat(4, minmax(0, 1fr));
 		position: relative;
@@ -161,4 +175,33 @@
 	.block_2048 {
 		background-color: #facc15ff !important;
 	}
+
+
+
+
+
+
+
+	#score_board{
+		width: 400px;
+		display: flex;
+		align-items: center;
+		justify-content: start;
+		padding-bottom: 10px;
+	}
+	#score_board > :first-child{
+		background-color: #1f242d;
+		padding: 10px;
+		border-radius: 10px;
+		border: none;
+		color: #a6adbaff;
+		font-size: 16px;
+		font-weight: 600;
+	}
+	#score_board > *{
+		margin-right: 20px;
+	}
+
+
+
 </style>

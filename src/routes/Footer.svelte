@@ -1,14 +1,12 @@
 <script lang='ts'>
-    import { show_footer } from './store';
-	let show_foot: Boolean;
+    import { page } from '$app/stores';
+    $: current_page = $page.url.pathname
 
-	show_footer.subscribe(value => {
-		show_foot = value;
-	});
+
 </script>
 
 
-<div id='footer'  >
+<div id='footer' style="display: {current_page === '/' ? 'flex': 'none'}" >
 
     <div>
         <div>About us</div>

@@ -1,4 +1,5 @@
 <script lang='ts'>
+    import settings from '$lib/images/settings.svg';
 
     let bar: any
     let ball
@@ -31,6 +32,20 @@
 
 <svelte:window on:keydown={move}/>
 <div id='main_parent' >
+
+    <div id='score_board'>
+        <div>
+            <button> <img src={settings} alt=""> </button>
+            <button>new game</button>
+            <div>SCORE: 0</div>
+            <div>BEST: 0</div>    
+        </div>
+        <div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+	</div>
     <div id='main'>
         <div id='bricks_container'>
             <div class="bricks_row">
@@ -154,7 +169,6 @@
         display: flex;
         align-items: end; 
         justify-content: center;
-        background-color: red;
         position: relative;
     }
     #player_area > :first-child{
@@ -214,6 +228,38 @@
     }
     #bricks_container > :nth-child(6) > * {
         background-color: #c084fcff;
+    }
+
+
+    #score_board{
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding-bottom: 10px;
+    }
+    #score_board > :first-child, #score_board > :nth-child(2){
+        
+		display: flex;
+		align-items: center;
+    }
+
+    #score_board > :first-child > :first-child, #score_board > :first-child > :nth-child(2){
+		background-color: #1f242d;
+		padding: 10px;
+		border-radius: 10px;
+		border: none;
+		color: #a6adbaff;
+		font-size: 16px;
+		font-weight: 600;
+	}
+	#score_board > :first-child > *, #score_board > :nth-child(2) > *{
+		margin-right: 20px;
+	}
+    #score_board > :nth-child(2) > *{
+        height: 15px;
+        width: 15px;
+        border-radius: 100%;
+        background-color: #a6adbaff;
     }
 
 

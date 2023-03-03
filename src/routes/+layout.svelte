@@ -3,6 +3,9 @@
 	import Footer from './Footer.svelte';
 	import './app.css';
 
+    import { page } from '$app/stores';
+
+    $: current_page = $page.url.pathname
 
 
 
@@ -17,7 +20,7 @@
 	}
 </script>
 
-<div class="app">
+<div class="app" style="background-color: {current_page === '/' ? 'rgba(31, 36, 45,0.8)': '#2a303c'}" >
 	<Nav_bar on:button_changed={change_back}  />
 
 	<main>
@@ -29,10 +32,15 @@
 </div>
 
 <style>
+	main{
+		flex: 1 1 auto;
+	}
     .app{
-        background-color: rgba(31, 36, 45,0.8);
+		display: flex;
+		flex-direction: column;
 		height: 100vh;
 		overflow-y: scroll;
+		color: #a6adbaff;
     }
     #back_img{
 		/*transform: rotate(10deg);
