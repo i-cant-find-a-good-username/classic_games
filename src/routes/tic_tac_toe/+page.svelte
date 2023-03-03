@@ -1,4 +1,6 @@
-<script>
+<script lang='ts'>
+    import people from '$lib/images/people.svg';
+    import person from '$lib/images/person.svg';
     import circle from '$lib/images/circle.svg';
     import x from '$lib/images/x.svg';
 
@@ -14,33 +16,26 @@
     let cell_8 = false
     let cell_9 = false
 
+    const change_diff = async (e: any) => {}
+
+
 </script>
 
 <div id='main_parent'>
     <div id='main'>
-        <div class="cell">
-            <svg version="1.1" id="circle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-            viewBox="0 0 100 100" xml:space="preserve">
-              <circle fill="none" stroke="#70d6ff" stroke-width="10" cx="50" cy="50" r="48" stroke-dasharray="360" stroke-linecap="round" transform="rotate(-90 ) translate(-100 0)" >
-                  <animate attributeName="stroke-dashoffset" values="360;0" dur="2s" repeatCount="none"></animate>
-              </circle>
-          </svg>
-            
-            
-        </div>
-        <div class="cell" on:click={() => {cell_1 = true }} >
-            {#if cell_1}
-                <img class='player_move' src={circle} />
+        <div class="cell"  on:click={() => {cell_1 = true }}>
+            {#if cell_1 }
+                <img class='player_move' src={circle} alt='lost' />
             {/if}
         </div>
         <div class="cell" on:click={() => {cell_2 = true }} >
             {#if cell_2}
-                <img class='player_move' src={x} />
+                <img class='player_move' src={x} alt='lost' />
             {/if}
         </div>
         <div class="cell" on:click={() => {cell_3 = true }} >
             {#if cell_3}
-                hello
+                <img class='player_move' src={x} alt='lost' />
             {/if}
         </div>
         <div class="cell" on:click={() => {cell_4 = true }} >
@@ -68,17 +63,51 @@
                 hello
             {/if}
         </div>
+        <div class="cell" on:click={() => {cell_9 = true }} >
+            {#if cell_9}
+                hello
+            {/if}
+        </div>
+    </div>
+
+
+    <div id='score_board'>
+        <div id='scores'>
+            <div>
+                <div>00</div>
+                <div>00</div>
+            </div>
+            <div>
+                <div>YOU</div>
+                <div>-</div>
+                <div>CPU</div>
+            </div>
+        </div>
+        <div id='diffculty'>
+            <select name="diffculty"  on:change={change_diff} >
+                <option value="easy">easy</option>
+                <option value="normal">normal</option>
+                <option value="hard">hard</option>
+            </select>
+    
+            <div>
+                <img src={person} alt="">
+            </div>
+        </div>
+
+
     </div>
     
 </div>
 
 <style>
     #main_parent{
-        padding: 50px;
+        height: 100%;
+
     }
     #main{
         box-sizing: border-box;
-        width: 450px;
+        width: 400px;
         aspect-ratio: 1/1;
         margin: auto;
         border-radius: 10px;
@@ -132,10 +161,66 @@
     }
 
 
-
-
     .player_move{
         width: 100%;
         height: 100%;
     }
+
+
+    #score_board{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #scores{
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+    }
+    #scores > :first-child{
+        display: flex;
+        justify-content: space-between;
+        font-size: 50px;
+    }
+
+    #scores > :nth-child(2){
+        display: flex;
+        justify-content: space-between;
+        font-size: 30px;
+    }
+
+
+
+    #diffculty{
+        display: flex;
+        
+    }
+
+    #diffculty > :first-child{
+        background-color: transparent;
+        border: 2px solid #a6adbaff;
+        padding: 10px;
+        border-radius: 10px;
+		color: #a6adbaff;
+		font-size: 16px;
+		font-weight: 600;
+    }
+    #diffculty > :nth-child(2){
+
+        margin-left: 20px;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+        border: 2px solid #a6adbaff;
+		border-radius: 10px;
+		border: none;
+		color: #a6adbaff;
+        cursor: pointer;
+    }
+
+
 </style>
