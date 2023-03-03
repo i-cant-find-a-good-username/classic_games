@@ -238,11 +238,15 @@
 		padding-bottom: 10px;
     }
     #score_board > :first-child, #score_board > :nth-child(2){
-        
 		display: flex;
 		align-items: center;
     }
-
+    #score_board > :first-child  > :first-child {
+        background-color: red;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
     #score_board > :first-child > :first-child, #score_board > :first-child > :nth-child(2){
 		background-color: #1f242d;
 		padding: 10px;
@@ -255,6 +259,10 @@
 	#score_board > :first-child > *, #score_board > :nth-child(2) > *{
 		margin-right: 20px;
 	}
+    #score_board > :nth-child(2) > *:last-of-type{
+		margin-right: 0px;
+
+    }
     #score_board > :nth-child(2) > *{
         height: 15px;
         width: 15px;

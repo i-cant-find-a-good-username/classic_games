@@ -22,17 +22,10 @@
 
     
     function set_styles(e){
-        e.target = e.target
-        const { clientX, clientY, currentTarget } = e;
-        const { clientWidth, clientHeight, offsetLeft, offsetTop } = currentTarget;
-        const horizontal = (clientX - offsetLeft) / clientWidth;
-        const vertical = (clientY - offsetTop) / clientHeight;
-        const rotateX = (15 / 2 - horizontal * 15).toFixed(2);
-        const rotateY = (vertical * 15 - 15 / 2).toFixed(2);
-        e.target.style.transform = `perspective(${clientWidth}px) rotateX(${rotateY}deg) rotateY(${rotateX}deg) scale3d(1, 1, 1)`;
+        
     }
     function reset_styles(e){
-        e.target.style.transform = `perspective(${e.target.clientWidth}px) rotateX(0deg) rotateY(0deg)`;
+
     }
 
 
