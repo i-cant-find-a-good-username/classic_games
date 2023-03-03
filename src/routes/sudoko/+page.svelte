@@ -110,7 +110,10 @@
 
 <style>
     #main_parent{
-        padding: 50px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     #main{
         box-sizing: border-box;

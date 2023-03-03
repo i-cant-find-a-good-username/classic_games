@@ -3,6 +3,17 @@
 </script>
 
 <div id='main_parent'>
+    <div id='score_board'>
+        
+        <select name="diffculty" >
+            <option value="easy">3x3</option>
+            <option value="normal">4x4</option>
+            <option value="hard">5x5</option>
+            <option value="hard">6x6</option>
+        </select>
+		<div>TIME: 00 : 00</div>
+		<div>MOVES: 0</div>
+    </div>
     <div id='main'>
         <div class='cell'>5</div>
         <div class='cell'>5</div>
@@ -17,7 +28,10 @@
 
 <style>
     #main_parent{
-        padding: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
     #main{
         box-sizing: border-box;
@@ -39,6 +53,32 @@
         font-size: 50px;
         font-weight: 600;
         color: #1f242d;
+    }
+
+
+    #score_board{
+        width: 450px;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    #score_board > *{
+        margin-right: 20px;
+        font-size: 20px;
+    }
+
+    #score_board > :first-child{
+    
+
+        background-color: transparent;
+        border: 2px solid #a6adbaff;
+        padding: 10px;
+        border-radius: 10px;
+		color: #a6adbaff;
+		font-size: 16px;
+		font-weight: 600;
     }
 
 
