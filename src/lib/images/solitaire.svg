@@ -8,7 +8,7 @@
    version="1.1"
    id="svg5"
    sodipodi:docname="solitaire.svg"
-   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -25,17 +25,19 @@
      showgrid="false"
      width="220mm"
      inkscape:zoom="0.3"
-     inkscape:cx="180"
+     inkscape:cx="181.66667"
      inkscape:cy="643.33333"
      inkscape:window-width="1366"
-     inkscape:window-height="719"
+     inkscape:window-height="703"
      inkscape:window-x="0"
-     inkscape:window-y="25"
+     inkscape:window-y="33"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1"
      inkscape:snap-bbox="true"
      inkscape:snap-bbox-midpoints="true"
-     inkscape:bbox-nodes="true" />
+     inkscape:bbox-nodes="true"
+     inkscape:showpageshadow="2"
+     inkscape:deskcolor="#505050" />
   <defs
      id="defs2">
     <inkscape:path-effect
@@ -54,7 +56,8 @@
        apply_no_radius="true"
        apply_with_radius="true"
        only_selected="false"
-       hide_knots="false" />
+       hide_knots="false"
+       nodesatellites_param="F,0,0,1,0,13.229167,0,1 @ F,0,0,1,0,13.229167,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1" />
     <inkscape:path-effect
        effect="fillet_chamfer"
        id="path-effect78046"
@@ -71,7 +74,8 @@
        apply_no_radius="true"
        apply_with_radius="true"
        only_selected="false"
-       hide_knots="false" />
+       hide_knots="false"
+       nodesatellites_param="F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1" />
     <rect
        x="912.89844"
        y="675.00665"
@@ -94,7 +98,8 @@
        apply_no_radius="true"
        apply_with_radius="true"
        only_selected="false"
-       hide_knots="false" />
+       hide_knots="false"
+       nodesatellites_param="F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1" />
     <inkscape:path-effect
        effect="fillet_chamfer"
        id="path-effect78046-9-2"
@@ -111,7 +116,8 @@
        apply_no_radius="true"
        apply_with_radius="true"
        only_selected="false"
-       hide_knots="false" />
+       hide_knots="false"
+       nodesatellites_param="F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1" />
     <inkscape:path-effect
        effect="fillet_chamfer"
        id="path-effect78046-9-0"
@@ -128,7 +134,8 @@
        apply_no_radius="true"
        apply_with_radius="true"
        only_selected="false"
-       hide_knots="false" />
+       hide_knots="false"
+       nodesatellites_param="F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1" />
     <inkscape:path-effect
        effect="fillet_chamfer"
        id="path-effect78046-9-7"
@@ -145,7 +152,8 @@
        apply_no_radius="true"
        apply_with_radius="true"
        only_selected="false"
-       hide_knots="false" />
+       hide_knots="false"
+       nodesatellites_param="F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1" />
     <inkscape:path-effect
        effect="fillet_chamfer"
        id="path-effect78046-9-3"
@@ -162,7 +170,8 @@
        apply_no_radius="true"
        apply_with_radius="true"
        only_selected="false"
-       hide_knots="false" />
+       hide_knots="false"
+       nodesatellites_param="F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1" />
     <inkscape:path-effect
        effect="fillet_chamfer"
        id="path-effect78046-9-9"
@@ -179,7 +188,8 @@
        apply_no_radius="true"
        apply_with_radius="true"
        only_selected="false"
-       hide_knots="false" />
+       hide_knots="false"
+       nodesatellites_param="F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1" />
     <inkscape:path-effect
        effect="fillet_chamfer"
        id="path-effect78046-9-9-9"
@@ -196,7 +206,8 @@
        apply_no_radius="true"
        apply_with_radius="true"
        only_selected="false"
-       hide_knots="false" />
+       hide_knots="false"
+       nodesatellites_param="F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1" />
     <inkscape:path-effect
        effect="fillet_chamfer"
        id="path-effect78046-9-9-9-9"
@@ -213,7 +224,8 @@
        apply_no_radius="true"
        apply_with_radius="true"
        only_selected="false"
-       hide_knots="false" />
+       hide_knots="false"
+       nodesatellites_param="F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1" />
     <inkscape:path-effect
        effect="fillet_chamfer"
        id="path-effect78046-9-9-9-1"
@@ -230,7 +242,8 @@
        apply_no_radius="true"
        apply_with_radius="true"
        only_selected="false"
-       hide_knots="false" />
+       hide_knots="false"
+       nodesatellites_param="F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1" />
     <inkscape:path-effect
        effect="fillet_chamfer"
        id="path-effect78046-9-9-9-9-0"
@@ -247,7 +260,8 @@
        apply_no_radius="true"
        apply_with_radius="true"
        only_selected="false"
-       hide_knots="false" />
+       hide_knots="false"
+       nodesatellites_param="F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1" />
     <inkscape:path-effect
        effect="fillet_chamfer"
        id="path-effect78046-9-9-9-9-03"
@@ -264,7 +278,8 @@
        apply_no_radius="true"
        apply_with_radius="true"
        only_selected="false"
-       hide_knots="false" />
+       hide_knots="false"
+       nodesatellites_param="F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1" />
     <inkscape:path-effect
        effect="fillet_chamfer"
        id="path-effect78046-9-3-1"
@@ -281,7 +296,8 @@
        apply_no_radius="true"
        apply_with_radius="true"
        only_selected="false"
-       hide_knots="false" />
+       hide_knots="false"
+       nodesatellites_param="F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1" />
     <inkscape:path-effect
        effect="fillet_chamfer"
        id="path-effect78046-9-3-1-0"
@@ -298,7 +314,8 @@
        apply_no_radius="true"
        apply_with_radius="true"
        only_selected="false"
-       hide_knots="false" />
+       hide_knots="false"
+       nodesatellites_param="F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1" />
     <inkscape:path-effect
        effect="fillet_chamfer"
        id="path-effect78046-9-9-9-9-8"
@@ -315,7 +332,8 @@
        apply_no_radius="true"
        apply_with_radius="true"
        only_selected="false"
-       hide_knots="false" />
+       hide_knots="false"
+       nodesatellites_param="F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1" />
     <inkscape:path-effect
        effect="fillet_chamfer"
        id="path-effect78046-9-3-1-0-1"
@@ -332,7 +350,8 @@
        apply_no_radius="true"
        apply_with_radius="true"
        only_selected="false"
-       hide_knots="false" />
+       hide_knots="false"
+       nodesatellites_param="F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1 @ F,0,0,1,0,3.96875,0,1" />
   </defs>
   <g
      inkscape:label="Layer 1"
@@ -542,44 +561,49 @@
          style="fill:#eb5757;fill-opacity:1" />
     </g>
     <g
-       style="fill:currentColor"
+       style="fill:#333333;fill-opacity:1"
        id="g71834-5"
        transform="matrix(2.1429897,0,0,2.1432641,92.857392,37.851031)">
       <path
          d="m 11.5,12.5 a 3.493,3.493 0 0 1 -2.684,-1.254 19.92,19.92 0 0 0 1.582,2.907 C 10.629,14.503 10.378,15 9.96,15 H 6.04 C 5.621,15 5.37,14.503 5.602,14.153 a 19.919,19.919 0 0 0 1.582,-2.907 3.5,3.5 0 1 1 -2.538,-5.743 3.5,3.5 0 1 1 6.708,0 3.5,3.5 0 1 1 0.146,6.997 z"
-         id="path71825-7" />
+         id="path71825-7"
+         style="fill:#333333;fill-opacity:1" />
     </g>
     <g
-       style="fill:currentColor"
+       style="fill:#333333;fill-opacity:1"
        id="g71834-5-3"
        transform="matrix(-0.57146393,0,0,-0.57153708,133.12592,78.406667)">
       <path
          d="m 11.5,12.5 a 3.493,3.493 0 0 1 -2.684,-1.254 19.92,19.92 0 0 0 1.582,2.907 C 10.629,14.503 10.378,15 9.96,15 H 6.04 C 5.621,15 5.37,14.503 5.602,14.153 a 19.919,19.919 0 0 0 1.582,-2.907 3.5,3.5 0 1 1 -2.538,-5.743 3.5,3.5 0 1 1 6.708,0 3.5,3.5 0 1 1 0.146,6.997 z"
-         id="path71825-7-1" />
+         id="path71825-7-1"
+         style="fill:#333333;fill-opacity:1" />
     </g>
     <g
-       style="fill:currentColor"
+       style="fill:#333333;fill-opacity:1"
        id="g71834-5-3-7"
        transform="matrix(0.57146393,0,0,0.57153708,85.961844,32.485274)">
       <path
          d="m 11.5,12.5 a 3.493,3.493 0 0 1 -2.684,-1.254 19.92,19.92 0 0 0 1.582,2.907 C 10.629,14.503 10.378,15 9.96,15 H 6.04 C 5.621,15 5.37,14.503 5.602,14.153 a 19.919,19.919 0 0 0 1.582,-2.907 3.5,3.5 0 1 1 -2.538,-5.743 3.5,3.5 0 1 1 6.708,0 3.5,3.5 0 1 1 0.146,6.997 z"
-         id="path71825-7-1-0" />
+         id="path71825-7-1-0"
+         style="fill:#333333;fill-opacity:1" />
     </g>
     <g
-       style="fill:currentColor"
+       style="fill:#333333;fill-opacity:1"
        id="g80065-7"
        transform="matrix(2.1428571,0,0,2,27.856976,124.99983)">
       <path
          d="M 7.184,11.246 A 3.5,3.5 0 0 1 1,9 C 1,7.398 2.14,6.367 3.66,4.992 4.986,3.792 6.602,2.33 8,0 9.398,2.33 11.014,3.792 12.34,4.992 13.86,6.367 15,7.398 15,9 a 3.5,3.5 0 0 1 -6.184,2.246 19.92,19.92 0 0 0 1.582,2.907 C 10.629,14.503 10.378,15 9.96,15 H 6.04 C 5.621,15 5.37,14.503 5.602,14.153 a 19.919,19.919 0 0 0 1.582,-2.907 z"
-         id="path80056-2" />
+         id="path80056-2"
+         style="fill:#333333;fill-opacity:1" />
     </g>
     <g
-       style="fill:currentColor"
+       style="fill:#333333;fill-opacity:1"
        id="g80065-7-7"
        transform="matrix(0.57142857,0,0,0.53333333,21.428405,116.99983)">
       <path
          d="M 7.184,11.246 A 3.5,3.5 0 0 1 1,9 C 1,7.398 2.14,6.367 3.66,4.992 4.986,3.792 6.602,2.33 8,0 9.398,2.33 11.014,3.792 12.34,4.992 13.86,6.367 15,7.398 15,9 a 3.5,3.5 0 0 1 -6.184,2.246 19.92,19.92 0 0 0 1.582,2.907 C 10.629,14.503 10.378,15 9.96,15 H 6.04 C 5.621,15 5.37,14.503 5.602,14.153 a 19.919,19.919 0 0 0 1.582,-2.907 z"
-         id="path80056-2-6" />
+         id="path80056-2-6"
+         style="fill:#333333;fill-opacity:1" />
     </g>
     <text
        xml:space="preserve"
@@ -599,48 +623,48 @@
          id="tspan85036" /></text>
     <text
        xml:space="preserve"
-       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:0.264583"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:0.264583;fill:#333333;fill-opacity:1"
        x="20.992983"
        y="115.94149"
        id="text86068"><tspan
          sodipodi:role="line"
          id="tspan86066"
-         style="font-size:14.1111px;stroke-width:0.264583"
+         style="font-size:14.1111px;stroke-width:0.264583;fill:#333333;fill-opacity:1"
          x="20.992983"
          y="115.94149">A</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:0.264583"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:0.264583;fill:#333333;fill-opacity:1"
        x="85.463814"
        y="31.533327"
        id="text86068-2"><tspan
          sodipodi:role="line"
          id="tspan86066-0"
-         style="font-size:14.1111px;stroke-width:0.264583"
+         style="font-size:14.1111px;stroke-width:0.264583;fill:#333333;fill-opacity:1"
          x="85.463814"
          y="31.533327">A</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:0.264583"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:0.264583;fill:#333333;fill-opacity:1"
        x="-133.66068"
        y="-79.421112"
        id="text86068-2-9"
        transform="scale(-1)"><tspan
          sodipodi:role="line"
          id="tspan86066-0-1"
-         style="font-size:14.1111px;stroke-width:0.264583"
+         style="font-size:14.1111px;stroke-width:0.264583;fill:#333333;fill-opacity:1"
          x="-133.66068"
          y="-79.421112">A</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:0.264583"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:0.264583;fill:#333333;fill-opacity:1"
        x="-71.68924"
        y="-163.29613"
        id="text86068-3"
        transform="scale(-1)"><tspan
          sodipodi:role="line"
          id="tspan86066-7"
-         style="font-size:14.1111px;stroke-width:0.264583"
+         style="font-size:14.1111px;stroke-width:0.264583;fill:#333333;fill-opacity:1"
          x="-71.68924"
          y="-163.29613">A</tspan></text>
     <text
@@ -690,12 +714,13 @@
          x="-199.81824"
          y="-184.42094">A</tspan></text>
     <g
-       style="fill:currentColor"
+       style="fill:#333333;fill-opacity:1"
        id="g80065-7-7-7"
        transform="matrix(-0.57142857,0,0,-0.53333333,71.154595,162.47066)">
       <path
          d="M 7.184,11.246 A 3.5,3.5 0 0 1 1,9 C 1,7.398 2.14,6.367 3.66,4.992 4.986,3.792 6.602,2.33 8,0 9.398,2.33 11.014,3.792 12.34,4.992 13.86,6.367 15,7.398 15,9 a 3.5,3.5 0 0 1 -6.184,2.246 19.92,19.92 0 0 0 1.582,2.907 C 10.629,14.503 10.378,15 9.96,15 H 6.04 C 5.621,15 5.37,14.503 5.602,14.153 a 19.919,19.919 0 0 0 1.582,-2.907 z"
-         id="path80056-2-6-1" />
+         id="path80056-2-6-1"
+         style="fill:#333333;fill-opacity:1" />
     </g>
   </g>
 </svg>
