@@ -1,6 +1,7 @@
 <script lang='ts'>
     import volume from '$lib/images/volume.svg';
     import moon from '$lib/images/moon.svg';
+    import logo from '$lib/images/logo.svg';
     import { page } from '$app/stores';
     import { show_nav_bar } from './store';
 	let show_nav: Boolean;
@@ -25,7 +26,9 @@
 </script>
 
 <div class="navbar">
-    <div>icon</div>
+    <div id='logo'>
+        <img src={logo}  alt="Welcome" />
+    </div>
     <div>
         <button class='nav_buttons active_button' on:click={test} >play</button>
         <button class='nav_buttons' on:click={test} >chill</button>
@@ -136,6 +139,16 @@
     }
     #second_nav_bar > *:hover{
         background-color: #3d4451;
+    }
+
+
+    #logo{
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+    #logo > img{
+        width: 50px;
     }
 
 </style>
