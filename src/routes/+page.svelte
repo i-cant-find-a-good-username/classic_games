@@ -8,6 +8,7 @@
     import sudoko from '$lib/images/sudoko.svg';
     import tile_slide from '$lib/images/tile_slide.svg';
     import tetris from '$lib/images/tetris.svg';
+    import chess from '$lib/images/chess.svg';
     let games = [
         {name: 'solitaire',icon: solitaire, url: "solitaire"},
         {name: '2048',icon: doubles, url: "2048"},
@@ -18,6 +19,7 @@
         {name: 'sudoko',icon: sudoko, url: "sudoko"},
         {name: 'tile slide',icon: tile_slide, url: "tile_slide"},
         {name: 'tetris',icon: tetris, url: "tetris"},
+        {name: 'chess',icon: chess, url: "chess"},
     ]
 
     
