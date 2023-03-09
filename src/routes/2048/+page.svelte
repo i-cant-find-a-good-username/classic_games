@@ -1,10 +1,9 @@
 <script lang="ts">
 // @ts-nocheck
 
-    var random1, random2, random3, random4
-    var block1 ,block2 ,block3 ,block4 ,block5 ,block6 ,block7 ,block8 ,block9 ,block10 ,block11 ,block12 ,block13 ,block14 ,block15 ,block16
-    var block1, block2
-
+    let random1, random2, random3, random4
+    let block1 ,block2 ,block3 ,block4 ,block5 ,block6 ,block7 ,block8 ,block9 ,block10 ,block11 ,block12 ,block13 ,block14 ,block15 ,block16
+	let tempo 
 	let blocks_scores = [
 		[null, null, null, null],
 		[null, null, null, null],
@@ -13,7 +12,43 @@
 	]
 
 
+
+
+	function left(){
+		for (let i = 3; i >= 0; i--) {
+			for (let j = 3; j >= 0; j--) {
+				if(blocks_scores[i][j] === null  && j !== 3){
+					blocks_scores[i][j-1] = blocks_scores[i][j]
+					blocks_scores[i][j] = null
+					console.log(blocks_scores)
+					
+				}
+			}
+		}
+	}
+	function right(){
+		for (let i = 3; i >= 0; i--) {
+			for (let j = 3; j >= 0; j--) {
+				if(blocks_scores[i][j] === null  && j !== 0){
+					blocks_scores[i][j] = blocks_scores[i][j-1]
+					blocks_scores[i][j-1] = null
+					console.log(blocks_scores)
+					
+				}
+			}
+		}
+	}
+	function top(){}
+	function bottom(){}
+
+
 	function start_game (){
+		blocks_scores = [
+			[null, null, null, null],
+			[null, null, null, null],
+			[null, null, null, null],
+			[null, null, null, null],
+		]
 		random1 = Math.floor(Math.random() * 4)
 		random2 = Math.floor(Math.random() * 4)
     	random3 = Math.floor(Math.random() * 4)
@@ -25,7 +60,7 @@
 			random4 = Math.floor(Math.random() * 4)
 		}
 		blocks_scores[random1][random2] = 2
-		blocks_scores[random3][random4] = 2
+		blocks_scores[random3][random4] = 8
 	}
 
 	console.log(blocks_scores)
@@ -33,23 +68,14 @@
         if(e.keyCode === 37){
 			console.log(blocks_scores)
 			//left
-            for (let i = 0; i < 4; i++) {
-				for (let j = 0; j < 4; j++) {
-					if(blocks_scores[i][j] === null && i!== 0 && j !== 0){
-						blocks_scores[i][j] = blocks_scores[i-1][j-1]
-						blocks_scores[i-1][j-1] = null
-						console.log(blocks_scores)
-						
-					}
-				}
-			}
+			left()
         }else if(e.keyCode === 38){
-			blocks_scores[0][0] = 64
-            //top
+            top()
         }else if(e.keyCode === 39){
-			//right
+			right()
+			right()
         }else if(e.keyCode === 40){
-            //bottom
+            bottom()
         }
     }
 
@@ -68,7 +94,7 @@
 <svelte:window on:keydown={go_side} />
 <div id="container">
 	<div id='score_board'>
-		<button>new game</button>
+		<button on:click={start_game} >new game</button>
 		<div>SCORE: 0</div>
 		<div>BEST: 0</div>
 	</div>
@@ -228,6 +254,10 @@
 	}
 	#score_board > *{
 		margin-right: 20px;
+	}
+
+	button{
+		cursor: pointer;
 	}
 
 

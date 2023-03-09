@@ -35,6 +35,12 @@
 
 </script>
 
+
+
+
+
+
+
 <div id='center'>
     <div id='game_container'>
 
