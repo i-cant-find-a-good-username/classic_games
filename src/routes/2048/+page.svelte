@@ -1,7 +1,7 @@
 <script lang="ts">
 // @ts-nocheck
 
-    var random1, random2
+    var random1, random2, random3, random4
     var block1 ,block2 ,block3 ,block4 ,block5 ,block6 ,block7 ,block8 ,block9 ,block10 ,block11 ,block12 ,block13 ,block14 ,block15 ,block16
     var block1, block2
 
@@ -13,39 +13,56 @@
 	]
 
 
+	function start_game (){
+		random1 = Math.floor(Math.random() * 4)
+		random2 = Math.floor(Math.random() * 4)
+    	random3 = Math.floor(Math.random() * 4)
+		random4 = Math.floor(Math.random() * 4)
+		while( [random1, random2] === [random3, random4] ){
+			random1 = Math.floor(Math.random() * 4)
+			random2 = Math.floor(Math.random() * 4)
+		    random3 = Math.floor(Math.random() * 4)
+			random4 = Math.floor(Math.random() * 4)
+		}
+		blocks_scores[random1][random2] = 2
+		blocks_scores[random3][random4] = 2
+	}
 
+	console.log(blocks_scores)
     function go_side(e){
         if(e.keyCode === 37){
-            //left
+			console.log(blocks_scores)
+			//left
+            for (let i = 0; i < 4; i++) {
+				for (let j = 0; j < 4; j++) {
+					if(blocks_scores[i][j] === null && i!== 0 && j !== 0){
+						blocks_scores[i][j] = blocks_scores[i-1][j-1]
+						blocks_scores[i-1][j-1] = null
+						console.log(blocks_scores)
+						
+					}
+				}
+			}
         }else if(e.keyCode === 38){
+			blocks_scores[0][0] = 64
             //top
         }else if(e.keyCode === 39){
-            //block.style.left = '25%'
-            //console.log(block)
-            console.log(block1, block2)
-            //({ block1, block2 } = { block2, block1 })
-            //console.log(block1, block2)
-
+			//right
         }else if(e.keyCode === 40){
             //bottom
         }
     }
 
-
-    random1 = Math.floor(Math.random() * 17)
-    random2 = Math.floor(Math.random() * 17)
-
-
-
+	
+	start_game()
+	
+	
 	import { onMount } from 'svelte';
     onMount(async () => {
-        block1.classList.add('added')
-
-
+		block1.classList.add('added')
 
     })
             
-    console.log(random1, random2)
 </script>
 
 <svelte:window on:keydown={go_side} />
@@ -74,10 +91,21 @@
 		    <div class="blocks " bind:this={block15} id="block_15" ></div>
 		    <div class="blocks " bind:this={block16} id="block_16" ></div>
 
-            <div bind:this={block1} class='inside_block block_2' id='block_1' >2</div>
-            <div bind:this={block2} class='inside_block block_2' id='block_2' style="top: 25%; left: 25%" >2</div>
-            <div bind:this={block2} class='inside_block block_32' id='block_2' style="top: 25%; left: 50%" >32</div>
-            <div bind:this={block2} class='inside_block block_64' id='block_2' style="top: 25%; left: 75%" >64</div>
+
+			{#each blocks_scores as blocks,i }
+				{#each blocks as block,j }
+					{#if block !== null }
+						 <div bind:this={block1} class={'inside_block block_'+block} id='' style={"top: "+(i*25)+"%; left: "+(j*25)+"%"} > {block} </div>		
+					{/if}
+	   			{/each}
+			{/each}
+
+            <!--
+				<div bind:this={block1} class='inside_block block_2' id='block_1' >2</div>
+				<div bind:this={block2} class='inside_block block_2' id='block_2' style="top: 25%; left: 25%" >2</div>
+				<div bind:this={block2} class='inside_block block_32' id='block_2' style="top: 25%; left: 50%" >32</div>
+				<div bind:this={block2} class='inside_block block_64' id='block_2' style="top: 25%; left: 75%" >64</div>
+			-->
 
     </div>
 </div>
@@ -135,7 +163,7 @@
 		box-sizing: border-box;
 		border: #1f242dff 2px solid;
 
-		transition: all 200ms cubic-bezier(.05,.43,.25,.95);
+		transition: all 300ms cubic-bezier(.05,.43,.25,.95);
 
         
 	}
