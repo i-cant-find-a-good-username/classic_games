@@ -8,17 +8,23 @@
 
 
 
-<div class='card' style={'top: '+index*50+'px'} draggable={drag} >
-    <div class='card_front'>
-        <div>
-            <div style={'color:' + card.color }> {card.name} </div>
-            <img src={card.type} alt="Welcome" draggable="false" />
-        </div>
-        <div>
-            <img src={card.type} alt="Welcome" draggable="false" />
-        </div>
-    </div>  
-</div>
+{#if card.type === 'flipped'}
+
+{:else}
+
+    <div class='card' style={'top: '+index*50+'px'} draggable={drag} >
+        <div class='card_front'>
+            <div>
+                <div style={'color:' + card.color }> {card.name} </div>
+                <img src={card.type} alt="Welcome" draggable="false" />
+            </div>
+            <div>
+                <img src={card.type} alt="Welcome" draggable="false" />
+            </div>
+        </div>  
+    </div>
+{/if}
+
 
 
 <style>

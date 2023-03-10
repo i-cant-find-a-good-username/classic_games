@@ -79,24 +79,28 @@
 		}
 	}
 	function top(){
-		for (let i = 3; i >= 0; i--) {
-			for (let j = 3; j >= 0; j--) {
-				if(blocks_scores[i-1][j] === null  && i !== 0){
-					blocks_scores[i-1][j] = blocks_scores[i][j]
-					blocks_scores[i][j] = null
+		try {
+			for (let i = 3; i >= 0; i--) {
+				for (let j = 3; j >= 0; j--) {
+					if(blocks_scores[i-1][j] === null  && i !== 0){
+						blocks_scores[i-1][j] = blocks_scores[i][j]
+						blocks_scores[i][j] = null
+					}
 				}
 			}
-		}
+		} catch (error) {}
 	}
 	function bottom(){
-		for (let i = 0; i < 4; i++) {
-			for (let j = 0; j < 4; j++) {
-				if(blocks_scores[i+1][j] === null  && i !== 3){
-					blocks_scores[i+1][j] = blocks_scores[i][j]
-					blocks_scores[i][j] = null
+		try {
+			for (let i = 0; i < 4; i++) {
+				for (let j = 0; j < 4; j++) {
+					if(blocks_scores[i+1][j] === null  && i !== 3){
+						blocks_scores[i+1][j] = blocks_scores[i][j]
+						blocks_scores[i][j] = null
+					}
 				}
 			}
-		}
+		} catch (error) {}
 	}
 
 
@@ -111,7 +115,7 @@
 		random2 = Math.floor(Math.random() * 4)
     	random3 = Math.floor(Math.random() * 4)
 		random4 = Math.floor(Math.random() * 4)
-		while( [random1, random2] === [random3, random4] ){
+		while( random1 === random3 && random2 === random4 ){
 			random1 = Math.floor(Math.random() * 4)
 			random2 = Math.floor(Math.random() * 4)
 		    random3 = Math.floor(Math.random() * 4)
@@ -120,6 +124,20 @@
 		blocks_scores[random1][random2] = 2
 		blocks_scores[random3][random4] = 8
 	}
+	function spawn (){
+		var bb = arr => arr.every( v => v.every( d => d === null )  ) 
+		console.log(bb(blocks_scores) )
+
+
+    	random3 = Math.floor(Math.random() * 4)
+		random4 = Math.floor(Math.random() * 4)
+		while( blocks_scores[random1][random2] !==null ){
+			random1 = Math.floor(Math.random() * 4)
+			random2 = Math.floor(Math.random() * 4)
+		}
+		blocks_scores[random1][random2] = 2
+	}
+
 
 	console.log(blocks_scores)
     function go_side(e){
@@ -128,15 +146,19 @@
 			//left
 			left()
 			left()
+			spawn()
         }else if(e.keyCode === 38){
             top()
             top()
+			spawn()
         }else if(e.keyCode === 39){
 			right()
 			right()
+			spawn()
         }else if(e.keyCode === 40){
             bottom()
             bottom()
+			spawn()
         }
     }
 

@@ -1,6 +1,7 @@
 <script lang='ts'>
 
     import Card from './Card.svelte'
+    import Flipped_card from './Flipped_card.svelte'
     import settings from '$lib/images/settings.svg';
     import arrow_right from '$lib/images/arrow_right.svg';
     import arrow_left from '$lib/images/arrow_left.svg';
@@ -9,62 +10,19 @@
     import heart from '$lib/images/heart.svg';
     import diamond from '$lib/images/diamond.svg';
 
-    const cards = [
-        {name: 'A', type: spade, color: '#333333'},
-        {name: '2', type: spade, color: '#333333'},
-        {name: '3', type: spade, color: '#333333'},
-        {name: '4', type: spade, color: '#333333'},
-        {name: '5', type: spade, color: '#333333'},
-        {name: '6', type: spade, color: '#333333'},
-        {name: '7', type: spade, color: '#333333'},
-        {name: '8', type: spade, color: '#333333'},
-        {name: '9', type: spade, color: '#333333'},
-        {name: '10', type: spade, color: '#333333'},
-        {name: 'J', type: spade, color: '#333333'},
-        {name: 'Q', type: spade, color: '#333333'},
-        {name: 'K', type: club, color: '#333333'},
-        {name: 'A', type: club, color: '#333333'},
-        {name: '2', type: club, color: '#333333'},
-        {name: '3', type: club, color: '#333333'},
-        {name: '4', type: club, color: '#333333'},
-        {name: '5', type: club, color: '#333333'},
-        {name: '6', type: club, color: '#333333'},
-        {name: '7', type: club, color: '#333333'},
-        {name: '8', type: club, color: '#333333'},
-        {name: '9', type: club, color: '#333333'},
-        {name: '10', type: club, color: '#333333'},
-        {name: 'J', type: club, color: '#333333'},
-        {name: 'Q', type: club, color: '#333333'},
-        {name: 'K', type: club, color: '#333333'},
-        {name: 'A', type: heart, color:'#eb5757ff'},
-        {name: '2', type: heart, color:'#eb5757ff'},
-        {name: '3', type: heart, color:'#eb5757ff'},
-        {name: '4', type: heart, color:'#eb5757ff'},
-        {name: '5', type: heart, color:'#eb5757ff'},
-        {name: '6', type: heart, color:'#eb5757ff'},
-        {name: '7', type: heart, color:'#eb5757ff'},
-        {name: '8', type: heart, color:'#eb5757ff'},
-        {name: '9', type: heart, color:'#eb5757ff'},
-        {name: '10', type: heart, color:'#eb5757ff'},
-        {name: 'J', type: heart, color:'#eb5757ff'},
-        {name: 'Q', type: heart, color:'#eb5757ff'},
-        {name: 'K', type: heart, color:'#eb5757ff'},
-        {name: 'A', type: diamond, color: '#eb5757ff'},
-        {name: '2', type: diamond, color: '#eb5757ff'},
-        {name: '3', type: diamond, color: '#eb5757ff'},
-        {name: '4', type: diamond, color: '#eb5757ff'},
-        {name: '5', type: diamond, color: '#eb5757ff'},
-        {name: '6', type: diamond, color: '#eb5757ff'},
-        {name: '7', type: diamond, color: '#eb5757ff'},
-        {name: '8', type: diamond, color: '#eb5757ff'},
-        {name: '9', type: diamond, color: '#eb5757ff'},
-        {name: '10', type: diamond, color: '#eb5757ff'},
-        {name: 'J', type: diamond, color: '#eb5757ff'},
-        {name: 'Q', type: diamond, color: '#eb5757ff'},
-        {name: 'K', type: diamond, color: '#eb5757ff'},
-    ]
 
-    let lower_deck_cells = [[], [], [cards[0]], [], [], [], cards]
+
+    
+
+    //let lower_deck_cells = [
+    //    [...cards.slice(0, 1) ],
+    //    [...cards.slice(0, 2) ],
+    //    [...cards.slice(0, 3) ], 
+    //    [...cards.slice(0, 4) ], 
+    //    [...cards.slice(0, 5) ], 
+    //    [...cards.slice(0, 6) ], 
+    //    [...cards.slice(0, 7) ], 
+    //]
 
 
     import { show_nav_bar } from '../store';
@@ -138,7 +96,13 @@
                 {#each lower_deck_cells as deck, j }
                     <div id={'lower_deck_'+(j)}  on:dragover|preventDefault on:drop|preventDefault={dropped_card} >
                         {#each deck as card, i }
-                            <Card index={i} card={card} drag={deck.length === i+1 ? true : false}  />
+                            {#if card.type === 'flipped'}
+                                <div class='card' style={'top: '+i*50+'px'}>
+                                    <div class='flipped'></div>
+                                </div>
+                            {:else}
+                                <Card index={i} card={card} drag={deck.length === i+1 ? true : false}  />
+                            {/if}
                         {/each}
                     </div>
                 {/each}
