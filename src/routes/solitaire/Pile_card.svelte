@@ -12,7 +12,7 @@
 
 {:else}
 
-    <div class='card' style={'top: '+index*50+'px'} draggable={drag} >
+    <div class='card' style={'left: '+index*50+'px'} draggable={drag} >
         <div class='card_front'>
             <div>
                 <div style={'color:' + card.color }> {card.name} </div>

@@ -1,28 +1,31 @@
 <script lang='ts'>
 
+    import type { PageData } from './$types';
+	export let data: PageData;
+
+
+
+
+
     import Card from './Card.svelte'
-    import Flipped_card from './Flipped_card.svelte'
+    import Pile_card from './Pile_card.svelte'
     import settings from '$lib/images/settings.svg';
     import arrow_right from '$lib/images/arrow_right.svg';
     import arrow_left from '$lib/images/arrow_left.svg';
-    import spade from '$lib/images/spade.svg';
-    import club from '$lib/images/club.svg';
-    import heart from '$lib/images/heart.svg';
-    import diamond from '$lib/images/diamond.svg';
 
 
 
-    
+    let draw_cycle = -1
 
-    //let lower_deck_cells = [
-    //    [...cards.slice(0, 1) ],
-    //    [...cards.slice(0, 2) ],
-    //    [...cards.slice(0, 3) ], 
-    //    [...cards.slice(0, 4) ], 
-    //    [...cards.slice(0, 5) ], 
-    //    [...cards.slice(0, 6) ], 
-    //    [...cards.slice(0, 7) ], 
-    //]
+    let lower_deck_cells = [
+        [...data.deck1],
+        [...data.deck2],
+        [...data.deck3], 
+        [...data.deck4], 
+        [...data.deck5], 
+        [...data.deck6], 
+        [...data.deck7], 
+    ]
 
 
     import { show_nav_bar } from '../store';
@@ -31,13 +34,13 @@
 	import { onMount } from 'svelte';
     onMount(async () => {
 
+        console.log(data  )
         show_nav_bar.update(value => !value);
 
-
-        const dispatch = createEventDispatcher()
-        dispatch('started_game', {
-            pressed: 'solitaire'
-        })
+        //const dispatch = createEventDispatcher()
+        //dispatch('started_game', {
+        //    pressed: 'solitaire'
+        //})
 	});
 
 
@@ -47,16 +50,15 @@
         let target = e.target
 
         
-        if(target.id.substr(0, 10) === 'lower_deck'){
-            console.log(target)
-            console.log( lower_deck_cells[target.id.substr(target.id.length -1 )] )
-            console.log( target.id.substr(target.id.length -1 ) )
-        }else if(target.parentElement.id.substr(0, 10) === 'lower_deck'){
-            console.log(target)
-            console.log( lower_deck_cells[target.parentElement.id.substr(target.id.length -1 )] )
-            console.log('////////////////')
-
-        }
+        //if(target.id.substr(0, 10) === 'lower_deck'){
+        //    console.log(target)
+        //    console.log( lower_deck_cells[target.id.substr(target.id.length -1 )] )
+        //    console.log( target.id.substr(target.id.length -1 ) )
+        //}else if(target.parentElement.id.substr(0, 10) === 'lower_deck'){
+        //    console.log(target)
+        //    console.log( lower_deck_cells[target.parentElement.id.substr(target.id.length -1 )] )
+        //    console.log('////////////////')
+        //}
     }
 </script>
 
@@ -69,23 +71,29 @@
         <div>
             <div id='settings_bar'>
                 <div>
-                    <button class='options_buttons' ><img src={settings} alt="Welcome" /></button>
+                    <button class='options_buttons' ><img src={settings} alt="" /></button>
                     <button class='options_buttons' >new game</button>
                     <button class='options_buttons' >aa</button>
                 </div>
                 <div>
                     <button class='options_buttons' >hint</button>
-                    <button class='options_buttons' ><img src={arrow_right} alt="Welcome" /></button>
-                    <button class='options_buttons' ><img src={arrow_left} alt="Welcome" /></button>
+                    <button class='options_buttons' ><img src={arrow_right} alt="" /></button>
+                    <button class='options_buttons' ><img src={arrow_left} alt="" /></button>
                 </div>
             </div>
             <div id='upper_deck' >
-                <div>
+                <div on:click={() => { draw_cycle++; console.log(draw_cycle) }}>
                     <div class='card'>
                         <div class='flipped'></div>
                     </div>
                 </div>
-                <div></div>
+                <div id='draw_pile' >
+                    {#if draw_cycle > 0}
+                        {#each data.draw_pile.slice(draw_cycle, draw_cycle + 3) as card,i }
+                            <Pile_card index={i} card={card}   />
+                        {/each}
+                    {/if}
+                </div>
                 <div></div>
                 <div></div>
                 <div></div>
@@ -96,7 +104,7 @@
                 {#each lower_deck_cells as deck, j }
                     <div id={'lower_deck_'+(j)}  on:dragover|preventDefault on:drop|preventDefault={dropped_card} >
                         {#each deck as card, i }
-                            {#if card.type === 'flipped'}
+                            {#if card.mode === 'flipped'}
                                 <div class='card' style={'top: '+i*50+'px'}>
                                     <div class='flipped'></div>
                                 </div>
