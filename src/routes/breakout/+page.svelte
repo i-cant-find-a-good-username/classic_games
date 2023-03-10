@@ -3,7 +3,7 @@
 
     let bar: any
     let ball
-
+    let game_started = false
 
 
 	import { onMount } from 'svelte';
@@ -12,9 +12,16 @@
 	});
 
 
+    const move_ball = (e) => {
+
+    }
+
 
     const move = (e) => {
-
+        if(!game_started){
+            game_started = true
+            move_ball()
+        }
         if(e.keyCode === 37){
             //left
             bar.style.left = (bar.getBoundingClientRect().left - 160)+'px'
@@ -146,7 +153,13 @@
 
 <style>
     #main_parent{
-        padding: 50px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-left: 50px ;
+        padding-right: 50px ;
     }
     #main{
         box-sizing: border-box;

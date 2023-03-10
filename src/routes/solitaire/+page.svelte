@@ -15,7 +15,7 @@
 
 
 
-    let draw_cycle = -1
+    let draw_cycle = 0  
 
     let lower_deck_cells = [
         [...data.deck1],
@@ -44,7 +44,14 @@
 	});
 
 
-
+    function draw(e){
+        if(draw_cycle === 24){
+            draw_cycle = 0
+        }else{
+            draw_cycle+=3;
+            console.log(draw_cycle)
+        }
+    }
     const dropped_card = (e) => {
         
         let target = e.target
@@ -82,14 +89,18 @@
                 </div>
             </div>
             <div id='upper_deck' >
-                <div on:click={() => { draw_cycle++; console.log(draw_cycle) }}>
+                <!-- svelte-ignore a11y-click-events-have-key-events -->
+                <div on:click={draw}>
                     <div class='card'>
-                        <div class='flipped'></div>
+                        <div class='flipped'>
+                        </div>
+                        <p id='remaining_cards' style='' > {24 - draw_cycle } </p>
+                        
                     </div>
                 </div>
                 <div id='draw_pile' >
-                    {#if draw_cycle > 0}
-                        {#each data.draw_pile.slice(draw_cycle, draw_cycle + 3) as card,i }
+                    {#if draw_cycle !== 0}
+                        {#each data.draw_pile.slice(draw_cycle-3, draw_cycle ) as card,i }
                             <Pile_card index={i} card={card}   />
                         {/each}
                     {/if}
@@ -238,6 +249,21 @@
     }
     .card_front > :nth-child(2) > :first-child{
         height: 100%;
+    }
+
+
+    #remaining_cards{
+        
+        font-size:25px;
+        position:absolute;
+        bottom: -20px; 
+        right: 5px; 
+        color:white;
+        border-radius: 50%;
+        padding: 5px;
+        padding-left: 8px;
+        padding-right: 8px;
+        aspect-ratio: 1/1;
     }
 
 </style>
