@@ -1,6 +1,49 @@
 <script lang="ts">
 // @ts-nocheck
-
+/**
+ * 
+ * 
+ * 	function left(){
+		for (let i = 3; i >= 0; i--) {
+			for (let j = 3; j >= 0; j--) {
+				if(blocks_scores[i][j] !== null && blocks_scores[i][j-1] ===null  && j !== 0){
+					blocks_scores[i][j-1] = blocks_scores[i][j]
+					blocks_scores[i][j] = null
+				}
+			}
+		}
+	}
+	function right(){
+		for (let i = 0; i < 4; i++) {
+			for (let j = 0; j < 4; j++) {
+				if(blocks_scores[i][j] !== null && blocks_scores[i][j+1] ===null  && j !== 3){
+					blocks_scores[i][j+1] = blocks_scores[i][j]
+					blocks_scores[i][j] = null
+				}
+			}
+		}
+	}
+	function top(){
+		for (let i = 3; i >= 0; i--) {
+			for (let j = 3; j >= 0; j--) {
+				if(blocks_scores[i][j] !== null && blocks_scores[i-1][j] ===null  && i !== 0){
+					blocks_scores[i-1][j] = blocks_scores[i][j]
+					blocks_scores[i][j] = null
+				}
+			}
+		}
+	}
+	function bottom(){
+		for (let i = 0; i < 4; i++) {
+			for (let j = 0; j < 4; j++) {
+				if(blocks_scores[i][j] !== null && blocks_scores[i+1][j] ===null  && i !== 3){
+					blocks_scores[i+1][j] = blocks_scores[i][j]
+					blocks_scores[i][j] = null
+				}
+			}
+		}
+	}
+ */
     let random1, random2, random3, random4
     let block1 ,block2 ,block3 ,block4 ,block5 ,block6 ,block7 ,block8 ,block9 ,block10 ,block11 ,block12 ,block13 ,block14 ,block15 ,block16
 	let tempo 
@@ -15,31 +58,46 @@
 
 
 	function left(){
+		console.log('hello')
 		for (let i = 3; i >= 0; i--) {
 			for (let j = 3; j >= 0; j--) {
-				if(blocks_scores[i][j] === null  && j !== 3){
+				if(blocks_scores[i][j-1] === null  && j !== 0){
 					blocks_scores[i][j-1] = blocks_scores[i][j]
 					blocks_scores[i][j] = null
-					console.log(blocks_scores)
-					
 				}
 			}
 		}
 	}
 	function right(){
-		for (let i = 3; i >= 0; i--) {
-			for (let j = 3; j >= 0; j--) {
-				if(blocks_scores[i][j] === null  && j !== 0){
-					blocks_scores[i][j] = blocks_scores[i][j-1]
-					blocks_scores[i][j-1] = null
-					console.log(blocks_scores)
-					
+		for (let i = 0; i < 4; i++) {
+			for (let j = 0; j < 4; j++) {
+				if(blocks_scores[i][j+1] === null  && j !== 3){
+					blocks_scores[i][j+1] = blocks_scores[i][j]
+					blocks_scores[i][j] = null
 				}
 			}
 		}
 	}
-	function top(){}
-	function bottom(){}
+	function top(){
+		for (let i = 3; i >= 0; i--) {
+			for (let j = 3; j >= 0; j--) {
+				if(blocks_scores[i-1][j] === null  && i !== 0){
+					blocks_scores[i-1][j] = blocks_scores[i][j]
+					blocks_scores[i][j] = null
+				}
+			}
+		}
+	}
+	function bottom(){
+		for (let i = 0; i < 4; i++) {
+			for (let j = 0; j < 4; j++) {
+				if(blocks_scores[i+1][j] === null  && i !== 3){
+					blocks_scores[i+1][j] = blocks_scores[i][j]
+					blocks_scores[i][j] = null
+				}
+			}
+		}
+	}
 
 
 	function start_game (){
@@ -69,12 +127,15 @@
 			console.log(blocks_scores)
 			//left
 			left()
+			left()
         }else if(e.keyCode === 38){
+            top()
             top()
         }else if(e.keyCode === 39){
 			right()
 			right()
         }else if(e.keyCode === 40){
+            bottom()
             bottom()
         }
     }
