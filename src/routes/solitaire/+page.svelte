@@ -70,7 +70,7 @@
 </script>
 
 
-<div>
+<div id='main'>
     <div id='game_bar'>
 
     </div>
@@ -131,13 +131,13 @@
 </div>
 
 <style>
-    #game_bar{
-        
+    #main{
+        height: 100%;
     }
     #game_board{
-        height: 100vh;
+        height: calc(100% - 50px );
         background-color: #219653ff;
-        padding: 50px;
+        padding-top: 50px;
     }
     #game_board > :first-child{
         margin: auto;
