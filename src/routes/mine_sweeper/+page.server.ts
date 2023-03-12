@@ -23,37 +23,23 @@ export const load: PageServerLoad = async ({ params }) => {
 
 
 export const actions: Actions = {
-
-    changed_diff: async ({ request, params }) => {
-        console.log('gg')
-        console.log('gg')
-        console.log('gg')
-        console.log('gg')
-        console.log('gg')
-        console.log('gg')
-        console.log('gg')
-        console.log('gg')
-        console.log('gg')
-        console.log('gg')
-        console.log('gg')
-        console.log('gg')
-        console.log('gg')
-        return('fuck you')
-    },
+	diffculty_change: async ({ request, cookies }) => {
+		console.log('i8888888888888888888888888888888888888888888888888888')
+		var ll = await request.formData()
+		console.log(ll)
+        return {
+            some_darta: 'hello there'
+        }
+	},
 
 
-    clicked_box: async ({ request, params }) => {
-        console.log('ggggggggggggg')
-        console.log('ggggggggggggg')
-        console.log('ggggggggggggg')
-        console.log('ggggggggggggg')
-        console.log('ggggggggggggg')
-        console.log('ggggggggggggg')
-        console.log('ggggggggggggg')
-        console.log(params)
-        const form_data = await request.formData()
-    } 
-
-
+	pressed_cell: async ({ request, cookies }) => {
+		console.log('i8888888888888888888888888888888888888888888888888888')
+		var ll = await request.formData()
+		console.log(ll)
+        return {
+            some_darta: 'hello there'
+        }
+	},
 
 };

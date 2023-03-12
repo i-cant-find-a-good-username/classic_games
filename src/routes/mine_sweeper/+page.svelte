@@ -1,7 +1,10 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
     import settings from '$lib/images/settings.svg';
-	import type { PageData } from './$types';
+	import type { PageData, ActionData } from './$types';
+
 	export let data: PageData;
+	export let form: ActionData;
 
     let diffculty = 'easy'
 
@@ -40,15 +43,16 @@
 
 
 
-
 <div id='center'>
     <div id='game_container'>
 
         {#if diffculty === 'easy'}
 	        <div id="main">
 	        	{#each Array(64) as _, i}
-
-                    <div on:click={box_clicked} id={'cell_'+i}></div>
+                    <form method="POST" action="?/pressed_cell" use:enhance={() => {return ({ update }) => {update({ reset: false })}}} >
+                        <input type="hidden" name="cell" value={'cell_'+i}>
+                        <button id={'cell_'+i}></button>
+                    </form>
                 {/each}
 	        </div>
         {/if}
@@ -56,7 +60,10 @@
         {#if diffculty === 'normal'}
 	        <div id="main2">
 	        	{#each Array(256) as _, i}
-                    <div on:click={box_clicked} id={'cell_'+i}></div>
+                    <form method="POST" action="?/pressed_cell" use:enhance={() => {return ({ update }) => {update({ reset: false })}}} >
+                        <input type="hidden" name="cell" value={'cell_'+i}>
+                        <button id={'cell_'+i}></button>
+                    </form>
                 {/each}
 	        </div>
         {/if}
@@ -64,7 +71,10 @@
         {#if diffculty === 'hard'}
             <div id="main3">
 	        	{#each Array(512) as _, i}
-                    <div on:click={box_clicked} id={'cell_'+i}></div>
+                    <form method="POST" action="?/pressed_cell" use:enhance={() => {return ({ update }) => {update({ reset: false })}}} >
+                        <input type="hidden" name="cell" value={'cell_'+i}>
+                        <button id={'cell_'+i}></button>
+                    </form>
                 {/each}
             </div>
         {/if}
@@ -72,11 +82,13 @@
 
 
     <div id='settings'>
-        <select name="diffculty" id="diffculty" on:change={change_diff} >
-            <option value="easy">easy</option>
-            <option value="normal">normal</option>
-            <option value="hard">hard</option>
-        </select>
+        <form method="POST" action="?/diffculty_change" use:enhance={() => {return ({ update }) => {update({ reset: false })}}} >
+            <select name="diffculty" id="diffculty" on:change={change_diff} >
+                <option value="easy">easy</option>
+                <option value="normal">normal</option>
+                <option value="hard">hard</option>
+            </select>
+        </form>
 
         <div>
             <img src={settings} alt="">
@@ -116,21 +128,29 @@
 
     
     #main > *, #main2 > * , #main3 > *  {
-        cursor: pointer;
         background-color: #a6adbaff;
     }
 
-    #main > *{
+    #main > form > *{
         height: 40px;
         width: 40px;
+        border: none;
+        cursor: pointer;
+
     }
-    #main2 > *{
+    #main2 > form > *{
         height: 25px;
         width: 25px;
+        border: none;
+        cursor: pointer;
+
     }
-    #main3 > *{
+    #main3 > form > *{
         height: 20px;
         width: 20px;
+        border: none;
+        cursor: pointer;
+
     }
 
     #settings{
