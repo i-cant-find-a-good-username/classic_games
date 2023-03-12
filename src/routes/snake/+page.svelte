@@ -1,4 +1,8 @@
 <script>
+    import { onMount } from 'svelte';
+
+
+    let initial_snake_len = 3
 
     const move = (e) => {
 
@@ -7,6 +11,27 @@
         }
 
     }
+
+
+
+    let values = []
+    let arr = []
+    for (let i = 0; i < 32; i++) {
+        values.push(0)
+    }
+
+    for (let i = 0; i < 32; i++) {
+        arr.push(values)
+    }
+
+    onMount(async () => {
+ 
+        let random1 = Math.floor(Math.random() * 32)
+        let random2 = Math.floor(Math.random() * 32)
+        console.log(random1 ,random2 )
+        arr[random1][random2] = 1
+        console.log(arr)
+	});
 
 </script>
 
@@ -22,7 +47,11 @@
     </div>
     <div id='main'>
         <div id='bricks_container'>
-            
+            {#each Array(32) as _,i}
+                {#each Array(32) as _,j}
+                    <div class={ arr[i][j] === 0 ? '' : 'game'  } ></div>
+                {/each}
+            {/each}
         </div>
 
 
@@ -47,10 +76,17 @@
     }
     #bricks_container{
         border-radius: 10px;
-        display: flex;
-        flex-direction: column;
         height: 100%;
         width: 100%;
+        display: grid;
+        grid-template-columns: repeat(32, minmax(0, 1fr));
+    }
+    #bricks_container > *{ 
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        background-color: red;
+        border: 1px black solid;
     }
 
     #score_board{
@@ -62,7 +98,12 @@
     #score_board > *{
         padding-right: 20px;
     }
+    
 
+
+    .game{
+        background-color: #a6adbaff !important;
+    }
 
 
 
