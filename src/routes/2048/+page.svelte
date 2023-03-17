@@ -46,24 +46,50 @@
  */
     let random1, random2, random3, random4
     let block1 ,block2 ,block3 ,block4 ,block5 ,block6 ,block7 ,block8 ,block9 ,block10 ,block11 ,block12 ,block13 ,block14 ,block15 ,block16
-	let tempo 
+	let tempo, co
+	
+	let rr1 = Math.floor(Math.random() * 4)
+	let rr2 = Math.floor(Math.random() * 4)
+	let rr3 = Math.floor(Math.random() * 4)
+	let rr4 = Math.floor(Math.random() * 4)
 	let blocks_scores = [
 		[null, null, null, null],
 		[null, null, null, null],
 		[null, null, null, null],
-		[null, null, null, null],
+		[null, null, null, null],	
+	]
+
+	let states = [
+		[block1 ,block2 ,block3 ,block4],
+		[block5 ,block6 ,block7 ,block8],
+		[block9 ,block10 ,block11 ,block12],
+		[block13 ,block14 ,block15 ,block16]
 	]
 
 
-
-
 	function left(){
-		console.log('hello')
+		console.log(states)
 		for (let i = 3; i >= 0; i--) {
 			for (let j = 3; j >= 0; j--) {
 				if(blocks_scores[i][j-1] === null  && j !== 0){
-					blocks_scores[i][j-1] = blocks_scores[i][j]
-					blocks_scores[i][j] = null
+					//blocks_scores[i][j-1] = blocks_scores[i][j]
+					//blocks_scores[i][j] = null
+					console.log(states[i][j-3])
+					console.log(states[i][j-2])
+					console.log(states[i][j-1])
+					console.log(states[i][j])
+
+
+					if (states[i][j-3] !== undefined && states[i][j-2] !== undefined && states[i][j-1] !== undefined){
+						states[i][j].style.left = (parseInt(states[i][j].style.left, 10) - 75) +'%'
+						console.log('1')
+					}else if (states[i][j-1] !== undefined && states[i][j-2] !== undefined){
+						states[i][j].style.left = (parseInt(states[i][j].style.left, 10) - 50) +'%'
+						console.log('2')
+					}else if(states[i][j-1] !== undefined && j !== 0 ) {
+						states[i][j].style.left = (parseInt(states[i][j].style.left, 10) - 25) +'%'
+						console.log('3')
+					} 
 				}
 			}
 		}
@@ -126,9 +152,6 @@
 	}
 	function spawn (){
 		var bb = arr => arr.every( v => v.every( d => d === null )  ) 
-		console.log(bb(blocks_scores) )
-
-
     	random3 = Math.floor(Math.random() * 4)
 		random4 = Math.floor(Math.random() * 4)
 		while( blocks_scores[random1][random2] !==null ){
@@ -139,10 +162,8 @@
 	}
 
 
-	console.log(blocks_scores)
     function go_side(e){
         if(e.keyCode === 37){
-			console.log(blocks_scores)
 			//left
 			left()
 			left()
@@ -183,32 +204,36 @@
 	</div>
 	<div id="main">
 
-            <div class="blocks " bind:this={block1} id="block_1" >  </div>
-            <div class="blocks " bind:this={block2} id="block_2" ></div>
-            <div class="blocks " bind:this={block3} id="block_3" ></div>
-            <div class="blocks " bind:this={block4} id="block_4" ></div>
-            <div class="blocks " bind:this={block5} id="block_5" ></div>
-            <div class="blocks " bind:this={block6} id="block_6" ></div>
-		    <div class="blocks " bind:this={block7} id="block_7" ></div>
-		    <div class="blocks " bind:this={block8} id="block_8" ></div>
-		    <div class="blocks " bind:this={block9} id="block_9" ></div>
-		    <div class="blocks " bind:this={block10} id="block_10" ></div>
-		    <div class="blocks " bind:this={block11} id="block_11" ></div>
-		    <div class="blocks " bind:this={block12} id="block_12" ></div>
-		    <div class="blocks " bind:this={block13} id="block_13" ></div>
-		    <div class="blocks " bind:this={block14} id="block_14" ></div>
-		    <div class="blocks " bind:this={block15} id="block_15" ></div>
-		    <div class="blocks " bind:this={block16} id="block_16" ></div>
+            <div class="blocks " id="block_1" >  </div>
+            <div class="blocks " id="block_2" ></div>
+            <div class="blocks " id="block_3" ></div>
+            <div class="blocks " id="block_4" ></div>
+            <div class="blocks " id="block_5" ></div>
+            <div class="blocks " id="block_6" ></div>
+		    <div class="blocks " id="block_7" ></div>
+		    <div class="blocks " id="block_8" ></div>
+		    <div class="blocks " id="block_9" ></div>
+		    <div class="blocks " id="block_10" ></div>
+		    <div class="blocks " id="block_11" ></div>
+		    <div class="blocks " id="block_12" ></div>
+		    <div class="blocks " id="block_13" ></div>
+		    <div class="blocks " id="block_14" ></div>
+		    <div class="blocks " id="block_15" ></div>
+		    <div class="blocks " id="block_16" ></div>
 
-
-			{#each blocks_scores as blocks,i }
-				{#each blocks as block,j }
-					{#if block !== null }
-						 <div bind:this={block1} class={'inside_block block_'+block} id='' style={"top: "+(i*25)+"%; left: "+(j*25)+"%"} > {block} </div>		
-					{/if}
-	   			{/each}
-			{/each}
-
+			<!--
+				{#each blocks_scores as blocks,i }
+					{#each blocks as block,j }
+						{#if block !== null }
+									
+						{/if}
+					{/each}
+				{/each}
+			-->
+			<div bind:this={states[rr1][rr2]} class={'inside_block block_2'} id='' style={"top: 25%; left: 50%"} > 2 </div>
+			<div bind:this={states[rr3][rr4]} class={'inside_block block_2'} id='' style={"top: 50%; left: 75%"} > 2 </div>
+			 
+			 
             <!--
 				<div bind:this={block1} class='inside_block block_2' id='block_1' >2</div>
 				<div bind:this={block2} class='inside_block block_2' id='block_2' style="top: 25%; left: 25%" >2</div>
