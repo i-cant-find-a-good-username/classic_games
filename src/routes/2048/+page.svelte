@@ -84,9 +84,14 @@
 					console.log('idk')
 				}else if( states[i][j] !== undefined && states[i][j-1] !== undefined ){
 					if( states[i][j-1].classList && states[i][j].classList ){
-						console.log('hello')
+						const prefix = "block_";
+						const classes = states[i][j-1].className.split(" ").filter(c => !c.startsWith(prefix));
+						states[i][j-1].className = classes.join(" ").trim();
+						states[i][j-1].classList.add('block_'+4)
+						states[i][j-1].innerText = 4
+						states[i][j].remove()
 						states[i][j] = undefined
-						states[i][j-1].classList.add('block_8')
+
 					}
 				}else{
 					console.log('none')
