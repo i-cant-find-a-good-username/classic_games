@@ -66,31 +66,30 @@
 		[block13 ,block14 ,block15 ,block16]
 	]
 
-
+/**
+ * 
+ * 
+				if(blocks_scores[i][j-1] === null  && j !== 0){
+					//blocks_scores[i][j-1] = blocks_scores[i][j]
+					//blocks_scores[i][j] = null
+ */
 	function left(){
 		console.log(states)
 		for (let i = 3; i >= 0; i--) {
 			for (let j = 3; j >= 0; j--) {
-				if(blocks_scores[i][j-1] === null  && j !== 0){
-					//blocks_scores[i][j-1] = blocks_scores[i][j]
-					//blocks_scores[i][j] = null
 					console.log(states[i][j-3])
 					console.log(states[i][j-2])
 					console.log(states[i][j-1])
 					console.log(states[i][j])
 
 
-					if (states[i][j-3] !== undefined && states[i][j-2] !== undefined && states[i][j-1] !== undefined){
+					if (j === 3 && states[i][j] !== undefined && states[i][j-3] === undefined && states[i][j-2] === undefined && states[i][j-1] === undefined){
 						states[i][j].style.left = (parseInt(states[i][j].style.left, 10) - 75) +'%'
-						console.log('1')
-					}else if (states[i][j-1] !== undefined && states[i][j-2] !== undefined){
+					}else if (j === 2 && states[i][j] !== undefined && states[i][j-1] === undefined && states[i][j-2] === undefined){
 						states[i][j].style.left = (parseInt(states[i][j].style.left, 10) - 50) +'%'
-						console.log('2')
-					}else if(states[i][j-1] !== undefined && j !== 0 ) {
+					}else if(j === 1 && states[i][j] !== undefined && states[i][j-1] === undefined) {
 						states[i][j].style.left = (parseInt(states[i][j].style.left, 10) - 25) +'%'
-						console.log('3')
 					} 
-				}
 			}
 		}
 	}
@@ -230,8 +229,8 @@
 					{/each}
 				{/each}
 			-->
-			<div bind:this={states[rr1][rr2]} class={'inside_block block_2'} id='' style={"top: 25%; left: 50%"} > 2 </div>
-			<div bind:this={states[rr3][rr4]} class={'inside_block block_2'} id='' style={"top: 50%; left: 75%"} > 2 </div>
+			<div bind:this={states[rr1][rr2]} class={'inside_block block_2'} id='' style={"top: "+(rr1*25)+"%; left: "+(rr2*25)+"%"} > 2 </div>
+			<div bind:this={states[rr3][rr4]} class={'inside_block block_2'} id='' style={"top: "+(rr3*25)+"%; left: "+(rr4*25)+"%"} > 2 </div>
 			 
 			 
             <!--
