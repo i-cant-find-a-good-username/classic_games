@@ -62,7 +62,7 @@
 
     <div id='settings'>
         <form  method="POST" action="?/diffculty_change" 
-            use:enhance={() => {return ({ update }) => {update({ reset: false })}}} 
+            use:enhance={() => {return ({ update }) => {update()}}} 
         >
             <select name="diffculty" id="diffculty"  >
                 <option value="easy">easy</option>

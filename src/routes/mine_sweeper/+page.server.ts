@@ -7,6 +7,11 @@ import { error, fail } from "@sveltejs/kit";
 const easy = Array.from({length: 10}, () => Math.floor(Math.random() * 64));
 const normal = Array.from({length: 40}, () => Math.floor(Math.random() * 256));
 const hard = Array.from({length: 100}, () => Math.floor(Math.random() * 512));
+
+console.log(easy)
+console.log(normal)
+console.log(hard)
+
 let chosen_diff = "easy"
 
 
@@ -38,18 +43,21 @@ export const actions: Actions = {
         return{
             status: 201,
             message: 'changed',
-            value: diff
+            chosen_diff: diff
         } 
         
 	},
 
 
 	pressed_cell: async ({ request, cookies }) => {
-		console.log('i8888888888888888888888888888888888888888888888888888')
-		var ll = await request.formData()
-		console.log(ll)
+		const ll = await request.formData()
+		const cell = ll.get('cell')
+
+        console.log(cell)
+        console.log(parseInt(cell))
+
         return {
-            some_darta: 'hello there'
+            some_data: 'hello there'
         }
 	},
 

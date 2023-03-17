@@ -48,10 +48,6 @@
     let block1 ,block2 ,block3 ,block4 ,block5 ,block6 ,block7 ,block8 ,block9 ,block10 ,block11 ,block12 ,block13 ,block14 ,block15 ,block16
 	let tempo, co
 	
-	let rr1 = 0 //Math.floor(Math.random() * 4)
-	let rr2 = 0 //Math.floor(Math.random() * 4)
-	let rr3 = 0 //Math.floor(Math.random() * 4)
-	let rr4 = 1 //Math.floor(Math.random() * 4)
 	let blocks_scores = [
 		[null, null, null, null],
 		[null, null, null, null],
@@ -73,8 +69,10 @@
 					//blocks_scores[i][j-1] = blocks_scores[i][j]
 					//blocks_scores[i][j] = null
  */
-
-	function left(){
+/**
+ * 
+ * 
+ * 	function left(){
 		for (let i = 3; i >= 0; i--) {
 			for (let j = 3; j >= 0; j--) {
 				if( states[i][j] !== undefined && states[i][j-1] === undefined && j !== 0 ){
@@ -91,6 +89,35 @@
 						states[i][j-1].innerText = 4
 						states[i][j].remove()
 						states[i][j] = undefined
+
+					}
+				}else{
+					console.log('none')
+
+				}
+			}
+		}
+	}
+ */
+
+
+
+	function left(){
+		for (let i = 3; i >= 0; i--) {
+			for (let j = 3; j >= 0; j--) {
+				if( states[i][j].classList !== "" && states[i][j-1].classList === "" && j !== 0 ){
+					states[i][j].style.left = (parseInt(states[i][j].style.left, 10) - 25) +'%'
+					states[i][j-1] = states[i][j]
+					states[i][j].classList = ''
+					console.log('idk')
+				}else if( states[i][j].classList !== '' && states[i][j-1].classList !== '' ){
+					if( states[i][j-1].classList && states[i][j].classList ){
+						const prefix = "block_";
+						const classes = states[i][j-1].className.split(" ").filter(c => !c.startsWith(prefix));
+						states[i][j-1].className = classes.join(" ").trim();
+						states[i][j-1].classList.add('block_'+4)
+						states[i][j-1].innerText = 4
+						states[i][j].classList = ''
 
 					}
 				}else{
@@ -135,14 +162,7 @@
 		} catch (error) {}
 	}
 
-
 	function start_game (){
-		blocks_scores = [
-			[null, null, null, null],
-			[null, null, null, null],
-			[null, null, null, null],
-			[null, null, null, null],
-		]
 		random1 = Math.floor(Math.random() * 4)
 		random2 = Math.floor(Math.random() * 4)
     	random3 = Math.floor(Math.random() * 4)
@@ -153,9 +173,20 @@
 		    random3 = Math.floor(Math.random() * 4)
 			random4 = Math.floor(Math.random() * 4)
 		}
-		blocks_scores[random1][random2] = 2
-		blocks_scores[random3][random4] = 8
+		console.log(states[random1][random2] ,states[random3][random4])
+		states[random1][random2].style.left = (random1*25) + '%'
+		states[random3][random4].style.left = (random2*25) + '%'
+		states[random1][random2].style.top = (random3*25) + '%'
+		states[random3][random4].style.top = (random4*25) + '%'
+		states[random1][random2].innerText = 2
+		states[random3][random4].innerText = 2
+
+		states[random1][random2].classList.add(...['inside_block', 'block_2'])
+		states[random3][random4].classList.add(...['inside_block', 'block_2'])
+
+		//inside_block block_2	
 	}
+
 	function spawn (){
 		var bb = arr => arr.every( v => v.every( d => d === null )  ) 
     	random3 = Math.floor(Math.random() * 4)
@@ -190,12 +221,14 @@
     }
 
 	
-	start_game()
+	
 	
 	
 	import { onMount } from 'svelte';
     onMount(async () => {
-		block1.classList.add('added')
+		setTimeout(()=>{
+			start_game()
+		}, 100)
 
     })
             
@@ -236,8 +269,12 @@
 					{/each}
 				{/each}
 			-->
-			<div bind:this={states[rr1][rr2]} class={'inside_block block_2'} id='' style={"top: "+(rr1*25)+"%; left: "+(rr2*25)+"%"} > 2 </div>
-			<div bind:this={states[rr3][rr4]} class={'inside_block block_2'} id='' style={"top: "+(rr3*25)+"%; left: "+(rr4*25)+"%"} > 2 </div>
+
+			{#each Array(4) as _, i }
+				{#each Array(4) as _, j }
+					<div bind:this={states[i][j]}></div>
+				{/each}
+			{/each}
 			 
 			 
             <!--
@@ -282,14 +319,14 @@
 	}
 	.blocks {
 		background-color: #1f242dff;
-		height: 100%;
+		aspect-ratio: 1/1;
 		width: 100%;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 	}
     
-	.inside_block {
+	:global(.inside_block) {
         width: 25%;
         height: 25%;
 		display: flex;
@@ -308,7 +345,7 @@
         
 	}
 
-	.block_2 {
+	:global(.block_2) {
 		background-color: white !important;
 		color: black;
 	}
