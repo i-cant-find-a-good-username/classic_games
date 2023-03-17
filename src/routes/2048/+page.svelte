@@ -48,10 +48,10 @@
     let block1 ,block2 ,block3 ,block4 ,block5 ,block6 ,block7 ,block8 ,block9 ,block10 ,block11 ,block12 ,block13 ,block14 ,block15 ,block16
 	let tempo, co
 	
-	let rr1 = Math.floor(Math.random() * 4)
-	let rr2 = Math.floor(Math.random() * 4)
-	let rr3 = Math.floor(Math.random() * 4)
-	let rr4 = Math.floor(Math.random() * 4)
+	let rr1 = 0 //Math.floor(Math.random() * 4)
+	let rr2 = 0 //Math.floor(Math.random() * 4)
+	let rr3 = 0 //Math.floor(Math.random() * 4)
+	let rr4 = 1 //Math.floor(Math.random() * 4)
 	let blocks_scores = [
 		[null, null, null, null],
 		[null, null, null, null],
@@ -73,23 +73,25 @@
 					//blocks_scores[i][j-1] = blocks_scores[i][j]
 					//blocks_scores[i][j] = null
  */
+
 	function left(){
-		console.log(states)
 		for (let i = 3; i >= 0; i--) {
 			for (let j = 3; j >= 0; j--) {
-					console.log(states[i][j-3])
-					console.log(states[i][j-2])
-					console.log(states[i][j-1])
-					console.log(states[i][j])
+				if( states[i][j] !== undefined && states[i][j-1] === undefined && j !== 0 ){
+					states[i][j].style.left = (parseInt(states[i][j].style.left, 10) - 25) +'%'
+					states[i][j-1] = states[i][j]
+					states[i][j] = undefined
+					console.log('idk')
+				}else if( states[i][j] !== undefined && states[i][j-1] !== undefined ){
+					if( states[i][j-1].classList && states[i][j].classList ){
+						console.log('hello')
+						states[i][j] = undefined
+						states[i][j-1].classList.add('block_8')
+					}
+				}else{
+					console.log('none')
 
-
-					if (j === 3 && states[i][j] !== undefined && states[i][j-3] === undefined && states[i][j-2] === undefined && states[i][j-1] === undefined){
-						states[i][j].style.left = (parseInt(states[i][j].style.left, 10) - 75) +'%'
-					}else if (j === 2 && states[i][j] !== undefined && states[i][j-1] === undefined && states[i][j-2] === undefined){
-						states[i][j].style.left = (parseInt(states[i][j].style.left, 10) - 50) +'%'
-					}else if(j === 1 && states[i][j] !== undefined && states[i][j-1] === undefined) {
-						states[i][j].style.left = (parseInt(states[i][j].style.left, 10) - 25) +'%'
-					} 
+				}
 			}
 		}
 	}
@@ -243,7 +245,7 @@
     </div>
 </div>
 
-<style>
+<style global>
 	/*
 
 2
@@ -305,35 +307,35 @@
 		background-color: white !important;
 		color: black;
 	}
-	.block_4 {
+	:global(.block_4) {
 		background-color: #fed7aaff !important;
 		color: black;
 	}
-	.block_8 {
+	:global(.block_8) {
 		background-color: #fdba74ff !important;
 	}
-	.block_16 {
+	:global(.block_16) {
 		background-color: #fb923cff !important;
 	}
-	.block_32 {
+	:global(.block_32) {
 		background-color: #f87171ff !important;
 	}
-	.block_64 {
+	:global(.block_64) {
 		background-color: #ef4444ff !important;
 	}
-	.block_128 {
+	:global(.block_128) {
 		background-color: #fde047ff !important;
 	}
-	.block_256 {
+	:global(.block_256) {
 		background-color: #fde047ff !important;
 	}
-	.block_512 {
+	:global(.block_512) {
 		background-color: #facc15ff !important;
 	}
-	.block_1024 {
+	:global(.block_1024) {
 		background-color: #facc15ff !important;
 	}
-	.block_2048 {
+	:global(.block_2048) {
 		background-color: #facc15ff !important;
 	}
 
