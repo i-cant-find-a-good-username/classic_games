@@ -104,24 +104,37 @@
 
 	function left(){
 		for (let i = 3; i >= 0; i--) {
-			for (let j = 3; j >= 0; j--) {
-				if( states[i][j].classList !== "" && states[i][j-1].classList === "" && j !== 0 ){
+			for (let j = 3; j > 0; j--) {
+				console.log(i, j)
+				console.log(states[i][j])
+				console.log(states[i][j].classList.contains('inside_block'))
+				console.log(!states[i][j-1].classList.contains('inside_block'))
+				if( states[i][j].classList.contains('inside_block') && !states[i][j-1].classList.contains('inside_block')){
+					console.log('//////////////////////////////////////////////////////')
+					console.log('//////////////////////////////////////////////////////')
+					console.log('//////////////////////////////////////////////////////')
+				}
+				if( states[i][j].classList.contains('inside_block') && !states[i][j-1].classList.contains('inside_block') && j !== 0 ){
+					console.log(states[i][j])
 					states[i][j].style.left = (parseInt(states[i][j].style.left, 10) - 25) +'%'
+					console.log(states[i][j])
 					states[i][j-1] = states[i][j]
-					states[i][j].classList = ''
-					console.log('idk')
-				}else if( states[i][j].classList !== '' && states[i][j-1].classList !== '' ){
+					console.log(states[i][j].classList)
+					states[i][j].classList.remove('inside_block')
+					//states[i][j].className.replace(/\bblock_.+?/g, '')
+				}else if( states[i][j].classList.contains('inside_block') && states[i][j-1].classList.contains('inside_block') ){
 					if( states[i][j-1].classList && states[i][j].classList ){
 						const prefix = "block_";
 						const classes = states[i][j-1].className.split(" ").filter(c => !c.startsWith(prefix));
 						states[i][j-1].className = classes.join(" ").trim();
 						states[i][j-1].classList.add('block_'+4)
 						states[i][j-1].innerText = 4
-						states[i][j].classList = ''
+						states[i][j].classList.remove('inside_block')
+					//states[i][j].className.replace(/\bblock_.+?/g, '')
 
 					}
 				}else{
-					console.log('none')
+					//console.log('none')
 
 				}
 			}
@@ -174,16 +187,18 @@
 			random4 = Math.floor(Math.random() * 4)
 		}
 		console.log(states[random1][random2] ,states[random3][random4])
-		states[random1][random2].style.left = (random1*25) + '%'
-		states[random3][random4].style.left = (random2*25) + '%'
-		states[random1][random2].style.top = (random3*25) + '%'
-		states[random3][random4].style.top = (random4*25) + '%'
+		console.log(random1, random2)
+		console.log(random3, random4)
+		states[random1][random2].style.left = (random2*25) + '%'
+		states[random1][random2].style.top = (random1*25) + '%'
+		states[random3][random4].style.left = (random4*25) + '%'
+		states[random3][random4].style.top = (random3*25) + '%'
 		states[random1][random2].innerText = 2
 		states[random3][random4].innerText = 2
 
 		states[random1][random2].classList.add(...['inside_block', 'block_2'])
 		states[random3][random4].classList.add(...['inside_block', 'block_2'])
-
+		console.log(states)
 		//inside_block block_2	
 	}
 
@@ -272,7 +287,7 @@
 
 			{#each Array(4) as _, i }
 				{#each Array(4) as _, j }
-					<div bind:this={states[i][j]}></div>
+					<div bind:this={states[i][j]}>{i +''+ j}</div>
 				{/each}
 			{/each}
 			 
