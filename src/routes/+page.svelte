@@ -24,10 +24,10 @@
 
     
     function set_styles(e){
-        
+        e.target.style.backgroundColor = 'res'
     }
     function reset_styles(e){
-
+        e.target.style.backgroundColor = ''
     }
 
 

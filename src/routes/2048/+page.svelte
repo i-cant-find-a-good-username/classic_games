@@ -118,9 +118,11 @@
 					console.log(states[i][j])
 					states[i][j].style.left = (parseInt(states[i][j].style.left, 10) - 25) +'%'
 					console.log(states[i][j])
-					states[i][j-1] = states[i][j]
+					//states[i][j-1] = states[i][j]
 					console.log(states[i][j].classList)
-					states[i][j].classList.remove('inside_block')
+					//states[i][j].classList.remove('inside_block')
+					//states[3][3].classList.add('inside_block')
+					//states[3][3].classList.add('block_16')
 					//states[i][j].className.replace(/\bblock_.+?/g, '')
 				}else if( states[i][j].classList.contains('inside_block') && states[i][j-1].classList.contains('inside_block') ){
 					if( states[i][j-1].classList && states[i][j].classList ){
@@ -217,6 +219,7 @@
     function go_side(e){
         if(e.keyCode === 37){
 			//left
+			left()
 			left()
 			left()
 			spawn()

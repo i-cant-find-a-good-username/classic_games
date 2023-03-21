@@ -31,7 +31,7 @@
     </div>
     <div>
         <button class='nav_buttons active_button' on:click={test} >play</button>
-        <button class='nav_buttons' on:click={test} >chill</button>
+        <button class='nav_buttons' on:click={test} >idk yet</button>
     </div>
     <div id='right_icons'>
         <img src={volume} alt="Welcome" />
