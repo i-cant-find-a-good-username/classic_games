@@ -1,7 +1,11 @@
 <script lang='ts'>
+    import type { Card } from '../../types'
 
-    export let index: BigInteger;
-    export let  card;
+
+    
+
+    export let index: number;
+    export let  card: Card;
     export let  drag: boolean;
 
 </script>

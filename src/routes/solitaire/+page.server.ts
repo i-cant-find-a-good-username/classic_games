@@ -1,25 +1,25 @@
 import type { Actions, PageServerLoad } from "./$types";
 import { error, fail } from "@sveltejs/kit";
 import { isModuleNamespaceObject } from "util/types";
+import type { Card } from '../../types'
 
 
 const uuidv4 = () => {
     let
-      d = new Date().getTime(),
-      d2 = ((typeof performance !== 'undefined') && performance.now && (performance.now() * 1000)) || 0;
+        d = new Date().getTime(),
+        d2 = ((typeof performance !== 'undefined') && performance.now && (performance.now() * 1000)) || 0;
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
-      let r = Math.random() * 16;
-      if (d > 0) {
-        r = (d + r) % 16 | 0;
-        d = Math.floor(d / 16);
-      } else {
-        r = (d2 + r) % 16 | 0;
-        d2 = Math.floor(d2 / 16);
-      }
-      return (c == 'x' ? r : (r & 0x7 | 0x8)).toString(16);
+        let r = Math.random() * 16;
+        if (d > 0) {
+            r = (d + r) % 16 | 0;
+            d = Math.floor(d / 16);
+        } else {
+            r = (d2 + r) % 16 | 0;
+            d2 = Math.floor(d2 / 16);
+        }
+        return (c == 'x' ? r : (r & 0x7 | 0x8)).toString(16);
     });
-  };
-
+};
 
 let sent_cards_array
 
@@ -85,7 +85,7 @@ let cards = [
 ]
 let ids = []
 
-function shuffle(a) {
+function shuffle(a: Card[]) {
     for (let i = a.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [a[i], a[j]] = [a[j], a[i]];
@@ -94,13 +94,10 @@ function shuffle(a) {
 }
 
 
-type type = 'spade' | 'club' | 'heart' | 'diamond'
-type num = 'a' |  '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | 'j' | 'q' | 'k'
-type card = `${type}_${num}`
-const maagic : card = 'spade_2'
 
 
-function get_cards(n, m){
+
+function get_cards(n: number, m: number){
     console.log(uuidv4())
     sent_cards_array = []
     for (let i = n; i < m-1; i++) {
@@ -114,6 +111,7 @@ function get_cards(n, m){
 export const load: PageServerLoad = async ({ params }) => {
     
     shuffle(cards)
+
     return {
         cards: cards.length,
         deck1: get_cards(0, 1),
@@ -125,7 +123,6 @@ export const load: PageServerLoad = async ({ params }) => {
         deck7: get_cards(21, 28),
         draw_pile: cards.slice(29, cards.length), 
     }
-
 
 }
 
