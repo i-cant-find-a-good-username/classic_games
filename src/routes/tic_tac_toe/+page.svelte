@@ -9,6 +9,7 @@
 
 
     let solo: boolean = true
+    let scores: number[] = [0, 0]
     let turn: Turn = "player1"
 
     let cells: Cell[] = ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty"]
@@ -17,20 +18,43 @@
     }
 
     const ai_turn = () => {
-
+        alert("too bored to do this maual labor to be honest, its either gonna be the generic ai or the unbeatable ai and both are boring")
     }
     const change_mode = () => {
         solo = !solo
+        scores = [0, 0]
         localStorage.setItem("solo_mode", solo.toString());
         game_init()
     }
-
-    const check_game_status = () => {
-        if(cells[0] === cells[1] === cells[2]){
-
+    const winner = (winner: "x" | "o") => {
+        if(winner === 'o'){
+            scores[0]++
+        }else{
+            scores[1]++
         }
+        game_init()
     }
+    const check_game_status = () => {
+        console.log(cells)
+        if(cells[0] === cells[1] && cells[1] === cells[2] && cells[0] !== "empty"){
+            winner(cells[0])
+        }else if(cells[3] === cells[4] && cells[4] === cells[5] && cells[3] !== "empty"){
+            winner(cells[3])
+        }else if(cells[6] === cells[7] && cells[7] === cells[8] && cells[6] !== "empty"){
+            winner(cells[6])
+        }else if(cells[0] === cells[3] && cells[3] === cells[6] && cells[0] !== "empty"){
+            winner(cells[0])
+        }else if(cells[1] === cells[4] && cells[4] === cells[7] && cells[1] !== "empty"){
+            winner(cells[1])
+        }else if(cells[2] === cells[5] && cells[5] === cells[8] && cells[2] !== "empty"){
+            winner(cells[2])
+        }else if(cells[0] === cells[4] && cells[4] === cells[8] && cells[0] !== "empty"){
+            winner(cells[0])
+        }else if(cells[2] === cells[4] && cells[4] === cells[6] && cells[2] !== "empty"){
+            winner(cells[2])
+        }
 
+    }
 
     const player_turn = (i: number) => {
         console.log(i)
@@ -63,9 +87,9 @@
         {#each Array(9) as _, i}
             <div class="cell" id={'' + i}  on:click={()=>{player_turn(i)}} on:keydown={()=>{}}>
                 {#if cells[i] === "x" }
-                    <img class='player_move' src={x} alt='lost' />
+                    <img class='player_move' src={x} />
                 {:else if cells[i] === "o" }
-                    <img class='player_move' src={circle} alt='lost' />
+                    <img class='player_move' src={circle} />
                 {/if}
             </div>
         {/each}
@@ -73,16 +97,17 @@
     </div>
 
 
+
     <div id='score_board'>
         <div id='scores'>
             <div>
-                <div>00</div>
-                <div>00</div>
+                <div>{scores[0]}</div>
+                <div>{scores[1]}</div>
             </div>
             <div>
-                <div>YOU</div>
+                <div>p1</div>
                 <div>-</div>
-                <div>CPU</div>
+                <div>{solo ? 'ai' : 'p2'}</div>
             </div>
         </div>
         <div id='diffculty'>
