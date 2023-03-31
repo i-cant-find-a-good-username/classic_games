@@ -2,25 +2,36 @@
     import settings from '$lib/images/settings.svg';
 
     let bar: any
-    let ball
-    let game_started = false
-
+    let ball: any
+    let game_started: boolean = false
+    let ball_moving: boolean = false
+    
 
 	import { onMount } from 'svelte';
     onMount(async () => {
-        bar.style.right = ((bar.parentElement.parentElement.getBoundingClientRect().width/2))+"px"
+        //bar.style.right = ((bar.parentElement.parentElement.getBoundingClientRect().width/2))+"px"
 	});
 
 
-    const move_ball = (e) => {
+    const move_ball = () => {
+        const ball_moving = setInterval(()=>{
+            console.log('move')
+            console.log(ball.getBoundingClientRect())
 
+            ball.style.right = ((ball.getBoundingClientRect().x-20))+"px"
+            ball.style.right = ((ball.getBoundingClientRect().y+20))+"px"
+
+        }, 1000)
     }
 
 
-    const move = (e) => {
+    const move = (e: KeyboardEvent) => {
         if(!game_started){
             game_started = true
-            move_ball()
+            if(!ball_moving){
+                ball_moving = true
+                move_ball()
+            }
         }
         if(e.keyCode === 37){
             //left

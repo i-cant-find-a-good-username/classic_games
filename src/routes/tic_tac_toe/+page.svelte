@@ -3,71 +3,73 @@
     import person from '$lib/images/person.svg';
     import circle from '$lib/images/circle.svg';
     import x from '$lib/images/x.svg';
+    import type { Turn, Cell } from '../../types'
+	import { onMount } from 'svelte';
 
 
 
-    let cell_1 = true
-    let cell_2 = true
-    let cell_3 = false
-    let cell_4 = false
-    let cell_5 = false
-    let cell_6 = false
-    let cell_7 = false
-    let cell_8 = false
-    let cell_9 = false
+    let solo: boolean = true
+    let turn: Turn = "player1"
+
+    let cells: Cell[] = ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty"]
+    const game_init = () => {
+        cells = ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty"]
+    }
+
+    const ai_turn = () => {
+
+    }
+    const change_mode = () => {
+        solo = !solo
+        localStorage.setItem("solo_mode", solo.toString());
+        game_init()
+    }
+
+    const check_game_status = () => {
+        if(cells[0] === cells[1] === cells[2]){
+
+        }
+    }
+
+
+    const player_turn = (i: number) => {
+        console.log(i)
+        if(!solo){
+            if(turn === 'player1'){
+                cells[i] = "o"
+                turn = "player2"
+            }else if(turn === 'player2'){
+                cells[i] = "x"
+                turn = "player1"
+            }
+        }else{
+            ai_turn()
+        }
+        check_game_status()
+    }
 
     const change_diff = async (e: any) => {}
+
+    onMount(async () => {
+        solo = localStorage.getItem("solo_mode") ? JSON.parse(localStorage.getItem("solo_mode")) : false 
+    })
 
 
 </script>
 
 <div id='main_parent'>
     <div id='main'>
-        <div class="cell"  on:click={() => {cell_1 = true }}>
-            {#if cell_1 }
-                <img class='player_move' src={circle} alt='lost' />
-            {/if}
-        </div>
-        <div class="cell" on:click={() => {cell_2 = true }} >
-            {#if cell_2}
-                <img class='player_move' src={x} alt='lost' />
-            {/if}
-        </div>
-        <div class="cell" on:click={() => {cell_3 = true }} >
-            {#if cell_3}
-                <img class='player_move' src={x} alt='lost' />
-            {/if}
-        </div>
-        <div class="cell" on:click={() => {cell_4 = true }} >
-            {#if cell_4}
-                hello
-            {/if}
-        </div>
-        <div class="cell" on:click={() => {cell_5 = true }} >
-            {#if cell_5}
-                hello
-            {/if}
-        </div>
-        <div class="cell" on:click={() => {cell_6 = true }} >
-            {#if cell_6}
-                hello
-            {/if}
-        </div>
-        <div class="cell" on:click={() => {cell_7 = true }} >
-            {#if cell_7}
-                hello
-            {/if}
-        </div>
-        <div class="cell" on:click={() => {cell_8 = true }} >
-            {#if cell_8}
-                hello
-            {/if}
-        </div>
-        <div class="cell" on:click={() => {cell_9 = true }} >
-            {#if cell_9}
-                hello
-            {/if}
-        </div>
+
+        {#each Array(9) as _, i}
+            <div class="cell" id={'' + i}  on:click={()=>{player_turn(i)}} on:keydown={()=>{}}>
+                {#if cells[i] === "x" }
+                    <img class='player_move' src={x} alt='lost' />
+                {:else if cells[i] === "o" }
+                    <img class='player_move' src={circle} alt='lost' />
+                {/if}
+            </div>
+        {/each}
+
     </div>
 
 
@@ -90,12 +92,10 @@
                 <option value="hard">hard</option>
             </select>
     
-            <div>
-                <img src={person} alt="">
+            <div on:click={change_mode} >
+                <img src={solo ? person : people} alt="">
             </div>
         </div>
-
-
     </div>
     
 </div>
@@ -103,13 +103,16 @@
 <style>
     #main_parent{
         height: 100%;
-
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
+
     #main{
         box-sizing: border-box;
-        width: 300px;
+        width: 450px;
         aspect-ratio: 1/1;
-        margin: auto;
         border-radius: 10px;
         padding: 20px;
         display: grid;
@@ -130,7 +133,11 @@
     
     }
 
-
+    #main > :first-child,
+    #main > :nth-child(2),
+    #main > :nth-child(3){
+        border-top: 2px solid transparent;
+    }
 
     #main > :first-child,
     #main > :nth-child(2),
@@ -138,34 +145,28 @@
         border-top: 2px solid transparent;
     }
 
-    
-    #main > :first-child,
-    #main > :nth-child(2),
-    #main > :nth-child(3){
-        border-top: 2px solid transparent;
-    }
     #main > :first-child,
     #main > :nth-child(4),
     #main > :nth-child(7){
         border-left: 2px solid transparent;
     }
+
     #main > :nth-child(7),
     #main > :nth-child(8),
     #main > :nth-child(9){
         border-bottom: 2px solid transparent;
     }
+
     #main > :nth-child(3),
     #main > :nth-child(6),
     #main > :nth-child(9){
         border-right: 2px solid transparent;
     }
 
-
     .player_move{
         width: 100%;
         height: 100%;
     }
-
 
     #score_board{
         display: flex;
@@ -181,7 +182,7 @@
     }
     #scores > :first-child{
         display: flex;
-        justify-content: space-between;
+        justify-content: space-between; 
         font-size: 50px;
     }
 
@@ -190,8 +191,6 @@
         justify-content: space-between;
         font-size: 30px;
     }
-
-
 
     #diffculty{
         display: flex;
@@ -225,10 +224,5 @@
     #diffculty > :nth-child(2):hover{
 		background-color: #1f242d;
     }
-
-
-
-
-
 
 </style>

@@ -7,3 +7,5 @@ export type Card = {
 
 
 
+export type Turn = "player1" | "player2" | "ai";
+export type Cell = "o" | "x" | "empty";
