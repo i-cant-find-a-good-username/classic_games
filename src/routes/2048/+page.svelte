@@ -1,240 +1,214 @@
 <script lang="ts">
-// @ts-nocheck
-/**
- * 
- * 
- * 	function left(){
-		for (let i = 3; i >= 0; i--) {
-			for (let j = 3; j >= 0; j--) {
-				if(blocks_scores[i][j] !== null && blocks_scores[i][j-1] ===null  && j !== 0){
-					blocks_scores[i][j-1] = blocks_scores[i][j]
-					blocks_scores[i][j] = null
-				}
-			}
-		}
+
+
+	interface block_data {
+		value: number,
+		//index: number,
+		top: number,
+		left: number,
 	}
-	function right(){
-		for (let i = 0; i < 4; i++) {
-			for (let j = 0; j < 4; j++) {
-				if(blocks_scores[i][j] !== null && blocks_scores[i][j+1] ===null  && j !== 3){
-					blocks_scores[i][j+1] = blocks_scores[i][j]
-					blocks_scores[i][j] = null
-				}
-			}
-		}
-	}
-	function top(){
-		for (let i = 3; i >= 0; i--) {
-			for (let j = 3; j >= 0; j--) {
-				if(blocks_scores[i][j] !== null && blocks_scores[i-1][j] ===null  && i !== 0){
-					blocks_scores[i-1][j] = blocks_scores[i][j]
-					blocks_scores[i][j] = null
-				}
-			}
-		}
-	}
-	function bottom(){
-		for (let i = 0; i < 4; i++) {
-			for (let j = 0; j < 4; j++) {
-				if(blocks_scores[i][j] !== null && blocks_scores[i+1][j] ===null  && i !== 3){
-					blocks_scores[i+1][j] = blocks_scores[i][j]
-					blocks_scores[i][j] = null
-				}
-			}
-		}
-	}
- */
-    let random1, random2, random3, random4
-    let block1 ,block2 ,block3 ,block4 ,block5 ,block6 ,block7 ,block8 ,block9 ,block10 ,block11 ,block12 ,block13 ,block14 ,block15 ,block16
-	let tempo, co
+
+
+
+    let q: number
+	let r: number
+	let random1: number = 0
 	
-	let blocks_scores = [
-		[null, null, null, null],
-		[null, null, null, null],
-		[null, null, null, null],
-		[null, null, null, null],	
+
+	//{value: 32, top:75, left:50} 
+	let states: (block_data|null)[] = [
+		null, null, null, null,
+		null, null, null, null,
+		null, null, null, null,
+		null, null, null, null,	
 	]
 
-	let states = [
-		[block1 ,block2 ,block3 ,block4],
-		[block5 ,block6 ,block7 ,block8],
-		[block9 ,block10 ,block11 ,block12],
-		[block13 ,block14 ,block15 ,block16]
-	]
 
-/**
- * 
- * 
-				if(blocks_scores[i][j-1] === null  && j !== 0){
-					//blocks_scores[i][j-1] = blocks_scores[i][j]
-					//blocks_scores[i][j] = null
- */
-/**
- * 
- * 
- * 	function left(){
-		for (let i = 3; i >= 0; i--) {
-			for (let j = 3; j >= 0; j--) {
-				if( states[i][j] !== undefined && states[i][j-1] === undefined && j !== 0 ){
-					states[i][j].style.left = (parseInt(states[i][j].style.left, 10) - 25) +'%'
-					states[i][j-1] = states[i][j]
-					states[i][j] = undefined
-					console.log('idk')
-				}else if( states[i][j] !== undefined && states[i][j-1] !== undefined ){
-					if( states[i][j-1].classList && states[i][j].classList ){
-						const prefix = "block_";
-						const classes = states[i][j-1].className.split(" ").filter(c => !c.startsWith(prefix));
-						states[i][j-1].className = classes.join(" ").trim();
-						states[i][j-1].classList.add('block_'+4)
-						states[i][j-1].innerText = 4
-						states[i][j].remove()
-						states[i][j] = undefined
-
-					}
-				}else{
-					console.log('none')
-
-				}
-			}
-		}
-	}
- */
 
 
 
 	function left(){
-		for (let i = 3; i >= 0; i--) {
-			for (let j = 3; j > 0; j--) {
-				console.log(i, j)
-				console.log(states[i][j])
-				console.log(states[i][j].classList.contains('inside_block'))
-				console.log(!states[i][j-1].classList.contains('inside_block'))
-				if( states[i][j].classList.contains('inside_block') && !states[i][j-1].classList.contains('inside_block')){
-					console.log('//////////////////////////////////////////////////////')
-					console.log('//////////////////////////////////////////////////////')
-					console.log('//////////////////////////////////////////////////////')
+		for (let i = 2; i >= 0; i--) {
+			if (states[i % 4] === null && states[i+1 % 4] !== null){
+				states[i % 4] = {
+					value: states[i+1 % 4].value,
+					top: states[i+1 % 4].top,
+					left: states[i+1 % 4].left-25
 				}
-				if( states[i][j].classList.contains('inside_block') && !states[i][j-1].classList.contains('inside_block') && j !== 0 ){
-					console.log(states[i][j])
-					states[i][j].style.left = (parseInt(states[i][j].style.left, 10) - 25) +'%'
-					console.log(states[i][j])
-					//states[i][j-1] = states[i][j]
-					console.log(states[i][j].classList)
-					//states[i][j].classList.remove('inside_block')
-					//states[3][3].classList.add('inside_block')
-					//states[3][3].classList.add('block_16')
-					//states[i][j].className.replace(/\bblock_.+?/g, '')
-				}else if( states[i][j].classList.contains('inside_block') && states[i][j-1].classList.contains('inside_block') ){
-					if( states[i][j-1].classList && states[i][j].classList ){
-						const prefix = "block_";
-						const classes = states[i][j-1].className.split(" ").filter(c => !c.startsWith(prefix));
-						states[i][j-1].className = classes.join(" ").trim();
-						states[i][j-1].classList.add('block_'+4)
-						states[i][j-1].innerText = 4
-						states[i][j].classList.remove('inside_block')
-					//states[i][j].className.replace(/\bblock_.+?/g, '')
-
-					}
-				}else{
-					//console.log('none')
-
+				states[i+1 % 4] = null
+			}
+			if (states[i % 4+4] === null && states[i+1 % 4+4] !== null){
+				states[i % 4+4] = {
+					value: states[i+1 % 4+4].value,
+					top: states[i+1 % 4+4].top,
+					left: states[i+1 % 4+4].left-25
 				}
+				states[i+1 % 4+4] = null
+			}
+			if (states[i % 4+8] === null && states[i+1 % 4+8] !== null){
+				states[i % 4+8] = {
+					value: states[i+1 % 4+8].value,
+					top: states[i+1 % 4+8].top,
+					left: states[i+1 % 4+8].left-25
+				}
+				states[i+1 % 4+8] = null
+			}
+			if (states[i % 4+12] === null && states[i+1 % 4+12] !== null){
+				states[i % 4+12] = {
+					value: states[i+1 % 4+12].value,
+					top: states[i+1 % 4+12].top,
+					left: states[i+1 % 4+12].left-25
+				}
+				states[i+1 % 4+12] = null
 			}
 		}
 	}
 	function right(){
-		for (let i = 0; i < 4; i++) {
-			for (let j = 0; j < 4; j++) {
-				if(blocks_scores[i][j+1] === null  && j !== 3){
-					blocks_scores[i][j+1] = blocks_scores[i][j]
-					blocks_scores[i][j] = null
+		for (let i = 0; i <= 2; i++) {
+			if (states[i+1 % 4] === null && states[i % 4] !== null){
+				states[i+1 % 4] = {
+					value: states[i % 4].value,
+					top: states[i % 4].top,
+					left: states[i % 4].left+25
 				}
+				states[i % 4] = null
+			}
+			if (states[i+1 % 4+4] === null && states[i % 4+4] !== null){
+				states[i+1 % 4+4] = {
+					value: states[i % 4+4].value,
+					top: states[i % 4+4].top,
+					left: states[i % 4+4].left+25
+				}
+				states[i % 4+4] = null
+			}
+			if (states[i+1 % 4+8] === null && states[i % 4+8] !== null){
+				states[i+1 % 4+8] = {
+					value: states[i % 4+8].value,
+					top: states[i % 4+8].top,
+					left: states[i % 4+8].left+25
+				}
+				states[i % 4+8] = null
+			}
+			if (states[i+1 % 4+12] === null && states[i % 4+12] !== null){
+				states[i+1 % 4+12] = {
+					value: states[i % 4+12].value,
+					top: states[i % 4+12].top,
+					left: states[i % 4+12].left+25
+				}
+				states[i % 4+12] = null
 			}
 		}
 	}
 	function top(){
-		try {
-			for (let i = 3; i >= 0; i--) {
-				for (let j = 3; j >= 0; j--) {
-					if(blocks_scores[i-1][j] === null  && i !== 0){
-						blocks_scores[i-1][j] = blocks_scores[i][j]
-						blocks_scores[i][j] = null
-					}
+		for (let i = 2; i >= 0; i--) {
+			if (states[Math.floor(i+1/4)*4] === null && states[Math.floor(i+1/4)*4+4] !== null){
+				states[Math.floor(i+1/4)*4] = {
+					value: states[Math.floor(i+1/4)*4+4].value,
+					top: states[Math.floor(i+1/4)*4+4].top-25,
+					left: states[Math.floor(i+1/4)*4+4].left
 				}
+				states[Math.floor(i+1/4)*4+4] = null
 			}
-		} catch (error) {}
+			if (states[Math.floor(i+1/4)*4+1] === null && states[Math.floor(i+1/4)*4+1+4] !== null){
+				states[Math.floor(i+1/4)*4+1] = {
+					value: states[Math.floor(i+1/4)*4+1+4].value,
+					top: states[Math.floor(i+1/4)*4+1+4].top-25,
+					left: states[Math.floor(i+1/4)*4+1+4].left
+				}
+				states[Math.floor(i+1/4)*4+1+4] = null
+			}
+			if (states[Math.floor(i+1/4)*4+2] === null && states[Math.floor(i+1/4)*4+2+4] !== null){
+				states[Math.floor(i+1/4)*4+2] = {
+					value: states[Math.floor(i+1/4)*4+2+4].value,
+					top: states[Math.floor(i+1/4)*4+2+4].top-25,
+					left: states[Math.floor(i+1/4)*4+2+4].left
+				}
+				states[Math.floor(i+1/4)*4+2+4] = null
+			}
+			if (states[Math.floor(i+1/4)*4+3] === null && states[Math.floor(i+1/4)*4+3+4] !== null){
+				states[Math.floor(i+1/4)*4+3] = {
+					value: states[Math.floor(i+1/4)*4+3+4].value,
+					top: states[Math.floor(i+1/4)*4+3+4].top-25,
+					left: states[Math.floor(i+1/4)*4+3+4].left
+				}
+				states[Math.floor(i+1/4)*4+3+4] = null
+			}
+		}
 	}
 	function bottom(){
-		try {
-			for (let i = 0; i < 4; i++) {
-				for (let j = 0; j < 4; j++) {
-					if(blocks_scores[i+1][j] === null  && i !== 3){
-						blocks_scores[i+1][j] = blocks_scores[i][j]
-						blocks_scores[i][j] = null
-					}
+		for (let i = 0; i <= 2; i++) {
+			if (states[Math.floor(i+1/4)*4+4] === null && states[Math.floor(i+1/4)*4] !== null){
+				states[Math.floor(i+1/4)*4+4] = {
+					value: states[Math.floor(i+1/4)*4].value,
+					top: states[Math.floor(i+1/4)*4].top+25,
+					left: states[Math.floor(i+1/4)*4].left
 				}
+				states[Math.floor(i+1/4)*4] = null
 			}
-		} catch (error) {}
+			if (states[Math.floor(i+1/4)*4+1+4] === null && states[Math.floor(i+1/4)*4+1] !== null){
+				states[Math.floor(i+1/4)*4+1+4] = {
+					value: states[Math.floor(i+1/4)*4+1].value,
+					top: states[Math.floor(i+1/4)*4+1].top+25,
+					left: states[Math.floor(i+1/4)*4+1].left
+				}
+				states[Math.floor(i+1/4)*4+1] = null
+			}
+			if (states[Math.floor(i+1/4)*4+2+4] === null && states[Math.floor(i+1/4)*4+2] !== null){
+				states[Math.floor(i+1/4)*4+2+4] = {
+					value: states[Math.floor(i+1/4)*4+2].value,
+					top: states[Math.floor(i+1/4)*4+2].top+25,
+					left: states[Math.floor(i+1/4)*4+2].left
+				}
+				states[Math.floor(i+1/4)*4+2] = null
+			}
+			if (states[Math.floor(i+1/4)*4+3+4] === null && states[Math.floor(i+1/4)*4+3] !== null){
+				states[Math.floor(i+1/4)*4+3+4] = {
+					value: states[Math.floor(i+1/4)*4+3].value,
+					top: states[Math.floor(i+1/4)*4+3].top+25,
+					left: states[Math.floor(i+1/4)*4+3].left
+				}
+				states[Math.floor(i+1/4)*4+3] = null
+			}
+		}
 	}
 
-	function start_game (){
-		random1 = Math.floor(Math.random() * 4)
-		random2 = Math.floor(Math.random() * 4)
-    	random3 = Math.floor(Math.random() * 4)
-		random4 = Math.floor(Math.random() * 4)
-		while( random1 === random3 && random2 === random4 ){
-			random1 = Math.floor(Math.random() * 4)
-			random2 = Math.floor(Math.random() * 4)
-		    random3 = Math.floor(Math.random() * 4)
-			random4 = Math.floor(Math.random() * 4)
-		}
-		console.log(states[random1][random2] ,states[random3][random4])
-		console.log(random1, random2)
-		console.log(random3, random4)
-		states[random1][random2].style.left = (random2*25) + '%'
-		states[random1][random2].style.top = (random1*25) + '%'
-		states[random3][random4].style.left = (random4*25) + '%'
-		states[random3][random4].style.top = (random3*25) + '%'
-		states[random1][random2].innerText = 2
-		states[random3][random4].innerText = 2
 
-		states[random1][random2].classList.add(...['inside_block', 'block_2'])
-		states[random3][random4].classList.add(...['inside_block', 'block_2'])
-		console.log(states)
-		//inside_block block_2	
+
+
+	function start_game (){
+		random1 = Math.floor(Math.random() * 16)
+		q = Math.floor(random1/4)
+		r = random1 % 4
+		states[random1] = {value: 2, top: q*25, left: r*25}
 	}
 
 	function spawn (){
-		var bb = arr => arr.every( v => v.every( d => d === null )  ) 
-    	random3 = Math.floor(Math.random() * 4)
-		random4 = Math.floor(Math.random() * 4)
-		while( blocks_scores[random1][random2] !==null ){
-			random1 = Math.floor(Math.random() * 4)
-			random2 = Math.floor(Math.random() * 4)
+		// if 16 occupied game over
+		while( states[random1] !== null ){
+			random1 = Math.floor(Math.random() * 16)
 		}
-		blocks_scores[random1][random2] = 2
+		// col
+		q = Math.floor(random1/4)
+		// row
+		r = random1 % 4
+		states[random1] = {value: 2, top: q*25, left: r*25}
 	}
 
 
-    function go_side(e){
+
+    function go_side(e: KeyboardEvent){
         if(e.keyCode === 37){
-			//left
 			left()
-			left()
-			left()
-			spawn()
+			//spawn()
         }else if(e.keyCode === 38){
             top()
-            top()
-			spawn()
+			//spawn()
         }else if(e.keyCode === 39){
 			right()
-			right()
-			spawn()
+			//spawn()
         }else if(e.keyCode === 40){
             bottom()
-            bottom()
-			spawn()
+			//spawn()
         }
     }
 
@@ -247,11 +221,11 @@
 		setTimeout(()=>{
 			start_game()
 		}, 100)
-
     })
             
 </script>
 
+{JSON.stringify(states)}
 <svelte:window on:keydown={go_side} />
 <div id="container">
 	<div id='score_board'>
@@ -261,7 +235,7 @@
 	</div>
 	<div id="main">
 
-            <div class="blocks " id="block_1" >  </div>
+            <div class="blocks " id="block_1" ></div>
             <div class="blocks " id="block_2" ></div>
             <div class="blocks " id="block_3" ></div>
             <div class="blocks " id="block_4" ></div>
@@ -278,48 +252,21 @@
 		    <div class="blocks " id="block_15" ></div>
 		    <div class="blocks " id="block_16" ></div>
 
-			<!--
-				{#each blocks_scores as blocks,i }
-					{#each blocks as block,j }
-						{#if block !== null }
-									
-						{/if}
-					{/each}
-				{/each}
-			-->
 
-			{#each Array(4) as _, i }
-				{#each Array(4) as _, j }
-					<div bind:this={states[i][j]}>{i +''+ j}</div>
-				{/each}
+			{#each Array(16) as _, i }
+				{#if states[i] !== null}
+					<div class='inside_block block_{states[i].value}' style={'top: '+states[i].top+'%; left: '+states[i].left+'%'} > {states[i].value} </div>
+				{/if}
 			{/each}
 			 
 			 
-            <!--
-				<div bind:this={block1} class='inside_block block_2' id='block_1' >2</div>
-				<div bind:this={block2} class='inside_block block_2' id='block_2' style="top: 25%; left: 25%" >2</div>
-				<div bind:this={block2} class='inside_block block_32' id='block_2' style="top: 25%; left: 50%" >32</div>
-				<div bind:this={block2} class='inside_block block_64' id='block_2' style="top: 25%; left: 75%" >64</div>
-			-->
+        
 
     </div>
 </div>
 
 <style global>
-	/*
 
-2
-4
-8
-16
-32
-64
-128
-256
-1024
-2048
-
-*/
 
 	#container{
 		height: 100%;
