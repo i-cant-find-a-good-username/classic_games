@@ -1,36 +1,47 @@
-<script>
+<script lang='ts'>
     import { onMount } from 'svelte';
 
 
     let initial_snake_len = 3
+    let trajectory: "up" | "down" | "left" | "right" = "right"
 
-    const move = (e) => {
+    let tempo: any
+    let snake: {x: number, y: number}[] = [{x: 16, y: 14}, {x: 16, y: 15}, {x: 16, y: 16}]
 
+
+    let arr = Array.from({length: 32}, (e, i)=> Array.from({length: 32}, (e)=> 0))
+
+    arr[16][16] = 1
+    arr[16][15] = 1
+    arr[16][14] = 1
+
+    console.log(arr)
+
+    function change_traj(e: KeyboardEvent){
         if(e.keyCode === 37){
+			trajectory = "left"
+        }else if(e.keyCode === 38){
+			trajectory = "up"
         }else if(e.keyCode === 39){
+			trajectory = "right"
+        }else if(e.keyCode === 40){
+			trajectory = "down"
         }
-
     }
 
-
-
-    let values = []
-    let arr = []
-    for (let i = 0; i < 32; i++) {
-        values.push(0)
-    }
-
-    for (let i = 0; i < 32; i++) {
-        arr.push(values)
+    const start_game = () => {
+        setInterval(()=>{
+            if (trajectory = "right"){
+                tempo = [snake[0], snake[snake.length-1]]
+                arr[tempo[1].x+1][tempo[1].y] = 1
+                arr[tempo[1].x-1][tempo[1].y] = 0
+            }
+        }, 100)
     }
 
     onMount(async () => {
- 
-        let random1 = Math.floor(Math.random() * 32)
-        let random2 = Math.floor(Math.random() * 32)
-        console.log(random1 ,random2 )
-        arr[random1][random2] = 1
-        console.log(arr)
+        start_game()
+
 	});
 
 </script>
@@ -39,7 +50,7 @@
 
 
 
-<svelte:window on:keydown={move}/>
+<svelte:window on:keydown={change_traj}/>
 <div id='main_parent' >
     <div id="score_board">
         <div>BEST : 0</div>
@@ -53,9 +64,6 @@
                 {/each}
             {/each}
         </div>
-
-
-    
     </div>
 </div>
 

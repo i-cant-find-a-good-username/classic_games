@@ -36,6 +36,7 @@
 					left: states[i+1 % 4].left-25
 				}
 				states[i+1 % 4] = null
+				break
 			}
 			if (states[i % 4+4] === null && states[i+1 % 4+4] !== null){
 				states[i % 4+4] = {
@@ -184,6 +185,7 @@
 
 	function spawn (){
 		// if 16 occupied game over
+		random1 = Math.floor(Math.random() * 16)
 		while( states[random1] !== null ){
 			random1 = Math.floor(Math.random() * 16)
 		}
@@ -199,16 +201,16 @@
     function go_side(e: KeyboardEvent){
         if(e.keyCode === 37){
 			left()
-			//spawn()
+			spawn()
         }else if(e.keyCode === 38){
             top()
-			//spawn()
+			spawn()
         }else if(e.keyCode === 39){
 			right()
-			//spawn()
+			spawn()
         }else if(e.keyCode === 40){
             bottom()
-			//spawn()
+			spawn()
         }
     }
 
