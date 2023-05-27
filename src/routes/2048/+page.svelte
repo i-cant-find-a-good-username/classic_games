@@ -9,7 +9,7 @@
 	}
 
 
-
+	let timeout_delay = 300
     let q: number
 	let r: number
 	let random1: number = 0
@@ -24,10 +24,8 @@
 	]
 
 
-
-
-
-	function left(){
+	// left function
+	/*
 		for (let i = 2; i >= 0; i--) {
 			if (states[i % 4] === null && states[i+1 % 4] !== null){
 				states[i % 4] = {
@@ -63,6 +61,102 @@
 				states[i+1 % 4+12] = null
 			}
 		}
+	
+	*/
+
+	/**
+	 
+			if (states[0] === null && states[1] === null && states[2] === null && states[3] !== null){
+			states[3].left -= 75
+			setTimeout(() => {
+				states[0] = {
+					value: states[3].value,
+					top: states[3].top,
+					left: states[3].left
+				}
+				states[3] = null
+			}, 300);
+		}
+	 */
+	const move = (move: {state: number, side: "left"|"top", percentage: number}[]) => {
+		setTimeout(() => {
+
+			for (let i = 0; i < move.length; i++) {
+				if (move[i].side === "left"){
+					//setTimeout(() => {
+					//	states[move[i].state].left += move[i].percentage
+					//}, timeout_delay);
+					states[move[i].state].left += move[i].percentage
+				}else if (move[i].side === "top"){
+					//setTimeout(() => {
+					//	states[move[i].state].top += move[i].percentage
+					//}, timeout_delay);
+					states[move[i].state].top += move[i].percentage
+				}
+			}
+				
+		}, 0);
+	}
+	function left(){
+		// 1 ===> 0
+		let arr: {state: number, side: "left"|"top", percentage: number}[] = []
+		if (states[0] === null && states[1] !== null){
+			arr.push({
+				state: 0,
+				side: 'left',
+				percentage: -25
+			})
+			states[0] = states[1]
+			states[1] = null
+		}
+		// 2 ===> 0
+		if (states[0] === null && states[1] === null && states[2] !== null){
+			arr.push({
+				state: 0,
+				side: 'left',
+				percentage: -50
+			})
+			states[0] = states[2]
+			states[2] = null
+		}
+		// 2 ===> 1
+		if (states[0] !== null && states[1] === null && states[2] !== null && states[3] !== null){
+			states[2].left -= 25
+			setTimeout(() => {
+				states[1] = states[2]
+				states[2] = null
+			}, timeout_delay);
+		}
+		// 3 ===> 0
+		if (states[0] === null && states[1] === null && states[2] === null && states[3] !== null){
+			arr.push({
+				state: 0,
+				side: 'left',
+				percentage: -75
+			})
+			states[0] = states[3]
+			states[3] = null
+		}
+		// 3 ===> 1
+		if (states[0] !== null && states[1] === null && states[2] === null && states[3] !== null){
+
+			arr.push({
+				state: 1,
+				side: 'left',
+				percentage: -50
+			})
+			states[1] = states[3]
+			states[3] = null
+		}
+		// 3 ===> 2
+		if (states[0] !== null && states[1] !== null && states[2] === null && states[3] !== null){
+			states[3].left -= 25
+			setTimeout(() => {
+				states[2] = states[3]
+				states[3] = null
+			}, timeout_delay);
+		}
+		move(arr)
 	}
 	function right(){
 		for (let i = 0; i <= 2; i++) {
@@ -177,10 +271,13 @@
 
 
 	function start_game (){
-		random1 = Math.floor(Math.random() * 16)
+		random1 = 1//Math.floor(Math.random() * 16)
 		q = Math.floor(random1/4)
 		r = random1 % 4
-		states[random1] = {value: 2, top: q*25, left: r*25}
+		//states[random1] = {value: 2, top: q*25, left: r*25}
+		states[1] = {value: 2, top: 0, left: 25}
+		states[3] = {value: 2, top: 0, left: 75}
+	
 	}
 
 	function spawn (){
@@ -193,7 +290,9 @@
 		q = Math.floor(random1/4)
 		// row
 		r = random1 % 4
-		states[random1] = {value: 2, top: q*25, left: r*25}
+		setTimeout(() => {
+			states[random1] = {value: 2, top: q*25, left: r*25}
+		}, timeout_delay);
 	}
 
 
