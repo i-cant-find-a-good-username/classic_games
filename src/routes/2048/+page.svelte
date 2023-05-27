@@ -80,21 +80,15 @@
 	 */
 	const move = (move: {state: number, side: "left"|"top", percentage: number}[]) => {
 		setTimeout(() => {
-
-			for (let i = 0; i < move.length; i++) {
-				if (move[i].side === "left"){
-					//setTimeout(() => {
-					//	states[move[i].state].left += move[i].percentage
-					//}, timeout_delay);
+		for (let i = 0; i < move.length; i++) {
+			if (move[i].side === "left"){
 					states[move[i].state].left += move[i].percentage
+					//states[move[i].state].left += move[i].percentage
 				}else if (move[i].side === "top"){
-					//setTimeout(() => {
-					//	states[move[i].state].top += move[i].percentage
-					//}, timeout_delay);
 					states[move[i].state].top += move[i].percentage
+					//states[move[i].state].top += move[i].percentage
 				}
 			}
-				
 		}, 0);
 	}
 	function left(){
@@ -120,12 +114,14 @@
 			states[2] = null
 		}
 		// 2 ===> 1
-		if (states[0] !== null && states[1] === null && states[2] !== null && states[3] !== null){
-			states[2].left -= 25
-			setTimeout(() => {
-				states[1] = states[2]
-				states[2] = null
-			}, timeout_delay);
+		if (states[0] !== null && states[1] === null && states[2] !== null){
+			arr.push({
+				state: 1,
+				side: 'left',
+				percentage: -25
+			})
+			states[1] = states[2]
+			states[2] = null
 		}
 		// 3 ===> 0
 		if (states[0] === null && states[1] === null && states[2] === null && states[3] !== null){
@@ -139,7 +135,6 @@
 		}
 		// 3 ===> 1
 		if (states[0] !== null && states[1] === null && states[2] === null && states[3] !== null){
-
 			arr.push({
 				state: 1,
 				side: 'left',
@@ -150,11 +145,13 @@
 		}
 		// 3 ===> 2
 		if (states[0] !== null && states[1] !== null && states[2] === null && states[3] !== null){
-			states[3].left -= 25
-			setTimeout(() => {
-				states[2] = states[3]
-				states[3] = null
-			}, timeout_delay);
+			arr.push({
+				state: 2,
+				side: 'left',
+				percentage: -25
+			})
+			states[2] = states[3]
+			states[3] = null
 		}
 		move(arr)
 	}
@@ -276,7 +273,7 @@
 		r = random1 % 4
 		//states[random1] = {value: 2, top: q*25, left: r*25}
 		states[1] = {value: 2, top: 0, left: 25}
-		states[3] = {value: 2, top: 0, left: 75}
+		states[2] = {value: 8, top: 0, left: 50}
 	
 	}
 
