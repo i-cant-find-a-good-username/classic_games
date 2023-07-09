@@ -16,6 +16,7 @@
         <div>Contact</div>
     </div>
     <div>Copyright © 2022-present - All rights reserved</div>
+    
 
 </div>
 
@@ -39,5 +40,6 @@
     #footer > :first-child > *{
         padding: 20px;
     }
+
 
 </style>

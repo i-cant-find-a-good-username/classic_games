@@ -1,0 +1,278 @@
+	// left function
+	/*
+		for (let i = 2; i >= 0; i--) {
+			if (states[i % 4] === null && states[i+1 % 4] !== null){
+				states[i % 4] = {
+					value: states[i+1 % 4].value,
+					top: states[i+1 % 4].top,
+					left: states[i+1 % 4].left-25
+				}
+				states[i+1 % 4] = null
+				break
+			}
+			if (states[i % 4+4] === null && states[i+1 % 4+4] !== null){
+				states[i % 4+4] = {
+					value: states[i+1 % 4+4].value,
+					top: states[i+1 % 4+4].top,
+					left: states[i+1 % 4+4].left-25
+				}
+				states[i+1 % 4+4] = null
+			}
+			if (states[i % 4+8] === null && states[i+1 % 4+8] !== null){
+				states[i % 4+8] = {
+					value: states[i+1 % 4+8].value,
+					top: states[i+1 % 4+8].top,
+					left: states[i+1 % 4+8].left-25
+				}
+				states[i+1 % 4+8] = null
+			}
+			if (states[i % 4+12] === null && states[i+1 % 4+12] !== null){
+				states[i % 4+12] = {
+					value: states[i+1 % 4+12].value,
+					top: states[i+1 % 4+12].top,
+					left: states[i+1 % 4+12].left-25
+				}
+				states[i+1 % 4+12] = null
+			}
+		}
+	
+	*/
+
+	/**
+	 
+			if (states[0] === null && states[1] === null && states[2] === null && states[3] !== null){
+			states[3].left -= 75
+			setTimeout(() => {
+				states[0] = {
+					value: states[3].value,
+					top: states[3].top,
+					left: states[3].left
+				}
+				states[3] = null
+			}, 300);
+		}
+	 */
+	//const move = (move: {state: number, side: "left"|"top", percentage: number}[]) => {
+	//	setTimeout(() => {
+	//	for (let i = 0; i < move.length; i++) {
+	//		if (move[i].side === "left"){
+	//				states[move[i].state].left += move[i].percentage
+	//				//states[move[i].state].left += move[i].percentage
+	//			}else if (move[i].side === "top"){
+	//				states[move[i].state].top += move[i].percentage
+	//				//states[move[i].state].top += move[i].percentage
+	//			}
+	//		}
+	//	}, 0);
+	//}
+	//function left(){
+	//	// 1 ===> 0
+	//	let arr: {state: number, side: "left"|"top", percentage: number}[] = []
+	//	if (states[0] === null && states[1] !== null){
+	//		arr.push({
+	//			state: 0,
+	//			side: 'left',
+	//			percentage: -25
+	//		})
+	//		states[0] = states[1]
+	//		states[1] = null
+	//	}
+	//	// 2 ===> 0
+	//	if (states[0] === null && states[1] === null && states[2] !== null){
+	//		arr.push({
+	//			state: 0,
+	//			side: 'left',
+	//			percentage: -50
+	//		})
+	//		states[0] = states[2]
+	//		states[2] = null
+	//	}
+	//	// 2 ===> 1
+	//	if (states[0] !== null && states[1] === null && states[2] !== null){
+	//		arr.push({
+	//			state: 1,
+	//			side: 'left',
+	//			percentage: -25
+	//		})
+	//		states[1] = states[2]
+	//		states[2] = null
+	//	}
+	//	// 3 ===> 0
+	//	if (states[0] === null && states[1] === null && states[2] === null && states[3] !== null){
+	//		arr.push({
+	//			state: 0,
+	//			side: 'left',
+	//			percentage: -75
+	//		})
+	//		states[0] = states[3]
+	//		states[3] = null
+	//	}
+	//	// 3 ===> 1
+	//	if (states[0] !== null && states[1] === null && states[2] === null && states[3] !== null){
+	//		arr.push({
+	//			state: 1,
+	//			side: 'left',
+	//			percentage: -50
+	//		})
+	//		states[1] = states[3]
+	//		states[3] = null
+	//	}
+	//	// 3 ===> 2
+	//	if (states[0] !== null && states[1] !== null && states[2] === null && states[3] !== null){
+	//		arr.push({
+	//			state: 2,
+	//			side: 'left',
+	//			percentage: -25
+	//		})
+	//		states[2] = states[3]
+	//		states[3] = null
+	//	}
+	//	move(arr)
+	//}
+
+	function left(){
+		for (let i = 2; i >= 0; i--) {
+			if (states[i % 4] === null && states[i+1 % 4] !== null){
+				states[i % 4] = {
+					value: states[i+1 % 4].value,
+					top: states[i+1 % 4].top,
+					left: states[i+1 % 4].left-25
+				}
+				states[i+1 % 4] = null
+				break
+			}
+			if (states[i % 4+4] === null && states[i+1 % 4+4] !== null){
+				states[i % 4+4] = {
+					value: states[i+1 % 4+4].value,
+					top: states[i+1 % 4+4].top,
+					left: states[i+1 % 4+4].left-25
+				}
+				states[i+1 % 4+4] = null
+			}
+			if (states[i % 4+8] === null && states[i+1 % 4+8] !== null){
+				states[i % 4+8] = {
+					value: states[i+1 % 4+8].value,
+					top: states[i+1 % 4+8].top,
+					left: states[i+1 % 4+8].left-25
+				}
+				states[i+1 % 4+8] = null
+			}
+			if (states[i % 4+12] === null && states[i+1 % 4+12] !== null){
+				states[i % 4+12] = {
+					value: states[i+1 % 4+12].value,
+					top: states[i+1 % 4+12].top,
+					left: states[i+1 % 4+12].left-25
+				}
+				states[i+1 % 4+12] = null
+			}
+		}
+	}
+	
+	function right(){
+		for (let i = 0; i <= 2; i++) {
+			if (states[i+1 % 4] === null && states[i % 4] !== null){
+				states[i+1 % 4] = {
+					value: states[i % 4].value,
+					top: states[i % 4].top,
+					left: states[i % 4].left+25
+				}
+				states[i % 4] = null
+			}
+			if (states[i+1 % 4+4] === null && states[i % 4+4] !== null){
+				states[i+1 % 4+4] = {
+					value: states[i % 4+4].value,
+					top: states[i % 4+4].top,
+					left: states[i % 4+4].left+25
+				}
+				states[i % 4+4] = null
+			}
+			if (states[i+1 % 4+8] === null && states[i % 4+8] !== null){
+				states[i+1 % 4+8] = {
+					value: states[i % 4+8].value,
+					top: states[i % 4+8].top,
+					left: states[i % 4+8].left+25
+				}
+				states[i % 4+8] = null
+			}
+			if (states[i+1 % 4+12] === null && states[i % 4+12] !== null){
+				states[i+1 % 4+12] = {
+					value: states[i % 4+12].value,
+					top: states[i % 4+12].top,
+					left: states[i % 4+12].left+25
+				}
+				states[i % 4+12] = null
+			}
+		}
+	}
+	function top(){
+		for (let i = 2; i >= 0; i--) {
+			if (states[Math.floor(i+1/4)*4] === null && states[Math.floor(i+1/4)*4+4] !== null){
+				states[Math.floor(i+1/4)*4] = {
+					value: states[Math.floor(i+1/4)*4+4].value,
+					top: states[Math.floor(i+1/4)*4+4].top-25,
+					left: states[Math.floor(i+1/4)*4+4].left
+				}
+				states[Math.floor(i+1/4)*4+4] = null
+			}
+			if (states[Math.floor(i+1/4)*4+1] === null && states[Math.floor(i+1/4)*4+1+4] !== null){
+				states[Math.floor(i+1/4)*4+1] = {
+					value: states[Math.floor(i+1/4)*4+1+4].value,
+					top: states[Math.floor(i+1/4)*4+1+4].top-25,
+					left: states[Math.floor(i+1/4)*4+1+4].left
+				}
+				states[Math.floor(i+1/4)*4+1+4] = null
+			}
+			if (states[Math.floor(i+1/4)*4+2] === null && states[Math.floor(i+1/4)*4+2+4] !== null){
+				states[Math.floor(i+1/4)*4+2] = {
+					value: states[Math.floor(i+1/4)*4+2+4].value,
+					top: states[Math.floor(i+1/4)*4+2+4].top-25,
+					left: states[Math.floor(i+1/4)*4+2+4].left
+				}
+				states[Math.floor(i+1/4)*4+2+4] = null
+			}
+			if (states[Math.floor(i+1/4)*4+3] === null && states[Math.floor(i+1/4)*4+3+4] !== null){
+				states[Math.floor(i+1/4)*4+3] = {
+					value: states[Math.floor(i+1/4)*4+3+4].value,
+					top: states[Math.floor(i+1/4)*4+3+4].top-25,
+					left: states[Math.floor(i+1/4)*4+3+4].left
+				}
+				states[Math.floor(i+1/4)*4+3+4] = null
+			}
+		}
+	}
+	function bottom(){
+		for (let i = 0; i <= 2; i++) {
+			if (states[Math.floor(i+1/4)*4+4] === null && states[Math.floor(i+1/4)*4] !== null){
+				states[Math.floor(i+1/4)*4+4] = {
+					value: states[Math.floor(i+1/4)*4].value,
+					top: states[Math.floor(i+1/4)*4].top+25,
+					left: states[Math.floor(i+1/4)*4].left
+				}
+				states[Math.floor(i+1/4)*4] = null
+			}
+			if (states[Math.floor(i+1/4)*4+1+4] === null && states[Math.floor(i+1/4)*4+1] !== null){
+				states[Math.floor(i+1/4)*4+1+4] = {
+					value: states[Math.floor(i+1/4)*4+1].value,
+					top: states[Math.floor(i+1/4)*4+1].top+25,
+					left: states[Math.floor(i+1/4)*4+1].left
+				}
+				states[Math.floor(i+1/4)*4+1] = null
+			}
+			if (states[Math.floor(i+1/4)*4+2+4] === null && states[Math.floor(i+1/4)*4+2] !== null){
+				states[Math.floor(i+1/4)*4+2+4] = {
+					value: states[Math.floor(i+1/4)*4+2].value,
+					top: states[Math.floor(i+1/4)*4+2].top+25,
+					left: states[Math.floor(i+1/4)*4+2].left
+				}
+				states[Math.floor(i+1/4)*4+2] = null
+			}
+			if (states[Math.floor(i+1/4)*4+3+4] === null && states[Math.floor(i+1/4)*4+3] !== null){
+				states[Math.floor(i+1/4)*4+3+4] = {
+					value: states[Math.floor(i+1/4)*4+3].value,
+					top: states[Math.floor(i+1/4)*4+3].top+25,
+					left: states[Math.floor(i+1/4)*4+3].left
+				}
+				states[Math.floor(i+1/4)*4+3] = null
+			}
+		}
+	}

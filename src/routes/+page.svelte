@@ -10,25 +10,17 @@
     import tetris from '$lib/images/tetris.svg';
     import chess from '$lib/images/chess.svg';
     let games = [
-        {name: 'solitaire',icon: solitaire, url: "solitaire"},
-        {name: '2048',icon: doubles, url: "2048"},
-        {name: 'mine sweeper',icon: mine_sweeper, url: "mine_sweeper"},
-        {name: 'breakout',icon: breakout, url: "breakout"},
-        {name: 'tic tac toe',icon: tic_tac_toe, url: "tic_tac_toe"},
-        {name: 'snake',icon: snake, url: "snake"},
-        {name: 'sudoko',icon: sudoko, url: "sudoko"},
-        {name: 'tile slide',icon: tile_slide, url: "tile_slide"},
-        {name: 'tetris',icon: tetris, url: "tetris"},
-        {name: 'chess',icon: chess, url: "chess"},
+        {name: 'solitaire (incomplete)',icon: solitaire, url: "solitaire"},
+        {name: '2048 (incomplete)',icon: doubles, url: "2048"},
+        {name: 'mine sweeper (incomplete)',icon: mine_sweeper, url: "mine_sweeper"},
+        {name: 'breakout (incomplete)',icon: breakout, url: "breakout"},
+        {name: 'tic tac toe (incomplete)',icon: tic_tac_toe, url: "tic_tac_toe"},
+        {name: 'snake (incomplete)',icon: snake, url: "snake"},
+        {name: 'sudoko (incomplete)',icon: sudoko, url: "sudoko"},
+        {name: 'tile slide (incomplete)',icon: tile_slide, url: "tile_slide"},
+        {name: 'tetris (incomplete)',icon: tetris, url: "tetris"},
+        {name: 'chess (incomplete)',icon: chess, url: "chess"},
     ]
-
-    
-    function set_styles(e){
-        e.target.style.backgroundColor = 'res'
-    }
-    function reset_styles(e){
-        e.target.style.backgroundColor = ''
-    }
 
 
 
@@ -46,7 +38,7 @@
         <div id='grid'>
 			{#each games as game}
                 <a class='' href={"/"+game.url}>
-                    <div class='game_box_parent' on:mousemove={set_styles} on:mouseleave={reset_styles}>
+                    <div class='game_box_parent' >
                         <div class='games_boxes'>
                             <div>
                                 <img src={game.icon} alt="Welcome" />
@@ -106,28 +98,17 @@
     }
 
     .game_box_parent{
-        position: relative;
-        transition: transform 0.1s ease;
-        transform-style: preserve-3d;
-        will-change: transform;
+        transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 300ms;
     }
-    /* 
-    .game_box_parent::before {
-        content: "";
-        background: rgba(0, 0, 0, 0.4);
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        z-index: 100;
-    }
-    */
+    
+
+
     .game_box_parent:hover .games_boxes {
-        transform: translateZ(12px);
+        translate: 0px -10px;
+        background-color: #333a46;
     }
+
+
     .games_boxes{
         position: relative;
         z-index: 1;
