@@ -6,7 +6,7 @@
 		left: number,
 	}
 
-	const h: any = {
+	const helper_arr: any = {
 		37: [0, 0, 0, 1, 1, -4],
 		38: [0, 0, 1, 0, -4, 1],
 		39: [0, 3, 0, -1, 1, 4],
@@ -20,7 +20,7 @@
 		[[], [], [], []],
 		[[], [], [], []],
 	]
-	let tiles = {}
+	let tiles: any = {}
 
 
 	function init_grid (){
@@ -33,8 +33,8 @@
 		cell_id = 0
 		score = 0
 		tiles = {}
-		spawn()
-		spawn()
+		spawn_rand()
+		spawn_rand()
 	}	
 
 
@@ -44,7 +44,7 @@
 
 
 	function valid_move (key: number, ): boolean{
-		const d = h[key];
+		const d = helper_arr[key];
 		console.log(d)
 		let i = d[0],
 			j = d[1]
@@ -71,11 +71,41 @@
 
 
 	function move(key: number, ){
-		return false
+
+		const d = helper_arr[key];
+		let i = d[0],
+			j = d[1];
+
+		for (let a = 0; a < 4; ++a) {
+			let arr = [[], [], [], []],
+			k = 0;
+			for (let b = 0; b < 4; ++b) {
+			if (grid[i][j].length) {
+				if (!arr[k].length) {
+					arr[k].push(grid[i][j][0]);
+				} else if (tiles[arr[k][0]] === tiles[grid[i][j][0]]) {
+					arr[k++].push(grid[i][j][0]);
+				} else {
+					arr[++k].push(grid[i][j][0]);
+				}
+			}
+			i += d[2];
+			j += d[3];
+			}
+			i -= 4 * d[2];
+			j -= 4 * d[3];
+			for (k = 0; k < 4; ++k) {
+			grid[i][j] = arr[k];
+			i += d[2];
+			j += d[3];
+			}
+			i += d[4];
+			j += d[5];
+		}
 	}
 
 
-	function spawn (){
+	function spawn_rand (){
 		let empty_slots: number[][] = []
 		for (let i = 0; i < grid.length; i++) {
 			for (let j = 0; j < grid[i].length; j++) {
@@ -86,27 +116,60 @@
 		}
 		const random_empty_slot = empty_slots[Math.floor(Math.random() * empty_slots.length)];
 		grid[random_empty_slot[0]][random_empty_slot[1]].push(cell_id)
-		console.log(grid)
+		tiles[cell_id] = 2
 		cell_id++
 	}
 
+	function spawn_cell(i: number, j: number, value: number) {
+		grid[i][j].push(cell_id)
+		tiles[cell_id] = value
+		cell_id++
+	}
 
+	function merge_cells(){
+		const changes = []; // Stores (i, j, new_val) tuples
+		let d_score: number = 0;
+		for (let i = 0; i < 4; ++i) {
+			for (let j = 0; j < 4; ++j) {
+				if (grid[i][j].length > 1) {
+					changes.push([i, j, 2 * tiles[grid[i][j][0]]]);
+					d_score += 2 * tiles[grid[i][j][0]];
+				}
+			}
+		}
+		return [changes, d_score];
+	}
 
-    function go_side(e: KeyboardEvent){
+    async function go_side(e: KeyboardEvent){
 		const key: number = e.keyCode
 		if (key >= 37 || key <= 40){
-			console.log('start')
+			console.log(key)
 			valid_move(key)
 			move(key)
-			spawn()
-		} 
+
+
+			await tick();
+			setTimeout(() => {
+				const [changes, d_score] = merge_cells();
+				for(let c of changes) {
+					grid[c[0]][c[1]].pop();
+					grid[c[0]][c[1]].pop();
+					spawn_cell(c[0], c[1], c[2]);
+				}
+				spawn_rand()
+				score += d_score;
+			}, 200);
+
+			//spawn()
+		}
+		console.log(tiles) 
 	}
 
 	
 	
 	
 	
-	import { onMount } from 'svelte';
+	import { onMount, tick } from 'svelte';
     onMount(async () => {
 		start_game()
     })
@@ -118,7 +181,7 @@
 <div id="container">
 	<div id='score_board'>
 		<button on:click={start_game} >new game</button>
-		<div>SCORE: 0</div>
+		<div>SCORE: {score}</div>
 		<div>BEST: 0</div>
 	</div>
 	<div id="main">
@@ -128,8 +191,8 @@
 					<div class='blocks'>
 						<!-- might need anotherr each loop for the  inside cells -->
 						{#if cell.length !=0 }
-							<div class='inside_block block_16'>
-								{cell.length}
+							<div class='inside_block {"block_"+tiles[cell[0]]}'>
+								{tiles[cell[0]]}
 							</div>
 						{/if}
 					</div>
