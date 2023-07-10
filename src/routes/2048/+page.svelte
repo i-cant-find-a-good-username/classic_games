@@ -1,7 +1,4 @@
 <script lang="ts">
-
-	let cell_id = 0
-
 	interface block_data {
 		index: number,
 		value: number,
@@ -9,26 +6,23 @@
 		left: number,
 	}
 
-
-	let timeout_delay = 300
-    let q: number
-	let r: number
-	let random1: number = 0
-	
-
-	//{value: 32, top:75, left:50} 
-	let grid: block_data[][][] = [
+	const h: any = {
+		37: [0, 0, 0, 1, 1, -4],
+		38: [0, 0, 1, 0, -4, 1],
+		39: [0, 3, 0, -1, 1, 4],
+		40: [3, 0, -1, 0, 4, 1],
+	};
+	let cell_id = 0
+	let score = 0
+	let grid: number[][][] = [
 		[[], [], [], []],
 		[[], [], [], []],
 		[[], [], [], []],
 		[[], [], [], []],
 	]
+	let tiles = {}
 
 
-
-
-
-	
 	function init_grid (){
 		grid = [
 			[[], [], [], []],
@@ -37,17 +31,49 @@
 			[[], [], [], []],
 		]
 		cell_id = 0
+		score = 0
+		tiles = {}
 		spawn()
 		spawn()
 	}	
 
 
 	function start_game (){
-
+		init_grid()
 	}
-	function valid_move (): boolean{
+
+
+	function valid_move (key: number, ): boolean{
+		const d = h[key];
+		console.log(d)
+		let i = d[0],
+			j = d[1]
+			
+		for (let a = 0; a < 4; ++a) {
+			let arr = []
+			for (let b = 0; b < 4; ++b) {
+				arr.push(!grid[i][j].length ? 0 : tiles[grid[i][j][0]]);
+				i += d[2]
+				j += d[3]
+			}
+			for (let k = 1; k < 4; ++k) {
+				if (arr[k] !== 0 && (arr[k - 1] === 0 || arr[k - 1] === arr[k])) {
+					console.log(true)
+					return true
+				}
+			}
+			i += d[4]
+			j += d[5]
+		}
+		console.log(false)
 		return false
 	}
+
+
+	function move(key: number, ){
+		return false
+	}
+
 
 	function spawn (){
 		let empty_slots: number[][] = []
@@ -59,12 +85,7 @@
 			}
 		}
 		const random_empty_slot = empty_slots[Math.floor(Math.random() * empty_slots.length)];
-		grid[random_empty_slot[0]][random_empty_slot[1]].push({
-			index: cell_id,
-			value: 2,
-			top: 0,
-			left: 0,
-		})
+		grid[random_empty_slot[0]][random_empty_slot[1]].push(cell_id)
 		console.log(grid)
 		cell_id++
 	}
@@ -72,19 +93,13 @@
 
 
     function go_side(e: KeyboardEvent){
-        if(e.keyCode === 37){
-			if(valid_move()){}
+		const key: number = e.keyCode
+		if (key >= 37 || key <= 40){
+			console.log('start')
+			valid_move(key)
+			move(key)
 			spawn()
-		}else if(e.keyCode === 38){
-			if(valid_move()){}
-			spawn()
-		}else if(e.keyCode === 39){
-			if(valid_move()){}
-			spawn()
-		}else if(e.keyCode === 40){
-			if(valid_move()){}
-			spawn()
-		}
+		} 
 	}
 
 	
@@ -111,11 +126,12 @@
 			<div class='row' >
 				{#each row as cell, j}
 					<div class='blocks'>
-						<div class='inside_block block_16'>
-							<!-- might need anotherr each loop for the  inside cells -->
-							{JSON.stringify(cell)}
-							{cell[0]}
-						</div>
+						<!-- might need anotherr each loop for the  inside cells -->
+						{#if cell.length !=0 }
+							<div class='inside_block block_16'>
+								{cell.length}
+							</div>
+						{/if}
 					</div>
 				{/each}
 			</div>
