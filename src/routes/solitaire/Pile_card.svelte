@@ -13,7 +13,7 @@
 
 
 {#if card.type === 'flipped'}
-
+    dd
 {:else}
 
     <div class='card' style={'left: '+index*50+'px'} draggable={drag} >

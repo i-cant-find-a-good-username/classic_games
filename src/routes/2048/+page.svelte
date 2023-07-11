@@ -23,7 +23,7 @@
 	let tiles: any = {}
 
 
-	function init_grid (){
+	function init_game (){
 		grid = [
 			[[], [], [], []],
 			[[], [], [], []],
@@ -39,22 +39,21 @@
 
 
 	function start_game (){
-		init_grid()
+		init_game()
 	}
 
 
 	function valid_move (key: number, ): boolean{
-		const d = helper_arr[key];
-		console.log(d)
-		let i = d[0],
-			j = d[1]
+		const deplace = helper_arr[key];
+		let i = deplace[0],
+			j = deplace[1]
 			
 		for (let a = 0; a < 4; ++a) {
 			let arr = []
 			for (let b = 0; b < 4; ++b) {
 				arr.push(!grid[i][j].length ? 0 : tiles[grid[i][j][0]]);
-				i += d[2]
-				j += d[3]
+				i += deplace[2]
+				j += deplace[3]
 			}
 			for (let k = 1; k < 4; ++k) {
 				if (arr[k] !== 0 && (arr[k - 1] === 0 || arr[k - 1] === arr[k])) {
@@ -62,8 +61,8 @@
 					return true
 				}
 			}
-			i += d[4]
-			j += d[5]
+			i += deplace[4]
+			j += deplace[5]
 		}
 		console.log(false)
 		return false
@@ -72,12 +71,12 @@
 
 	function move(key: number, ){
 
-		const d = helper_arr[key];
-		let i = d[0],
-			j = d[1];
+		const deplace = helper_arr[key];
+		let i = deplace[0],
+			j = deplace[1];
 
 		for (let a = 0; a < 4; ++a) {
-			let arr = [[], [], [], []],
+			let arr: any = [[], [], [], []],
 			k = 0;
 			for (let b = 0; b < 4; ++b) {
 			if (grid[i][j].length) {
@@ -89,18 +88,18 @@
 					arr[++k].push(grid[i][j][0]);
 				}
 			}
-			i += d[2];
-			j += d[3];
+			i += deplace[2];
+			j += deplace[3];
 			}
-			i -= 4 * d[2];
-			j -= 4 * d[3];
+			i -= 4 * deplace[2];
+			j -= 4 * deplace[3];
 			for (k = 0; k < 4; ++k) {
 			grid[i][j] = arr[k];
-			i += d[2];
-			j += d[3];
+			i += deplace[2];
+			j += deplace[3];
 			}
-			i += d[4];
-			j += d[5];
+			i += deplace[4];
+			j += deplace[5];
 		}
 	}
 
@@ -126,43 +125,41 @@
 		cell_id++
 	}
 
-	function merge_cells(){
-		const changes = []; // Stores (i, j, new_val) tuples
-		let d_score: number = 0;
+	function merge_cells(): (number | number[][])[] {
+		const new_cells: number[][] = []
+		let game_score: number = 0
 		for (let i = 0; i < 4; ++i) {
 			for (let j = 0; j < 4; ++j) {
 				if (grid[i][j].length > 1) {
-					changes.push([i, j, 2 * tiles[grid[i][j][0]]]);
-					d_score += 2 * tiles[grid[i][j][0]];
+					new_cells.push([i, j, 2 * tiles[grid[i][j][0]]])
+					game_score += 2 * tiles[grid[i][j][0]]
 				}
 			}
 		}
-		return [changes, d_score];
+		return [new_cells, game_score];
 	}
 
     async function go_side(e: KeyboardEvent){
 		const key: number = e.keyCode
 		if (key >= 37 || key <= 40){
 			console.log(key)
-			valid_move(key)
-			move(key)
 
+			if (valid_move(key)){
+				move(key)
+				await tick();
+				setTimeout(() => {
+					const [new_cells, game_score]: any = merge_cells();
+					for(let c of new_cells) {
+						grid[c[0]][c[1]].pop()
+						grid[c[0]][c[1]].pop()
+						spawn_cell(c[0], c[1], c[2])
+					}
+					spawn_rand()
+					score += game_score
+				}, 200)
+			}
 
-			await tick();
-			setTimeout(() => {
-				const [changes, d_score] = merge_cells();
-				for(let c of changes) {
-					grid[c[0]][c[1]].pop();
-					grid[c[0]][c[1]].pop();
-					spawn_cell(c[0], c[1], c[2]);
-				}
-				spawn_rand()
-				score += d_score;
-			}, 200);
-
-			//spawn()
 		}
-		console.log(tiles) 
 	}
 
 	
@@ -170,10 +167,31 @@
 	
 	
 	import { onMount, tick } from 'svelte';
+	import { quintOut } from 'svelte/easing';
+	import { crossfade } from 'svelte/transition';
     onMount(async () => {
 		start_game()
     })
             
+
+	const [send, receive] = crossfade({
+		duration: d => Math.sqrt(d * 200),
+
+		fallback(node, params) {
+			const style = getComputedStyle(node);
+			const transform = style.transform === 'none' ? '' : style.transform;
+
+			return {
+				duration: 100,
+				easing: quintOut,
+				css: t => `
+					transform: ${transform} scale(${t});
+					opacity: ${t}
+				`
+			};
+		}
+	});
+
 </script>
 
 
@@ -189,9 +207,8 @@
 			<div class='row' >
 				{#each row as cell, j}
 					<div class='blocks'>
-						<!-- might need anotherr each loop for the  inside cells -->
 						{#if cell.length !=0 }
-							<div class='inside_block {"block_"+tiles[cell[0]]}'>
+							<div class='inside_block {"block_"+tiles[cell[0]]}' in:receive="{{key: cell[0]}}" out:send="{{key: cell[0]}}">
 								{tiles[cell[0]]}
 							</div>
 						{/if}
