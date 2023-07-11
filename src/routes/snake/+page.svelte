@@ -1,15 +1,34 @@
 <script lang='ts'>
 	import { onMount } from 'svelte';
+	import { head_selector } from 'svelte/internal';
 	// 0 for empty
 	// 1 for snake
 	// 1 for food
+	let game_state = false 
+	let message = 'click the arrow keys to start'
+	let show_message = true
 	let game_grid: number[][] = Array.from({length: 32}, (e, i)=> Array.from({length: 32}, (e)=> 0))
+	let snake_head: [number, number]
+	let snake: [number, number][] = []
 	let score = 0
 	let direction: 'up'|'down'|'left'|'right'|null
-	let game_loop: number
+	let game_interval: NodeJS.Timeout
 
-	const change_dir = (dir: 'up'|'down'|'left'|'right') => {
-		direction = dir
+	const change_direction = (dir: 'up'|'down'|'left'|'right') => {
+		// no reverse
+		if (
+			direction === null
+			||
+			direction === "left" && dir !== "right"
+			||
+			direction === "right" && dir !== "left"
+			||
+			direction === "up" && dir !== "down"
+			||
+			direction === "down" && dir !== "up"
+		){
+			direction = dir
+		}
 	}
 
 	const generate_food = () => {
@@ -27,36 +46,112 @@
 	}
 
 
-	const move = (e: KeyboardEvent) => {
-		if (e.keyCode === 37) {
-			change_dir('left')
-		} else if (e.keyCode === 38) {
-			change_dir('up')
-		} else if (e.keyCode === 39) {
-			change_dir('right')
-		} else if (e.keyCode === 40) {
-			change_dir("down")
+	const game_loop = () => {
+		console.log("f")
+		const [x, y] = [snake_head[0], snake_head[1]]
+
+		
+		if (direction === "left") {
+			collisions(x, y-1)
+		} else if (direction === "right") {
+			collisions(x, y+1)
+		} else if (direction === "up") {
+			collisions(x-1, y)
+		} else if (direction === "down") {
+			collisions(x+1, y)
 		}
 	}
 
-	const game_speed = () => {}
-	const game_over = () => {}
-	const collision = () => {}
+
+	const move = (e: KeyboardEvent) => {
+		if (e.keyCode >= 37 && e.keyCode <= 40){
+			if(!game_state){
+				game_state = true
+				start_game()
+			}
+		}
+		if (e.keyCode === 37) {
+			console.log('left')
+			change_direction('left')
+		} else if (e.keyCode === 38) {
+			console.log('up')
+			change_direction('up')
+		} else if (e.keyCode === 39) {
+			console.log('right')
+			change_direction('right')
+		} else if (e.keyCode === 40) {
+			console.log('down')
+			change_direction("down")
+		}
+	}
+
+	const game_speed = () => {
+		clearInterval(game_interval);
+		let speed = Math.max(100 - (score * 4), 50);
+		game_interval = setInterval(game_loop, speed);
+	}
+
+	const game_over = () => {
+		clearInterval(game_interval);
+		message = 'game over'
+		game_state = false
+		show_message = true
+		//start_game()
+	}
+
+	const update_snake = (x: number, y: number) => {
+		game_grid[x][y] = 1
+		snake_head = [x, y]
+		snake.push([x, y])
+
+		//remove snake bit
+		const [Rx, Ry] = snake[0]
+		game_grid[Rx][Ry] = 0
+		snake.splice(0, 1)
+	
+	}
+	
+	const eat = (x: number, y: number) => {
+		score += 1
+		snake_head = [x, y]
+		game_grid[x][y] = 1
+		snake.push([x, y])
+		game_speed();
+		generate_food();
+	}
+
+
+	const collisions = (x: number, y: number) => {
+		if (x < 0 || x === 32 || y < 0 || y === 32) {
+			game_over()
+			return
+		}
+		console.log(x, y)
+		if (game_grid[x][y] === 1) {
+			game_over()
+			return
+		}
+		if (game_grid[x][y] === 2) {
+			eat(x, y)
+			return
+		}
+
+		update_snake(x, y);
+	}
 
 	const start_game = () => {
+		clearInterval(game_interval);
+		show_message = false
 		game_grid = Array.from({length: 32}, (e, i)=> Array.from({length: 32}, (e)=> 0))
 		score = 0
 		direction = null
 		game_grid[Math.floor(32 / 2)][Math.floor(32 / 2)] = 1 
+		snake_head = [Math.floor(32 / 2), Math.floor(32 / 2)]
+		snake = [[Math.floor(32 / 2), Math.floor(32 / 2)]]
 		generate_food()
-
-		game_loop = setInterval(move, 250);
-
+		game_interval = setInterval(game_loop, 100);
 	}
 
-	onMount(async () => {
-		start_game()
-	});
 
 </script>
 
@@ -67,10 +162,17 @@
 <svelte:window on:keydown={move}/>
 <div id='main_parent' >
 	<div id="score_board">
-		<div>BEST : 0</div>
+		<button on:click={start_game} >new game</button>
 		<div>SCORE : 0</div>
+		<div>BEST : {score}</div>
 	</div>
 	<div id='main'>
+
+		{#if show_message}
+			<div id='message'>
+				{message}
+			</div>
+		{/if}
 		<div id='bricks_container'>
 			{#each Array(32) as _,i}
 				{#each Array(32) as _,j}
@@ -110,38 +212,70 @@
 		border-radius: 10px;
 	}
 	#bricks_container{
+		position: relative;
 		border-radius: 10px;
 		height: 100%;
 		width: 100%;
 		display: grid;
 		grid-template-columns: repeat(32, minmax(0, 1fr));
 	}
-	#bricks_container > *{ 
+	#bricks_container > *{
 		width: 100%;
 		height: 100%;
 		box-sizing: border-box;
-		/*background-color: red;
-		border: 1px black solid;*/
+	}
+	#bricks_container > :nth-child(32){
+		border-radius: 0px 10px 0px 0px;
+	}
+	#bricks_container > :nth-child(1){
+		border-radius: 10px 0px 0px 0px;
+	}
+	#bricks_container > :nth-child(993){
+		border-radius: 0px 0px 0px 10px;
+	}
+	#bricks_container > :nth-child(1024){
+		border-radius: 0px 0px 10px 0px;
 	}
 
 	#score_board{
 		width: 450px;
 		margin-bottom: 10px;
 		display: flex;
+		align-items: center;
 		font-size: 20px;
 	}
 	#score_board > *{
-		padding-right: 20px;
+		margin-right: 20px;
 	}
 	
-
+	#message{
+		width: 445px;
+		height: 445px;
+		text-align: center;
+		font-size: 40px;
+		font-weight: 700;
+		position: absolute;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		z-index: 1000;
+	}
 
 	.game{
 		background-color: #a6adbaff !important;
 	}
 
 
-
+	button {
+		background-color: #1f242d;
+		padding: 10px;
+		border-radius: 10px;
+		border: none;
+		color: #a6adbaff;
+		font-size: 16px;
+		font-weight: 600;
+		cursor: pointer;
+	}
 
 
 
