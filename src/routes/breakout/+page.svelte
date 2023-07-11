@@ -1,27 +1,29 @@
 <script lang='ts'>
     import settings from '$lib/images/settings.svg';
 
-    let bar: any
-    let ball: any
+    let bar: number = 425
+    let ball: {x: number, y: number} = {x: 492, y:18}
     let game_started: boolean = false
     let ball_moving: boolean = false
-    
+	let game_interval: NodeJS.Timeout
+
+    let game_status = false
+    let bricks: { x: any; y: number; height: number; width: number; destroyed: boolean; }[] = [];
 
 	import { onMount } from 'svelte';
     onMount(async () => {
-        //bar.style.right = ((bar.parentElement.parentElement.getBoundingClientRect().width/2))+"px"
+       
 	});
 
 
-    const move_ball = () => {
-        const ball_moving = setInterval(()=>{
-            console.log('move')
-            console.log(ball.getBoundingClientRect())
-
-            ball.style.right = ((ball.getBoundingClientRect().x-20))+"px"
-            ball.style.right = ((ball.getBoundingClientRect().y+20))+"px"
-
-        }, 1000)
+   
+    const game_over = () => {}
+    const move_bar = () => {}
+    const collisions = () => {}
+    const game_loop = () => {
+        game_status = false
+		clearInterval(game_interval);
+		//start_game()
     }
 
 
@@ -33,14 +35,25 @@
                 move_ball()
             }
         }
-        if(e.keyCode === 37){
-            //left
-            bar.style.left = (bar.getBoundingClientRect().left - 160)+'px'
-        }else if(e.keyCode === 39){
-            bar.style.left = (bar.getBoundingClientRect().left - 135)+'px'
-        }
-
     }
+
+    const start_game = () => {
+        ball = {x: 0, y:0}
+        bar = 0
+
+        let all = document.getElementsByClassName("brick");
+        [...all].forEach((el: Element) => {
+          bricks.push({
+            x: el.offsetLeft,
+            y: 580 - el.offsetTop,
+            height: el.clientHeight,
+            width: el.clientWidth,
+            destroyed: false,
+          });
+        });
+		game_interval = setInterval(game_loop, 100);
+    }
+
 
 </script>
 
@@ -66,98 +79,14 @@
 	</div>
     <div id='main'>
         <div id='bricks_container'>
-            <div class="bricks_row">
+            {#each Array(6*12) as item}
                 <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-            </div>
-            <div class="bricks_row">
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-            </div>
-            <div class="bricks_row">
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-            </div>
-            <div class="bricks_row">
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-            </div>
-            <div class="bricks_row">
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-            </div>
-            <div class="bricks_row">
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-                <div class='brick'></div>
-            </div>
+            {/each}
         </div>
 
-
         <div id='player_area'>
-            <div>
-                <div bind:this={ball} id='ball'></div>
-                <div bind:this={bar} id='player_bar'></div>
-            </div>
+            <div id='ball' style="left:{ball.x}px; bottom:{ball.y}px"></div>
+            <div id='player_bar' style="left:{bar}px" ></div>
         </div>
     </div>
 </div>
@@ -169,56 +98,84 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding-left: 50px ;
-        padding-right: 50px ;
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-right: 50px;
     }
     #main{
+        height: 600px;
+        width: 1000px;
         box-sizing: border-box;
-        width: 100%;
         margin: auto;
         border: 2px solid #a6adbaff;
         border-radius: 10px;
         padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
     }
     #bricks_container{
-        display: flex;
-        flex-direction: column;
+        padding: 50px;
+        border: 1px solid white;
         margin-bottom: 150px;
-        
-        
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
     }
+
     #player_area{
+        border: 1px solid white;
         width: 100%;
-        height: 20px;
+        height: 15px;
         display: flex;
-        align-items: end; 
-        justify-content: center;
         position: relative;
     }
-    #player_area > :first-child{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+
     #ball{
         background-color: #a6adbaff;
-        height: 10px;
-        width: 10px;
+        height: 15px;
+        width: 15px;
         position: absolute;
         bottom: 0px;
     }
     #player_bar{
         position: absolute;
-        height: 10px;
+        height: 15px;
         width: 150px;
         background-color: #a6adbaff;
-        right: 50%;
-        translate: 50%;
 		transition: all 200ms cubic-bezier(.05,.43,.25,.95);
-    
     }
 
 
+
+
+
+    #bricks_container > * {
+        border: #1f242d 1px solid;
+        height: 20px;
+        background-color: #f87171ff;
+    }
+    #bricks_container > :nth-child(n+13) {
+        background-color: #fb923cff;
+    }
+    #bricks_container > :nth-child(n+25) {
+        background-color: #facc15ff;
+    }
+    #bricks_container > :nth-child(n+37) {
+        background-color: #4ade80ff;
+    }
+    #bricks_container > :nth-child(n+49) {
+        background-color: #60a5faff;
+    }
+    #bricks_container > :nth-child(n+61) {
+        background-color: #c084fcff;
+    }
+    /*
+    .brick{
+        border: transparent 2px solid;
+        height: 100%;
+        width: 8.33%;
+    }
     .bricks_row{
         display: flex;
         flex-direction: row;
@@ -227,14 +184,6 @@
         gap: 2px;
         margin-bottom: 6px;
     }
-    .brick{
-        border: transparent 2px solid;
-        height: 100%;
-        width: 8.33%;
-    }
-
-
-
     #bricks_container > :first-child > * {
         background-color: #f87171ff;
     }
@@ -253,6 +202,7 @@
     #bricks_container > :nth-child(6) > * {
         background-color: #c084fcff;
     }
+    */
 
 
     #score_board{
