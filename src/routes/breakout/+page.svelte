@@ -5,17 +5,17 @@
 	let message = 'click to start game'
 	let show_message = true
 	let bar: number = 425
-	let ball: {x: number, y: number} = {x: 492, y:18}
+	let ball: {x: number, y: number} = {x: 492, y:350}
 	let game_status = false
 	let ball_moving = false
 	let game_interval: NodeJS.Timeout
+	let angle = 0
 	const bar_width = 150
-
-	let bricks: { x: any; y: number; height: number; width: number; destroyed: boolean; }[] = [];
-
+	let bricks: {element: Element, x: any; y: number; height: number; width: number; destroyed: boolean; }[] = [];
+	let main: Element
 	import { onMount } from 'svelte';
 	onMount(async () => {
-
+		main = document.getElementById("main")
 	});
 
 
@@ -28,22 +28,52 @@
 
 
 	const move_bar = (e: MouseEvent) => {
+		console.log(ball.x, 600-ball.y)
 		// put this inside or on page width change (not fixed if use changes width of page)
-		var offset = document.getElementById("main")?.offsetLeft
+		var offset = main?.offsetLeft
+		var test = main?.offsetTop
 		//@ts-ignore
 		const x = e.pageX - offset
+
 		if (x >= 0+74 && x <= 999-114) {
 			bar = x -75;
 		}
 		if (!game_status) {
 			ball.x = bar + 75	;
 		}
-		console.log(ball)
 	}
 
 
 	const collisions = () => {
+  		//let gg = bricks.filter((obj) => 
+		//	(obj.x <= ball.x-main.offsetLeft && obj.x+obj.width >= ball.x-main.offsetLeft)
+		//	//&&
+		//	//(obj.y <= ball.y-main.offsetTop && obj.y+obj.height >= ball.y-main.offsetTop)
+		//)
+		bricks.forEach(obj => {
+			if ((obj.x <= ball.x && obj.x+obj.width >= ball.x) && (obj.y <= 600-ball.y && obj.y+obj.height >= 600-ball.y)){
+				console.log("obj X start and end: ", obj.x, obj.x+obj.width)
+				console.log("obj Y start and end: ", obj.y, obj.y+obj.height)
+				console.log("bal X Y 			: ", ball.x, 600-ball.y)
+				obj.element.remove()
+
+
+				const index = bricks.indexOf(obj);
+				if (index > -1) {
+					bricks.splice(index, 1);
+				}
+			}
+		})
 		
+		//console.log(ball, gg)
+		//if (gg.length !== 0){
+		//	gg.forEach(e => {
+		//		e.element.remove()
+		//	})
+		//	console.log(gg)
+		//	console.log(ball)
+			console.log("**************")
+		//}
 	}
 
 	
@@ -55,6 +85,9 @@
 			ball.y++
 			collisions()
 		}
+		if (ball.x > 1000){
+			clearInterval(game_interval);
+		}
 	}
 
 
@@ -62,26 +95,25 @@
 	const start_game = () => {
 		if (!game_status){
 			show_message = false
-			ball = {x: 492, y:18}
-			bar = 425
+			//ball = {x: 492, y:18}
+			//bar = 425
 
 
-			const main = document.getElementById("main")
+			//const main = document.getElementById("main")
 			let all = document.getElementsByClassName("brick");
 			[...all].forEach((el: Element) => {
 			bricks.push({
-				x: el.offsetLeft - main.offsetLeft,
-				y: el.offsetTop - main.offsetTop,
+				element: el,
+				x: el.offsetLeft,
+				y: el.offsetTop,
 				height: el.clientHeight,
 				width: el.clientWidth,
 				destroyed: false,
 			});
 			});
-			console.log(bricks)
 
 			game_status = true
-			console.log(ball)
-			game_interval = setInterval(game_loop, 1)
+			game_interval = setInterval(game_loop, 100)
 		}
 	}
 
@@ -117,12 +149,14 @@
 		{/if}
 		<div id='bricks_container'>
 			{#each Array(6*12) as item}
-				<div class='brick'></div>
+				<div class='brick' on:click={(e) => {console.log(e.target.offsetLeft, e.target.offsetTop, e.target.clientHeight, e.target.clientWidth)}}></div>
 			{/each}
 		</div>
 
+		<div id='ball' style="left:{ball.x}px; bottom:{ball.y}px">
+			{ball.x} / {600-ball.y}
+		</div>
 		<div id='player_area' >
-			<div id='ball' style="left:{ball.x}px; bottom:{ball.y}px"></div>
 			<div id='player_bar' style="left:{bar}px" ></div>
 		</div>
 	</div>
@@ -173,7 +207,6 @@
 		height: 20px;
 		width: 20px;
 		position: absolute;
-		bottom: 0px;
 		border-radius: 100%;
 	}
 	#player_bar{
