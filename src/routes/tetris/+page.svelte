@@ -25,14 +25,15 @@
 
      const spawn = () => {
         //pieces[Math.floor(Math.random()*pieces.length)]
-        switch ('right_leg') {
+        const test = 'right_leg'
+        switch (test) {
             case 'right_leg':
                 document.getElementById('box_14').style.backgroundColor = 'red'
                 document.getElementById('box_15').style.backgroundColor = 'red'
                 document.getElementById('box_16').style.backgroundColor = 'red'
                 document.getElementById('box_5').style.backgroundColor = 'red'
                 break;
-            case 'lleft_leg':
+            case 'left_leg':
                 
                 break;
             case 'square':
@@ -54,21 +55,11 @@
             default:
                 break;
         }
-
-   
-        
-        /**
-         * get randm piece
-         * spawn piece
-         * set interval to move piece
-         * on piece stop calculate if lose or if break a line
-         * on piece stop redo
-        */
     }
     onMount(async () => {
 
             spawn()
-    	});
+    });
 
 </script>
 
