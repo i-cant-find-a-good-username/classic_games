@@ -8,9 +8,6 @@ const easy = Array.from({length: 10}, () => Math.floor(Math.random() * 64));
 const normal = Array.from({length: 40}, () => Math.floor(Math.random() * 256));
 const hard = Array.from({length: 100}, () => Math.floor(Math.random() * 512));
 
-console.log(easy)
-console.log(normal)
-console.log(hard)
 
 let chosen_diff = "easy"
 
