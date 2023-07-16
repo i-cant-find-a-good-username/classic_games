@@ -17,7 +17,7 @@
         {name: 'tic tac toe (incomplete)',icon: tic_tac_toe, url: "tic_tac_toe"},
         {name: 'snake',icon: snake, url: "snake"},
         {name: 'sudoko (incomplete)',icon: sudoko, url: "sudoko"},
-        {name: 'tile slide (incomplete)',icon: tile_slide, url: "tile_slide"},
+        {name: 'tile slide',icon: tile_slide, url: "tile_slide"},
         {name: 'tetris (incomplete)',icon: tetris, url: "tetris"},
         {name: 'chess (incomplete)',icon: chess, url: "chess"},
     ]
