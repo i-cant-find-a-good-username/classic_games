@@ -18,7 +18,7 @@
     }
 
     const ai_turn = () => {
-        alert("too bored to do this maual labor to be honest, its either gonna be the generic ai or the unbeatable ai and both are boring")
+        alert("too bored to do this maual labor to be honest, its either gonna be the generic ai or the unbeatable ai and both are equally boring")
     }
     const change_mode = () => {
         solo = !solo

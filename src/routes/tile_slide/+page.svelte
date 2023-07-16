@@ -1,4 +1,8 @@
 <script lang='ts'>
+	import { onMount } from "svelte";
+	import { flip } from "svelte/animate";
+
+
 	let game_won = false
 	let show_message = true
 	let message = 'use arrow keys to play'
@@ -98,20 +102,32 @@
 		show_message = true
 		message = 'you won'
 		game_won = true
+		clearInterval(time_interval)
 	}
+	let time_interval: NodeJS.Timeout
 
 	const new_game = () => {
-		console.log("test")
+		time = 0;
+		moves = 0
 		game_won = false
 		shuffleArray(grid)
 		grid = [...grid]
 		show_message = true
 		message = 'use arrow keys to play'
-
 	}
 
-	
-	import { flip } from "svelte/animate";
+	let time = 0;
+	$: minutes = Math.floor(time/60);
+	$: seconds = time%60;
+	onMount(() => {
+		const time_interval = setInterval(() => {
+			time++
+		}, 1000);
+
+		return () => {
+			clearInterval(time_interval);
+		};
+	});
 </script>
 
 <svelte:window on:keydown={input} />
@@ -121,7 +137,7 @@
 	{/if}
 	<div id='score_board'>
 		<button on:click={new_game} >new game</button>
-		<div>TIME: 00 : 00</div>
+		<div>TIME: {('0'+minutes).slice(-2)}:{('0'+seconds).slice(-2)}</div>
 		<div>MOVES: {moves}</div>
 	</div>
 	<div id='main'>

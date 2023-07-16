@@ -26,9 +26,9 @@
 </script>
 
 <div class="navbar">
-    <div id='logo'>
+    <a href='/' id='logo'>
         <img src={logo}  alt="Welcome" />
-    </div>
+    </a>
     <div>
         <button class='nav_buttons active_button' on:click={test} >play</button>
         <button class='nav_buttons' on:click={test} >idk yet</button>
@@ -40,13 +40,13 @@
 </div>
 
 <div id='second_nav_bar' bind:this={second_nav} style="translate: {current_page !== '/' ? '0px 0px': '0px -100px'}" >
-    <div>SOLITAIRE</div>
-    <div>2048</div>
-    <div>MINE SWEEPER</div>
-    <div>BREAKOUT</div>
-    <div>TIC TAC TOE</div>
-    <div>SNAKE</div>
-    <div>all</div>
+    <a href='/solitaire'>SOLITAIRE</a>
+    <a href='/2048'>2048</a>
+    <a href='/mine_sweeper'>MINE SWEEPER</a>
+    <a href='/breakout'>BREAKOUT</a>
+    <a href='/tic_tac_toe'>TIC TAC TOE</a>
+    <a href='/snake'>SNAKE</a>
+    <a href='/'>all</a>
 </div>
 
 <style>
@@ -129,6 +129,8 @@
         
     }
     #second_nav_bar > *{
+        text-decoration: none;
+        color: #a6adbaff;
         padding: 20px;
         padding-top: 10px;
         padding-bottom: 10px;
@@ -143,9 +145,11 @@
 
 
     #logo{
+        z-index: 1000;
         height: 100%;
         display: flex;
         align-items: center;
+        cursor: pointer;
     }
     #logo > img{
         width: 50px;

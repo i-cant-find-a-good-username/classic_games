@@ -14,7 +14,7 @@
         {name: '2048',icon: doubles, url: "2048"},
         {name: 'mine sweeper (incomplete)',icon: mine_sweeper, url: "mine_sweeper"},
         {name: 'breakout (almost complete)',icon: breakout, url: "breakout"},
-        {name: 'tic tac toe (incomplete)',icon: tic_tac_toe, url: "tic_tac_toe"},
+        {name: 'tic tac toe',icon: tic_tac_toe, url: "tic_tac_toe"},
         {name: 'snake',icon: snake, url: "snake"},
         {name: 'sudoko (incomplete)',icon: sudoko, url: "sudoko"},
         {name: 'tile slide',icon: tile_slide, url: "tile_slide"},
