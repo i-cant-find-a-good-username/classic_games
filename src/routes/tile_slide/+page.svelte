@@ -107,7 +107,7 @@
 	let time_interval: NodeJS.Timeout
 
 	const new_game = () => {
-		time = 0;
+		time = 0
 		moves = 0
 		game_won = false
 		shuffleArray(grid)

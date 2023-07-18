@@ -1,14 +1,6 @@
 <script lang="ts">
-	import { dirty_components } from "svelte/internal";
+	import { onMount } from "svelte/internal";
 
-	// -1 unopened
-	// 0 balnk
-	// 1
-	// 2
-	// 3
-	// 4 flaged
-	// 5 unopened bomb
-	// 6 bomb
 	interface Box{
 		type: 'bomb' | 'number',
 		value: number,
@@ -78,28 +70,22 @@
 								}
 							}
 						}
-					console.log(value)
 					grid[i][j].value = value
 				}
 			}
 		}
-
-		console.log(grid)
-
-
 	}
 	generate_grid()
 
 	let start_game = () => {
+		time = 0
 		game_status = true
 		generate_grid()
-		console.log("restart")
 	}
 
 
 
 	const opened = (i: number, j: number) => {
-		console.log(i, j)
 		if(!game_status) {
 			// restart
 			start_game()
@@ -109,6 +95,7 @@
 		}
 		if (grid[i][j].type === 'bomb') {
 			// reveal the board after lost
+			clearInterval(time_interval)
 			game_status = false
 			message = 'you lost'
 			show_message = true
@@ -124,22 +111,22 @@
 		// choas
 		if(grid[i][j].opened){
 			let count = 0;
-			let flaggedAround = 0;
-			let revealedAround = 0;
+			let flagged_around = 0;
+			let revealed_round = 0;
 			for(let x = i - 1; x <= i + 1; x++){
 				for (let y = j - 1; y <= j + 1; y++) {
 					if (x >= 0 && x < height && y >= 0 && y < width) {
 						if (grid[x][y].flagged) {
-							flaggedAround++;
+							flagged_around++;
 						}
 						if (grid[x][y].opened) {
-							revealedAround++;
+							revealed_round++;
 						}
 						count++;
 					}
 				}
 			}
-			if(flaggedAround === grid[i][j].value){
+			if(flagged_around === grid[i][j].value){
 				for (let x = i - 1; x <= i + 1; x++) {
 					for (let y = j - 1; y <= j + 1; y++) {
 						if (
@@ -154,7 +141,7 @@
 						}
 					}
 				}
-			}else if (revealedAround === count - grid[i][j].value){
+			}else if (revealed_round === count - grid[i][j].value){
 				for (let x = i - 1; x <= i + 1; x++) {
 					for (let y = j - 1; y <= j + 1; y++) {
 						if (
@@ -191,13 +178,39 @@
 				grid[i][j].opened = true;
 			}
 		}
+		// check if won here
+		// if all cells but bombs are open
+		let counter = height*width - num_bombs
+		for (let i = 0; i < height; i++) {
+			for (let j = 0; j < width; j++) {
+				if(grid[i][j].opened && grid[i][j].type !== 'bomb'){
+					counter--
+				}
+			}
+		}
+		if(counter == 0){
+			clearInterval(time_interval)
+			game_status = false
+			message = 'you won'
+			show_message = true
+		} 
 	}
 
 
-	const flag = (i: number, j: number) => {
-		// toggle flag
-		grid[i][j].flagged = !grid[i][j].flagged
-	}
+
+	let time_interval: NodeJS.Timeout
+	let time = 0;
+	$: minutes = Math.floor(time/60);
+	$: seconds = time%60;
+	onMount(() => {
+		const time_interval = setInterval(() => {
+			time++
+		}, 1000);
+
+		return () => {
+			clearInterval(time_interval);
+		};
+	});
 
 </script>
 
@@ -213,7 +226,7 @@
 	<div id='game_container'>
 		<div id="main">
 			{#each grid as row, i}
-				<div class={diffculty === "easy" ? 'rows1' : diffculty === "normal" ? 'rows2' : 'rows3' }>
+				<div class="{diffculty === "easy" ? 'rows1' : diffculty === "normal" ? 'rows2' : 'rows3' }">
 					{#each row as cell, j}
 						{#if !cell.opened}
 							<button on:click={() => {opened(i, j)}} class='cell'></button>
@@ -222,7 +235,7 @@
 						{:else if cell.type === 'bomb'}
 							<button on:click={() => {opened(i, j)}} class='bomb'></button>
 						{:else}
-							<button on:contextmenu={() => {flag(i, j)}} on:click={() => {opened(i, j)}} class="n_cell cell_{cell.value}">{cell.value===0? "ezfzef" : cell.value}</button>
+							<button on:contextmenu|preventDefault={() => {alert('fff')}} on:click={() => {opened(i, j)}} class="n_cell cell_{cell.value}">{cell.value}</button>
 						{/if}
 					{/each}
 				</div>
@@ -238,7 +251,7 @@
 			<option value="hard">hard</option>
 		</select>
 		<div id='score_board'>
-			<div>time: 00:00</div>
+			<div>TIME: {('0'+minutes).slice(-2)}:{('0'+seconds).slice(-2)}</div>
 			<div>bombs: {num_bombs}</div>
 		</div>
 	</div>
@@ -254,23 +267,19 @@
 		justify-content: center;
 	}
 	#game_container{
-		/* remove later
-		margin: 20px;*/
 		height: 100%;
+		width: 100%;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 	}
-	#main, #main2 ,#main3{
+	#main{
 		display: flex;
 		flex-direction: column;
 		gap: 2px;
 		width: fit-content;
 	}
-	#main{
-		height: 320px;
-		width: 320px;
-	}
+	
 
 	.rows1, .rows2, .rows3{
 		display: flex;
@@ -348,6 +357,8 @@
 	
 
 	#message{ 
+		position: absolute;
+		top: 100px;
 		text-align: center;
 		font-size: 40px;
 		font-weight: 700;

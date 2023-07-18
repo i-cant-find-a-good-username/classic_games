@@ -12,7 +12,7 @@
     let games = [
         {name: 'solitaire (incomplete)',icon: solitaire, url: "solitaire"},
         {name: '2048',icon: doubles, url: "2048"},
-        {name: 'mine sweeper (incomplete)',icon: mine_sweeper, url: "mine_sweeper"},
+        {name: 'mine sweeper',icon: mine_sweeper, url: "mine_sweeper"},
         {name: 'breakout (almost complete)',icon: breakout, url: "breakout"},
         {name: 'tic tac toe',icon: tic_tac_toe, url: "tic_tac_toe"},
         {name: 'snake',icon: snake, url: "snake"},
